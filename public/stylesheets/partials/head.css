@@ -1,0 +1,37 @@
+.logo-img {
+    float: left !important;
+    margin-top: 0.7em;
+    margin-left: 2em;
+}
+
+nav .brand-logo {
+    position: absolute;
+    color: #fff;
+    display: inline-block;
+    font-size: 2.1rem;
+    padding: 0;
+    white-space: nowrap;
+}
+
+.main-title {
+    font-family: Lato !important;
+    font-size: 1em !important;
+    font-weight: bolder;
+    letter-spacing: 0.5em;
+}
+
+.sub-nav {
+    background-color: #283593 !important;
+}
+
+.sub-title {
+    font-family: Lato !important;
+    font-weight: 500;
+    font-size: 1.5em !important;
+    letter-spacing: 0.3em;
+}
+
+nav {
+    text-align: center;
+    background-color: #1A237E !important;
+}

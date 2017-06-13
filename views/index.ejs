@@ -1,13 +1,87 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+
+  <% include partials/header.ejs %>
+
   <body>
-    <% include partials/header.ejs %>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <main>
+    <% include partials/head.ejs %>
+    <br><br>
+    <div class="container">
+      <% if (site.msg)  { %>
+      <div class="row">
+        <div class="card-panel <%= site.msg.color %>">
+          <span class="white-text"><%= site.msg %></span>
+        </div>
+      </div>
+      <% } %>
+      <div class="row flex-row">
+        <div class="col m7">
+          <br><br><br>
+          <h2 class="thin">Welcome to <%= site.title %></h2>
+          <h5 class="light"><%= site.desc %></h5>
+        </div>
+        <div class="col m5">
+          <div class="card">
+            <div class="card-tabs">
+              <ul class="tabs tabs-fixed-width">
+                <li class="tab"><a class="active" href="#login">LOGIN</a></li>
+                <li class="tab"><a href="#signup">SIGN UP</a></li>
+              </ul>
+            </div>
+            <div class="card-content deep-blue fixed-height-card-content">
+              <div id="login">
+
+                <div class="row">
+
+                  <div class="input-field col s12">
+                    <input id="username" type="text" placeholder="Username"
+                           class="validate" name="username">
+                  </div>
+
+                  <div class="input-field col s12">
+                    <input id="password" type="password" placeholder="Password"
+                           class="validate" name="password">
+                  </div>
+
+                  <div class="center col s12">
+                    <br><br>
+                    <a class="waves-effect waves-light btn">LOGIN</a>
+                  </div>
+
+                </div>
+              </div>
+              <div id="signup">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="email" type="email" placeholder="Email ID"
+                           class="validate" name="email">
+                  </div>
+
+                  <div class="input-field col s12">
+                    <input id="choose_password" type="password" placeholder="Choose a Password"
+                           class="validate" name="choose_password">
+                  </div>
+
+                  <div class="input-field col s12">
+                    <input id="confirm_password" type="text" placeholder="Confirm Password"
+                           class="validate" name="confirm_password">
+                  </div>
+
+                  <div class="center col s12">
+                    <br><br>
+                    <a class="waves-effect waves-light btn">SIGN UP</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </main>
+    <br><br>
     <% include partials/footer.ejs %>
+
   </body>
 </html>

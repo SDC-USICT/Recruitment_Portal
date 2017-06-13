@@ -1,8 +1,78 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.container > .row {
+  padding-top: 50px;
 }
 
-a {
-  color: #00B7FF;
+input:not([type]), input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea {
+  background-color: #39417b;
+  border: none;
+  border-bottom: 0;
+  text-indent: 1em;
+}
+
+input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 0;
+  box-shadow: none;
+}
+
+.deep-blue {
+  background: #061052;
+}
+
+.deep-blue-text {
+  color: #061052;
+}
+
+.card-tabs .tabs .tab a.active, .card-tabs .tabs .tab a.hover {
+  color: white;
+}
+
+.card-tabs .tabs .indicator {
+  background-color: #061052;
+  height: 100%;
+}
+
+.card-tabs .tabs .tab a {
+  color: #061052;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+
+#login .btn:hover, #signup .btn:hover {
+  background-color: crimson;
+  color: white;
+  font-weight: 500;
+}
+
+.card-tabs li {
+  z-index: 9999;
+}
+
+input:not([type]), input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea {
+  color: white;
+}
+
+.btn {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  background: white;
+  color: #061052;
+  font-weight: 600;
+  letter-spacing:0.1em;
+}
+
+.flex-row {
+  display: flex;
+}
+
+.flex-row  .col {
+  align-items: stretch;
+}
+
+.fixed-height-card-content {
+  height:60vh;
+}
+
+.card-panel {
+  padding:12px;
 }
