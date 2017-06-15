@@ -76,3 +76,13 @@ input:not([type]), input[type=text], input[type=password], input[type=email], in
 .card-panel {
   padding:12px;
 }
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}

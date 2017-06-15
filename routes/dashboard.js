@@ -1,9 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
+
+
+
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+
+    var title = "Recruitment Portal";
+    var desc = "Online Portal to apply for various posts at GGSIP University";
+
+    var site = {
+        title : title,
+        desc : desc
+    }
+
+    res.render('dashboard', { site : site});
+
 });
 
 module.exports = router;

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<% include includes/head.ejs %>
+
+<body>
+<main>
+    <% include includes/header.ejs %>
+    <nav>
+        <div class="nav-wrapper">
+            <ul class="left hide-on-med-and-down">
+                <li><a href="home">Dashboard</a></li>
+            </ul>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="search"><i class="material-icons">search</i></a></li>
+                <li><a href="print"><i class="material-icons">view_module</i></a></li>
+                <li><a href="notifications"><i class="material-icons">refresh</i></a></li>
+                <li><a href="more"><i class="material-icons">more_vert</i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+</main>
+<br><br>
+<% include includes/footer.ejs %>
+
+</body>
+</html>
+
+<style>
+    nav ul li.active {
+        background-color: rgba(0,0,0,0.3);
+    }
+</style>
