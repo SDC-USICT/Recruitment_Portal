@@ -6,19 +6,84 @@
 <body>
 <main>
     <% include includes/header.ejs %>
-    <nav>
+    <nav class="secondary-navbar">
         <div class="nav-wrapper">
             <ul class="left hide-on-med-and-down">
-                <li><a href="home">Dashboard</a></li>
+                <li><a class="active" href="home">Dashboard</a></li>
+                <li><a href="information">My Information</a></li>
             </ul>
             <ul class="right hide-on-med-and-down">
-                <li><a href="search"><i class="material-icons">search</i></a></li>
-                <li><a href="print"><i class="material-icons">view_module</i></a></li>
-                <li><a href="notifications"><i class="material-icons">refresh</i></a></li>
-                <li><a href="more"><i class="material-icons">more_vert</i></a></li>
+                <li>
+                    <a href="notifications">
+                    <i class="fa fa-bell" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="logout">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
+    <br><br>
+    <div class="vacancy container">
+        <div class="section">
+            <div class="card table-title">VACANCIES</div>
+            <table class="card responsive-table bordered centered">
+                <thead>
+                <tr class="center">
+                    <th>Designation</th>
+                    <th>Basis</th>
+                    <th>Last Date</th>
+                    <th>Apply</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <h6>
+                            Assistant Professor
+                        </h6>
+                    </td>
+                    <td class="grey-text">Contractual</td>
+                    <td class="grey-text">16 June 2017</td>
+                    <td>
+                        <a href="#!" class="btn waves-effect waves-teal">APPLY NOW</a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h6>
+                            Assistant Professor
+                        </h6>
+                    </td>
+                    <td class="grey-text">Contractual</td>
+                    <td class="grey-text">16 June 2017</td>
+                    <td>
+                        <a href="#!" class="btn waves-effect waves-teal">APPLY NOW</a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h6>
+                            Assistant Professor
+                        </h6>
+                    </td>
+                    <td class="grey-text">Contractual</td>
+                    <td class="grey-text">16 June 2017</td>
+                    <td>
+                        <a href="#!" class="btn waves-effect waves-teal">EDIT APPLICATION</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 
 </main>
 <br><br>
@@ -26,9 +91,3 @@
 
 </body>
 </html>
-
-<style>
-    nav ul li.active {
-        background-color: rgba(0,0,0,0.3);
-    }
-</style>

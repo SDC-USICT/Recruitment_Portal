@@ -37,7 +37,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]),
   letter-spacing: 0.1em;
 }
 
-#login .btn:hover, #signup .btn:hover {
+.btn:hover {
   background-color: crimson;
   color: white;
   font-weight: 500;
@@ -85,4 +85,86 @@ body {
 
 main {
   flex: 1 0 auto;
+}
+
+.dashboard-nav ul.left {
+  margin-left: 1em;
+}
+
+.dashboard-nav ul.left a {
+  margin-right: 1em;
+}
+
+.dashboard-nav ul.right {
+  margin-right: 1em;
+}
+
+.dashboard-nav ul.right a {
+  margin-left: 1em;
+}
+
+.table-title {
+  padding: 1em;
+  border-left: 0.3em solid crimson;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.vacancy td {
+  padding:2em;
+}
+
+h6 {
+  font-weight:400;
+  font-size: 1.2em;
+}
+
+@media only screen and (min-width: 993px){
+  .container {
+    width: 80%;
+  }
+}
+
+.vacancy .card {
+  margin: 0 !important;
+}
+
+.vacancy .status-text {
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 1em;
+}
+
+.strong {
+  font-weight:600;
+}
+
+.page-title {
+
+}
+
+body {
+  background: #ebeff1;
+}
+
+.secondary-navbar {
+  height: 60px;
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+.secondary-navbar  ul a.active {
+  border-bottom: 0.3em solid white;
+}
+
+.secondary-navbar  ul a {
+  line-height:60px;
+  height:60px;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  text-transform: uppercase;
 }
