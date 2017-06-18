@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<% include ../includes/head.ejs %>
+
+<body id="dashboard">
+<main>
+    <% include ../includes/header.ejs %>
+    <nav class="secondary-navbar">
+        <div class="nav-wrapper">
+            <ul class="tabs">
+                <li class="tab col s3"><a href="#test1">POST NEW VACANCY</a></li>
+                <li class="tab col s3"><a class="active"  href="#test2">VIEW ALL VACANCIES</a></li>
+                <li class="tab col s3 disabled"><a href="#test3">FAQ</a></li>
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        <a href="notifications">
+                            <i class="fa fa-bell" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="logout">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+
+            </ul>
+
+        </div>
+    </nav>
+    <br><br>
+
+</main>
+<br><br>
+<% include ../includes/footer.ejs %>
+
+</body>
+</html>
+<style>
+    .info ul:before {
+        content: "";
+        position: absolute;
+        left: 0.9em;
+        width: 3px;
+        height: calc(100% - 80px);
+        background: #c0392b;
+    }
+
+    .info ul li{
+        margin-left:4em;
+        margin-bottom: 2em;
+    }
+
+    .info ul .time:before{
+        content: "";
+        position: absolute;
+        left: 0.5em;
+        width: 1em;
+        height: 1em;
+        background: crimson;
+        border-radius: 100%;
+    }
+
+    .info .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .info .card .row.border-top {
+        border-top: 0.1em solid #e7eaf1;
+    }
+
+    .info .row .col.m3 {
+        background: #f4f6f9;
+        border-right: 0.1em solid #e7eaf1;
+    }
+
+    .info input[type=text] {
+        background-color: #f3f3f5;
+        text-indent: 1em;
+        border-bottom: 0;
+    }
+
+    .info input[type=text].valid {
+        border-bottom: 1px solid #4CAF50;
+        box-shadow: 0 1px 0 0 #4CAF50;
+    }
+
+    .info ::-webkit-input-placeholder {
+        color: #26a69a;
+    }
+
+    .info :-moz-placeholder {
+        color: #26a69a;
+    }
+
+    .info ::-moz-placeholder {
+        color: #26a69a;
+    }
+
+    .info :-ms-input-placeholder {
+        color: #26a69a;
+    }
+</style>

@@ -8,6 +8,9 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var dashboard = require('./routes/dashboard');
 
+var admin = require('./routes/admin/index');
+var adminDashboard = require('./routes/admin/dashboard');
+
 title = "Recruitment Portal";
 desc = "Online Portal to apply for various posts at GGSIP University";
 
@@ -26,7 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/dashboard', dashboard);
-
+app.use('/admin', admin);
+app.use('/admin/dashboard', adminDashboard);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
