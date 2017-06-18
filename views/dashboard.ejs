@@ -3,31 +3,36 @@
 
 <% include includes/head.ejs %>
 
-<body>
+<body id="dashboard">
 <main>
     <% include includes/header.ejs %>
     <nav class="secondary-navbar">
         <div class="nav-wrapper">
-            <ul class="left hide-on-med-and-down">
-                <li><a class="active" href="home">Dashboard</a></li>
-                <li><a href="information">My Information</a></li>
+            <ul class="tabs">
+                <li class="tab col s3"><a href="#test1">DASHBOARD</a></li>
+                <li class="tab col s3"><a class="active"  href="#test2">INFORMATION</a></li>
+                <li class="tab col s3 disabled"><a href="#test3">FAQ</a></li>
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        <a href="notifications">
+                            <i class="fa fa-bell" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="logout">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+
             </ul>
-            <ul class="right hide-on-med-and-down">
-                <li>
-                    <a href="notifications">
-                    <i class="fa fa-bell" aria-hidden="true"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="logout">
-                    <i class="fa fa-sign-out" aria-hidden="true"></i>
-                    </a>
-                </li>
-            </ul>
+
         </div>
     </nav>
     <br><br>
-    <div class="vacancy container">
+
+
+    <div id="test1" class="vacancy container">
         <div class="section">
             <div class="card table-title">VACANCIES</div>
             <table class="card responsive-table bordered centered">
@@ -36,7 +41,7 @@
                     <th>Designation</th>
                     <th>Basis</th>
                     <th>Last Date</th>
-                    <th>Apply</th>
+                    <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -69,18 +74,64 @@
                 <tr>
                     <td>
                         <h6>
-                            Assistant Professor
+                            Lab Assistant
                         </h6>
                     </td>
                     <td class="grey-text">Contractual</td>
                     <td class="grey-text">16 June 2017</td>
                     <td>
-                        <a href="#!" class="btn waves-effect waves-teal">EDIT APPLICATION</a>
+                        <a href="#!" class="btn waves-effect waves-teal disabled">APPLY NOWgi</a>
                     </td>
                 </tr>
 
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <div id="test2" class="info container">
+        <div class="card">
+            <div class="table-title">INFORMATION</div>
+            <div class="row border-top">
+                <div class="col m3">
+                    <ul>
+                        <li>
+                            <div class="time">Basic Information</div>
+                        </li>
+                        <li>
+                            <div class="time grey-text">Academic Details</div>
+                        </li>
+                        <li>
+                            <div class="time grey-text">Experience</div>
+                        </li>
+                        <li>
+                            <div class="time grey-text">Research and Academic Contribution</div>
+                        </li>
+                        <li>
+                            <div class="time grey-text">Curricular Activities</div>
+                        </li>
+                        <li>
+                            <div class="time grey-text">Other Declaration</div>
+                        </li>
+                        <li>
+                            <div class="time grey-text">Uploads</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col m9">
+                    <div class="container">
+                        <br>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input placeholder="First Name" id="first_name" type="text">
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="Last Name" id="first_name" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -91,3 +142,69 @@
 
 </body>
 </html>
+<style>
+    .info ul:before {
+        content: "";
+        position: absolute;
+        left: 0.9em;
+        width: 3px;
+        height: calc(100% - 80px);
+        background: #c0392b;
+    }
+
+    .info ul li{
+        margin-left:4em;
+        margin-bottom: 2em;
+    }
+
+    .info ul .time:before{
+        content: "";
+        position: absolute;
+        left: 0.5em;
+        width: 1em;
+        height: 1em;
+        background: crimson;
+        border-radius: 100%;
+    }
+
+    .info .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .info .card .row.border-top {
+        border-top: 0.1em solid #e7eaf1;
+    }
+
+    .info .row .col.m3 {
+        background: #f4f6f9;
+        border-right: 0.1em solid #e7eaf1;
+    }
+
+    .info input[type=text] {
+        background-color: #f3f3f5;
+        text-indent: 1em;
+        border-bottom: 0;
+    }
+
+    .info input[type=text].valid {
+        border-bottom: 1px solid #4CAF50;
+        box-shadow: 0 1px 0 0 #4CAF50;
+    }
+
+    .info ::-webkit-input-placeholder {
+        color: #26a69a;
+    }
+
+    .info :-moz-placeholder {
+        color: #26a69a;
+    }
+
+    .info ::-moz-placeholder {
+        color: #26a69a;
+    }
+
+    .info :-ms-input-placeholder {
+        color: #26a69a;
+    }
+</style>

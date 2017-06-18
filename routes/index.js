@@ -5,7 +5,10 @@ router.get('/', function(req, res, next) {
 
   var site = {
     title : title,
-    desc : desc
+    desc : desc,
+      msg:  {
+         msg: "Error !"
+      }
   }
 
   res.render('index', { site : site});
