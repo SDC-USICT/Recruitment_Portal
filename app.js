@@ -1,19 +1,21 @@
 var express = require('express');
+var session  = require('express-session');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var flash    = require('connect-flash');
 
-var index = require('./routes/index');
-var dashboard = require('./routes/dashboard');
+//connect to DB
+require('./config/passport')(passport);
 
-var admin = require('./routes/admin/index');
-var adminDashboard = require('./routes/admin/dashboard');
-
+//set strings
 title = "Recruitment Portal";
 desc = "Online Portal to apply for various posts at GGSIP University";
 
+//setup express
 var app = express();
 
 // view engine setup
@@ -27,6 +29,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//setup passport
+app.use(session({
+    secret: 'hi',
+    resave: true,
+    saveUninitialized: true
+} )); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash());
+
+//set route variables
+var index = require('./routes/index')(passport);
+var dashboard = require('./routes/dashboard');
+var admin = require('./routes/admin/index');
+var adminDashboard = require('./routes/admin/dashboard');
+
+//setup routes
 app.use('/', index);
 app.use('/dashboard', dashboard);
 app.use('/admin', admin);

@@ -19,7 +19,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="logout">
+                        <a href="logout" class="logout">
                             <i class="fa fa-sign-out" aria-hidden="true"></i>
                         </a>
                     </li>
@@ -208,3 +208,10 @@
         color: #26a69a;
     }
 </style>
+<script>
+    $('document').ready(function () {
+        $('.logout').click(function () {
+            window.location.href="/logout";
+        })
+    })
+</script>

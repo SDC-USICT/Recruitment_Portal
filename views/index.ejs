@@ -33,45 +33,43 @@
               <div id="login">
 
                 <div class="row">
+                  <form action="/login" method="post">
+                    <div class="input-field col s12">
+                      <input id="username" type="text" placeholder="Username"
+                             class="validate" name="username">
+                    </div>
 
-                  <div class="input-field col s12">
-                    <input id="username" type="text" placeholder="Username"
-                           class="validate" name="username">
-                  </div>
+                    <div class="input-field col s12">
+                      <input id="password" type="password" placeholder="Password"
+                             class="validate" name="password">
+                    </div>
 
-                  <div class="input-field col s12">
-                    <input id="password" type="password" placeholder="Password"
-                           class="validate" name="password">
-                  </div>
-
-                  <div class="center col s12">
-                    <br><br>
-                    <a class="waves-effect waves-light btn">LOGIN</a>
-                  </div>
-
+                    <div class="center col s12">
+                      <br><br>
+                      <button type="submit " class="submit waves-effect waves-light btn">LOGIN</button>
+                    </div>
+                  </form>
                 </div>
               </div>
               <div id="signup">
                 <div class="row">
-                  <div class="input-field col s12">
-                    <input id="email" type="email" placeholder="Email ID"
-                           class="validate" name="email">
-                  </div>
+                  <form method="post" action="/signup">
+                    <div class="input-field col s12">
+                      <input id="email" type="email" placeholder="Email ID"
+                             class="validate" name="username">
+                    </div>
 
-                  <div class="input-field col s12">
-                    <input id="choose_password" type="password" placeholder="Choose a Password"
-                           class="validate" name="choose_password">
-                  </div>
+                    <div class="input-field col s12">
+                      <input id="choose_password" type="password" placeholder="Choose a Password"
+                             class="validate" name="password">
+                    </div>
 
-                  <div class="input-field col s12">
-                    <input id="confirm_password" type="text" placeholder="Confirm Password"
-                           class="validate" name="confirm_password">
-                  </div>
 
-                  <div class="center col s12">
-                    <br><br>
-                    <a class="waves-effect waves-light btn">SIGN UP</a>
-                  </div>
+                    <div class="center col s12">
+                      <br><br>
+                      <button type="submit " class="submit waves-effect waves-light btn">SIGN UP</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
