@@ -51,8 +51,17 @@
 
                 </div>
               </div>
+              <form action="/signup" method="post">
               <div id="signup">
                 <div class="row">
+
+                <!-- Name added  -->
+                <div class="input-field col s12">
+                  <input id="name" type="text" placeholder="Full Name"
+                         class="validate" name="name">
+                </div>
+
+                <!-- Email  -->
                   <div class="input-field col s12">
                     <input id="email" type="email" placeholder="Email ID"
                            class="validate" name="email">
@@ -60,20 +69,22 @@
 
                   <div class="input-field col s12">
                     <input id="choose_password" type="password" placeholder="Choose a Password"
-                           class="validate" name="choose_password">
+                           class="validate" name="password">
                   </div>
 
                   <div class="input-field col s12">
-                    <input id="confirm_password" type="text" placeholder="Confirm Password"
+                    <input id="confirm_password" type="password" placeholder="Confirm Password"
                            class="validate" name="confirm_password">
                   </div>
 
                   <div class="center col s12">
                     <br><br>
-                    <a class="waves-effect waves-light btn">SIGN UP</a>
+                    <button class="btn waves-effect waves-light" type="submit">Submit
+                    </button>
                   </div>
                 </div>
               </div>
+            </form>
             </div>
           </div>
         </div>
