@@ -34,10 +34,16 @@ router.post('/signup',passport.authenticate('local-signup',{
 //passport Authenticationis yet to implement.
 router.post('/login',passport.authenticate('local-login',{
   successRedirect : '/dashboard',
-  failureRedirect : '/admin',
+  failureRedirect : '/',
   failureFlash : true
 }));
 
+router.get('/logout', function (req, res){
+  req.logOut();
+  req.session.destroy(function (err) {
+    res.redirect('/'); //Inside a callback… bulletproof!
+  });
+});
 
 
 module.exports = router;
