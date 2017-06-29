@@ -32,20 +32,11 @@ router.post('/signup',passport.authenticate('local-signup',{
 
 // Login route
 //passport Authenticationis yet to implement.
-router.post('/login',function(req,res,next){
-
-  // models.User.findOne({where:{email:req.body.username}
-  // }).then(user=> {
-  // console.log("Logged In");
-  // var token = verify.createJWT(user);
-  // console.log("Token: "+token);
-  //   res.json({token: token});
-  // });
-  // successRedirect : '/dashboard',
-  // failureRedirect : '/'
-  console.log(req.body);
-
-});
+router.post('/login',passport.authenticate('local-login',{
+  successRedirect : '/dashboard',
+  failureRedirect : '/admin',
+  failureFlash : true
+}));
 
 
 

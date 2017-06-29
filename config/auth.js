@@ -1,9 +1,9 @@
-//This is separate module for passport Authentication.
 // config/auth.js
+//This is separate module for passport Authentication.
 
 var LocalStrategy   = require('passport-local').Strategy;
 var models = require('../models');
-
+var bcrypt = require('bcrypt-nodejs');
 module.exports = function(passport){
 
 
@@ -38,9 +38,9 @@ module.exports = function(passport){
             console.log(req.body);
             // set the user's local credentials
             newUser.email    = email;
-            newUser.password = password;//newUser.generateHash(password);
+            newUser.password = bcrypt.hashSync(password, bcrypt.genSaltSync(8),null);
             newUser.name = req.body.name;
-            newUser.confirm_password = password;
+            newUser.confirm_password = 'none';
             // save the user
             models.User.create(newUser).then(user=>{
               console.log(user);
@@ -50,9 +50,29 @@ module.exports = function(passport){
 
       });
 
+  })
 
-      });
+}));
 
-  }));
+  passport.use('local-login', new LocalStrategy({
+        // by default, local strategy uses username and password, we will override with email
+        usernameField : 'username',
+        passwordField : 'password',
+        passReqToCallback : true // allows us to pass back the entire request to the callback
+    },
+    function(req,username, password, done) {
+        models.User.findOne({where:{email:username}}).then(user=>{
+              console.log("User is here login");
+              if (!user)
+                  return done(null, false, req.flash('loginMessage', 'No user found.'));
+
+              if (!bcrypt.compareSync(password,user.password))
+                  return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+
+              return done(null, user);
+
+
+        });
+    }));
 
 };

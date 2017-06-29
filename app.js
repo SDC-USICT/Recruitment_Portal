@@ -33,7 +33,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //separate passport module is created.
-require('./config/auth')(passport);
+
 
 
 //importing routes.
@@ -49,6 +49,10 @@ app.use('/', index);
 app.use('/dashboard', dashboard);
 app.use('/admin', admin);
 app.use('/admin/dashboard', adminDashboard);
+
+
+
+require('./config/auth')(passport);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
