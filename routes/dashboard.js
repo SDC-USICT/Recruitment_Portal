@@ -4,7 +4,7 @@ var verify = require('../config/verify');
 
 
 
-router.get('/', function(req, res, next) {
+router.get('/',verify.isAuthenticated, function(req, res, next) {
 
 
     var site = {

@@ -37,3 +37,11 @@ exports.registeredUser = function(req, res, next) {
   };
   return jwt.encode(payload, config.TOKEN_SECRET);
 }
+
+exports.isAuthenticated = function(req,res,next){
+  console.log(req.user);
+  if (req.isAuthenticated())
+       return next();
+
+   res.redirect('/');
+}
