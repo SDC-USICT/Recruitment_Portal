@@ -4,7 +4,7 @@ var models = require('../models');
 var verify = require('../config/verify');
 var passport = require('passport');
 //var authPassport = require('../config/auth')(passport);
-router.get('/', function(req, res, next) {
+router.get('/',verify.isLoggedIn, function(req, res, next) {
 
   var site = {
     title : title,
