@@ -3,3 +3,4 @@
 bears = SpaceConsistencyBear
 files = **.css, **.js, **.md, **.json
 use_spaces = True
+ignore = node_modules/**

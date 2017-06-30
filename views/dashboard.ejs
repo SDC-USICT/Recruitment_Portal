@@ -4,7 +4,7 @@
 <% include includes/head.ejs %>
 
 <body id="dashboard">
-<main>
+<main ng-app="Form">
     <% include includes/header.ejs %>
     <nav class="secondary-navbar">
         <div class="nav-wrapper">
@@ -89,37 +89,195 @@
         </div>
     </div>
 
-    <div id="test2" class="info container">
+    <div  ng-controller="fc" ng-init="selected=0" id="test2" class="info container">
         <div class="card">
             <div class="table-title">INFORMATION</div>
             <div class="row border-top">
                 <div class="col m3">
                     <ul>
-                        <li>
-                            <div class="time">Basic Information</div>
-                        </li>
-                        <li>
-                            <div class="time grey-text">Academic Details</div>
-                        </li>
-                        <li>
-                            <div class="time grey-text">Experience</div>
-                        </li>
-                        <li>
-                            <div class="time grey-text">Research and Academic Contribution</div>
-                        </li>
-                        <li>
-                            <div class="time grey-text">Curricular Activities</div>
-                        </li>
-                        <li>
-                            <div class="time grey-text">Other Declaration</div>
-                        </li>
-                        <li>
-                            <div class="time grey-text">Uploads</div>
+                        <li ng-repeat="info in attributes">
+                            <div ng-click="setSelected(info.val)" ng-class="{'grey-text':!isSelected(info)}" class="time">{{ info.key }}</div>
                         </li>
                     </ul>
                 </div>
                 <div class="col m9">
-                    <div class="container">
+                    <div ng-show="selected==0" class="container">
+                        <br>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input placeholder="First Name" id="first_name" type="text">
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="Last Name" id="last_name" type="text">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input type="text" placeholder="Father's First Name" name="cand_parent_fname">
+                            </div>
+                            <div  class="input-field col s6">
+                                <input type="text" placeholder="Father's Last Name" name="cand_parent_lname">
+                            </div>
+                        </div>
+
+
+                        <p class = "center">Discipline (Fill separate Application form for each discipline applied for)</p>
+                        <div class="row">
+                            <div  class="ss-item-required input-field col s6">
+                                <p>
+                                    <input type="checkbox" class="filled-in" id="filled-in-box1" name="discipline[]" value="cse" />
+                                    <label for="filled-in-box1">CSE/IT</label>
+                                </p>
+                                <p>
+                                    <input type="checkbox" class="filled-in" id="filled-in-box2" name="discipline[]" value="electrical" />
+                                    <label for="filled-in-box2">ELECTRICAL</label>
+                                    <span class="discipline[]_error"></span
+                                </p>
+                            </div>
+                            <div  class="ss-item-required input-field col s6">
+                                <p>
+                                    <input type="checkbox" class="filled-in" id="filled-in-box3" name="discipline[]" value="ece" />
+                                    <label for="filled-in-box3">ELECTRONICS AND COMMUNICATION ENGINEERING(ECE)</label>
+                                </p>
+                                <p>
+                                    <input type="checkbox" class="filled-in" id="filled-in-box4" name="discipline[]" value="mae" />
+                                    <label for="filled-in-box4">MECHANICAL AND AUTOMATION ENGINEERING(MAE)</label>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div  class="input-field col s12">
+                                <input id="ame" type="text" placeholder="Aadhar Number" class="aadhar_number" name="aadhar_number">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div  class="input-field col s9">
+                                <textarea id="textarea2 " placeholder="Correspondence Address" class="materialize-textarea" name="corresp_address"></textarea>
+
+                            </div>
+                            <div  class="input-field col s3">
+                                <textarea id="textarea1 " placeholder="Pincode" class="materialize-textarea" name="corresp_pin"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div  class="ss-item-required input-field col s9">
+                                <textarea id="textarea3 " class="materialize-textarea" name="perm_address"></textarea>
+                            </div>
+                            <div  class="ss-item-required input-field col s3">
+                                <textarea id="textarea4 " class="materialize-textarea valid_pin" name="perm_pin"></textarea>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="row">
+                            <div  class="ss-item-required input-field col s6">
+                                <input id="icon_prefix " type="text" class="valid_num" name="mobile_number">
+
+                            </div>
+                            <div  class="input-field col s6">
+                                <input id="icon_telephone " type="tel" class="valid_num_ll" name="landline_number">
+                                 </div>
+                        </div>
+
+
+
+
+                        <div class="row">
+                            <div  class="ss-item-required input-field col s12">
+                                <input id="email" type="email" class="" name="cand_email">
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div  class="ss-item-required input-field col s12">
+                                <input id="datepicker" type="text" class="datepicker" name="cand_dob">
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div  class="ss-item-required input-field col s6">
+                                <select name="gender">
+                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+
+                            </div>
+                            <div  class="ss-item-required input-field col s6">
+                                <select name="marital_status">
+                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="married">Married</option>
+                                    <option value="unmarried">Unmarried</option>
+                                </select>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="row">
+                            <div  class="ss-item-required input-field col s12">
+                                <input id="lme" type="text" class="" name="cand_nation">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div  class="ss-item-required input-field col s5">
+                                <select name="category">
+                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="general">GENERAL</option>
+                                    <option value="obc">OBC</option>
+                                    <option value="sc">SC</option>
+                                    <option value="st">ST</option>
+                                    <option value="pwd">PWD</option>
+                                </select>
+                                <label>Category</label>
+                                <span class="category_error"></span>
+                            </div>
+                            <div  class="ss-item-required input-field col s4">
+                                <input id="rel" type="text" class="" name="cand_religion">
+                            </div>
+                            <div  class="ss-item-required input-field col s3">
+                                <select name="minority">
+                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="row">
+                            <div  class="ss-item-required input-field col s9">
+                                <textarea id="textarea5" class="materialize-textarea" name="cand_employer_address"></textarea>
+
+                            </div>
+                            <div  class="ss-item-required input-field col s3">
+                                <textarea id="textarea6" class="materialize-textarea valid_pin" name="cand_employer_pin"></textarea>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div ng-show="selected==1" class="container">
                         <br>
                         <div class="row">
                             <div class="input-field col s6">
@@ -155,6 +313,7 @@
     .info ul li{
         margin-left:4em;
         margin-bottom: 2em;
+        flex: 1;
     }
 
     .info ul .time:before{
@@ -207,4 +366,16 @@
     .info :-ms-input-placeholder {
         color: #26a69a;
     }
+    .info .row {
+        display: flex; /* equal height of the children */
+    }
+    .info .time {
+        cursor: pointer;
+    }
+    .info ul {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
 </style>
