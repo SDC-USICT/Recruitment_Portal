@@ -27,7 +27,7 @@ module.exports = function(passport){
   function(req, email, password, done) {
       // User.findOne wont fire unless data is sent back
       process.nextTick(function() {
-      models.User.findOne({where:{email:req.body.username}
+      models.User.findOne({where:{email:req.body.email}
       }).then(user=>{
         if (user) {
             return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
@@ -35,7 +35,6 @@ module.exports = function(passport){
 
             // create the user
             var newUser = {};
-            console.log(req.body);
             // set the user's local credentials
             newUser.email    = email;
             newUser.password = bcrypt.hashSync(password, bcrypt.genSaltSync(8),null);

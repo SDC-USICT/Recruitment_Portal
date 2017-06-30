@@ -22,6 +22,22 @@
           <h5 class="light"><%= site.desc %></h5>
         </div>
         <div class="col m5">
+          <!--  Notifications for wrong input in Login form-->
+          <% if (site.loginMessage && site.loginMessage.length>0) { %>
+            <div class="card-panel red lighten-1">
+                    <center><%= site.loginMessage %></center>
+            </div>
+              <% } %>
+
+              <!--  Notifications for wrong input in Signup form-->
+              <% if (site.signupMessage && site.signupMessage.length>0) { %>
+                <div class="card-panel red lighten-1">
+                        <center><%= site.signupMessage %></center>
+                </div>
+                  <% } %>
+
+
+
           <div class="card">
             <div class="card-tabs">
               <ul class="tabs tabs-fixed-width">
@@ -29,10 +45,8 @@
                 <li class="tab"><a href="#signup">SIGN UP</a></li>
               </ul>
             </div>
-
-            
-
             <div class="card-content deep-blue fixed-height-card-content">
+
               <form action="/login" method="post">
               <div id="login">
 

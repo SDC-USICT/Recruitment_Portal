@@ -8,14 +8,12 @@ router.get('/',verify.isLoggedIn, function(req, res, next) {
 
   var site = {
     title : title,
-    desc : desc
+    desc : desc,
+    loginMessage : req.flash('loginMessage'),
+    signupMessage : req.flash('signupMessage')
   }
 
   res.render('index', { site : site});
-
-  // models.User.create({
-  //   "name":"Surender","email":"surender"+Math.random()*10000+"@gmail.com","password":"qwertyu"+Math.random()
-  // }).then(function(){res.render('index', { site : site});});
 
 
 });
@@ -25,7 +23,7 @@ router.get('/',verify.isLoggedIn, function(req, res, next) {
 //Signup Route.
 router.post('/signup',passport.authenticate('local-signup',{
     successRedirect : '/dashboard',
-    failureRedirect : '/',
+    failureRedirect : '/#signup',
     failureFlash : true
 }));
 
@@ -34,7 +32,7 @@ router.post('/signup',passport.authenticate('local-signup',{
 //passport Authenticationis yet to implement.
 router.post('/login',passport.authenticate('local-login',{
   successRedirect : '/dashboard',
-  failureRedirect : '/',
+  failureRedirect : '/#login',
   failureFlash : true
 }));
 
