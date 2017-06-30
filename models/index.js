@@ -7,7 +7,7 @@ var env       = process.env.NODE_ENV || "development";
 //var config    = require(path.join(__dirname, '..', 'config', 'config.json'))[env];
 
 /* Sequelize settings */
-const sequelize = new Sequelize('test', 'root', 'usbw', {
+const sequelize = new Sequelize('recruitment_portal_dev', 'root', '', {
   host: 'localhost',
   port: 3307,
   dialect: 'mysql',
