@@ -18,16 +18,17 @@ module.exports = function(sequelize, DataTypes){
     confirm_password: {
       type: DataTypes.STRING.BINARY,
       allowNull:false
-    }
+    },
     // },
     // random: {
     //   type: DataTypes.STRING.BINARY,
     //   allowNull:false
     // },
-    // verification: {
-    //   type: DataTypes.STRING.BINARY,
-    //   allowNull:false
-    // }
+    verify: {
+      type: DataTypes.STRING.BINARY,
+      allowNull:false,
+      defaultValue:false
+    }
 
   },{
     tableName: 'user'

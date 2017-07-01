@@ -43,6 +43,7 @@ module.exports = function(passport){
             // save the user
             models.User.create(newUser).then(user=>{
               console.log(user);
+              req.flash('verify' , 'Please verify your Email. Link sent to your email');
               return done(null,user);
             });
         }

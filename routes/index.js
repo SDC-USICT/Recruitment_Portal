@@ -10,7 +10,8 @@ router.get('/',verify.isLoggedIn, function(req, res, next) {
     title : title,
     desc : desc,
     loginMessage : req.flash('loginMessage'),
-    signupMessage : req.flash('signupMessage')
+    signupMessage : req.flash('signupMessage'),
+    verify : req.flash('verify')
   }
 
   res.render('index', { site : site});
@@ -22,8 +23,8 @@ router.get('/',verify.isLoggedIn, function(req, res, next) {
 //Passport Authentication is done is signup.
 //Signup Route.
 router.post('/signup',passport.authenticate('local-signup',{
-    successRedirect : '/dashboard',
-    failureRedirect : '/#signup',
+    successRedirect : '/',
+    failureRedirect : '/dashboard',
     failureFlash : true
 }));
 

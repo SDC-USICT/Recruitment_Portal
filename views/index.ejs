@@ -37,6 +37,14 @@
                   <% } %>
 
 
+                  <!--  Verification of Email Id -->
+                  <% if (site.verify && site.verify.length>0) { %>
+                    <div class="card-panel blue lighten-1">
+                            <center><%= site.verify %></center>
+                    </div>
+                      <% } %>
+
+
 
           <div class="card">
             <div class="card-tabs">
