@@ -16,4 +16,15 @@ router.get('/',verify.isAuthenticated, function(req, res, next) {
 
 });
 
+router.post('/userinfo',verify.isAuthenticated, function(req, res, next) {
+
+
+});
+
+router.post('/apply',verify.isAuthenticated, function(req, res, next) {
+
+
+});
+
+
 module.exports = router;
