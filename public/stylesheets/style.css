@@ -167,3 +167,11 @@ h6 {
   color: rgba(255, 255, 255, 0.6);
 }
 
+.no-margins {
+  margin: 0;
+}
+
+.no-borders {
+  border: 0 !important;
+  border-radius: 0 !important;
+}

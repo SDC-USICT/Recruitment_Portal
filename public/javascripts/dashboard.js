@@ -3,7 +3,8 @@
  */
 var app = angular.module('Form', [])
 
-app.controller('fc', function ($scope) {
+app.controller('fc', function ($scope, $http) {
+    $scope.candidate = {};
     $scope.attributes = [
         {
             "key" : "Basic Information",
@@ -48,6 +49,12 @@ app.controller('fc', function ($scope) {
     $scope.setSelected = function (value) {
         $scope.selected = value;
     }
-
+    $scope.submitForm = function () {
+        console.log($scope.candidate);
+        $http.post('/dashboard/userinfo', JSON.stringify($scope.candidate))
+            .then(function (data) {
+                console.log(data);
+            })
+    }
 });
 
