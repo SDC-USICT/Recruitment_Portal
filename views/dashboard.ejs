@@ -19,7 +19,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/logout">
+                        <a  class="logout" href="/logout">
                             <i class="fa fa-sign-out" aria-hidden="true"></i>
                         </a>
                     </li>
@@ -535,5 +535,8 @@
 <script>
     $(document).ready(function () {
         $('select').material_select();
+        $('.logout').click(function () {
+            window.location.href="/logout";
+        })
     })
 </script>
