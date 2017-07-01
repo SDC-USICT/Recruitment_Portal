@@ -17,7 +17,8 @@ router.get('/',verify.isAuthenticated, function(req, res, next) {
 });
 
 router.post('/userinfo',verify.isAuthenticated, function(req, res, next) {
-
+        console.log(req.body);
+        res.redirect('/dashboard');
 
 });
 
