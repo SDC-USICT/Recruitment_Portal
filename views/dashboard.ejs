@@ -105,19 +105,19 @@
                         <br>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input placeholder="First Name" id="first_name" type="text">
+                                <input ng-model="first_name" placeholder="First Name" id="first_name" type="text">
                             </div>
                             <div class="input-field col s6">
-                                <input placeholder="Last Name" id="last_name" type="text">
+                                <input ng-model="last_name" placeholder="Last Name" id="last_name" type="text">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="input-field col s6">
-                                <input type="text" placeholder="Father's First Name" name="cand_parent_fname">
+                                <input ng-model="fhf_name" type="text" placeholder="Father's First Name" name="cand_parent_fname">
                             </div>
                             <div  class="input-field col s6">
-                                <input type="text" placeholder="Father's Last Name" name="cand_parent_lname">
+                                <input ng-model="fhl_name" type="text" placeholder="Father's Last Name" name="cand_parent_lname">
                             </div>
                         </div>
 
@@ -126,22 +126,22 @@
                         <div class="row">
                             <div  class="ss-item-required input-field col s6">
                                 <p>
-                                    <input type="checkbox" class="filled-in" id="filled-in-box1" name="discipline[]" value="cse" />
+                                    <input ng-model="cse" type="checkbox" class="filled-in" id="filled-in-box1" name="discipline[]" value="cse" />
                                     <label for="filled-in-box1">CSE/IT</label>
                                 </p>
                                 <p>
-                                    <input type="checkbox" class="filled-in" id="filled-in-box2" name="discipline[]" value="electrical" />
+                                    <input ng-model="ee" type="checkbox" class="filled-in" id="filled-in-box2" name="discipline[]" value="electrical" />
                                     <label for="filled-in-box2">ELECTRICAL</label>
                                     <span class="discipline[]_error"></span
                                 </p>
                             </div>
                             <div  class="ss-item-required input-field col s6">
                                 <p>
-                                    <input type="checkbox" class="filled-in" id="filled-in-box3" name="discipline[]" value="ece" />
+                                    <input ng-model="ece" type="checkbox" class="filled-in" id="filled-in-box3" name="discipline[]" value="ece" />
                                     <label for="filled-in-box3">ELECTRONICS AND COMMUNICATION ENGINEERING(ECE)</label>
                                 </p>
                                 <p>
-                                    <input type="checkbox" class="filled-in" id="filled-in-box4" name="discipline[]" value="mae" />
+                                    <input ng-model="mae" type="checkbox" class="filled-in" id="filled-in-box4" name="discipline[]" value="mae" />
                                     <label for="filled-in-box4">MECHANICAL AND AUTOMATION ENGINEERING(MAE)</label>
                                 </p>
                             </div>
@@ -149,10 +149,10 @@
 
                         <div class="row">
                             <div  class="input-field col s6">
-                                <input id="ame" type="text" placeholder="Aadhar Number" class="aadhar_number" name="aadhar_number">
+                                <input ng-model="aadhar" id="ame" type="text" placeholder="Aadhar Number" class="aadhar_number" name="aadhar_number">
                             </div>
                             <div  class="ss-item-required input-field col s6">
-                                <input id="datepicker" type="text" class="datepicker" name="cand_dob">
+                                <input ng-model="dob" placeholder="Date Of Birth" id="datepicker" type="text" class="datepicker" name="cand_dob">
 
                             </div>
                         </div>
@@ -164,20 +164,20 @@
                     <div class="container" ng-show="selected==1">
                         <div class="row">
                             <div  class="input-field col s9">
-                                <textarea id="textarea2 " placeholder="Correspondence Address" class="materialize-textarea" name="corresp_address"></textarea>
+                                <textarea ng-model="correspondence_addr" id="textarea2 " placeholder="Correspondence Address" class="materialize-textarea" name="corresp_address"></textarea>
 
                             </div>
                             <div  class="input-field col s3">
-                                <textarea id="textarea1 " placeholder="Pincode" class="materialize-textarea" name="corresp_pin"></textarea>
+                                <textarea ng-model="corresp_pi" id="textarea1 " placeholder="Pincode" class="materialize-textarea" name="corresp_pin"></textarea>
                             </div>
                         </div>
 
                         <div class="row">
                             <div  class="ss-item-required input-field col s9">
-                                <textarea id="textarea3 " class="materialize-textarea" name="perm_address"></textarea>
+                                <textarea placeholder="Permanent Address" ng-model="perm_addr" id="textarea3 " class="materialize-textarea" name="perm_address"></textarea>
                             </div>
                             <div  class="ss-item-required input-field col s3">
-                                <textarea id="textarea4 " class="materialize-textarea valid_pin" name="perm_pin"></textarea>
+                                <textarea id="textarea4 " ng-model="perm_pin" class="materialize-textarea valid_pin" placeholder="Pincode" name="perm_pin"></textarea>
                             </div>
                         </div>
 
@@ -185,12 +185,12 @@
 
 
                         <div class="row">
-                            <div  class="ss-item-required input-field col s6">
-                                <input id="icon_prefix " type="text" class="valid_num" name="mobile_number">
+                            <div  class="input-field col s6">
+                                <input ng-model="mobile" placeholder="Mobile" id="icon_prefix " type="text" class="valid_num" name="mobile_number">
 
                             </div>
                             <div  class="input-field col s6">
-                                <input id="icon_telephone " type="tel" class="valid_num_ll" name="landline_number">
+                                <input ng-model="landline" id="icon_telephone " placeholder="Landline" type="text" class="valid_num_ll" name="landline_number">
                             </div>
                         </div>
 
@@ -199,7 +199,7 @@
 
                         <div class="row">
                             <div  class="ss-item-required input-field col s12">
-                                <input id="email" type="email" class="" name="cand_email">
+                                <input placeholder="Email ID" ng-model="email" id="email" type="email" class="" name="cand_email">
 
                             </div>
                         </div>
@@ -210,7 +210,7 @@
                     <div ng-show="selected==2" class="container">
                         <div class="row">
                             <div  class="input-field col s6">
-                                <select name="gender">
+                                <select ng-model="gender" name="gender">
                                     <option value="" disabled selected>Choose your option</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
@@ -218,7 +218,7 @@
 
                             </div>
                             <div  class="input-field col s6">
-                                <select name="marital_status">
+                                <select ng-model="marital_status" name="marital_status">
                                     <option value="" disabled selected>Choose your option</option>
                                     <option value="married">Married</option>
                                     <option value="unmarried">Unmarried</option>
@@ -232,12 +232,12 @@
 
                         <div class="row">
                             <div  class="ss-item-required input-field col s12">
-                                <input id="lme" type="text" class="" name="cand_nation">
+                                <input ng-model="nationality" placeholder="Nationality" id="lme" type="text" class="" name="cand_nation">
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s4">
-                                <select name="category">
+                                <select ng-model="category" name="category">
                                     <option value="" disabled selected>Choose Category</option>
                                     <option value="general">GENERAL</option>
                                     <option value="obc">OBC</option>
@@ -247,10 +247,10 @@
                                 </select>
                             </div>
                             <div  class="ss-item-required input-field col s4">
-                                <input id="rel" type="text" class="" name="cand_religion">
+                                <input ng-model="religion" placeholder="Religion" id="rel" type="text" class="" name="cand_religion">
                             </div>
                             <div  class="ss-item-required input-field col s4">
-                                <select name="minority">
+                                <select ng-model="minority" name="minority">
                                     <option value="" disabled selected>Minority Yes/No</option>
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
@@ -282,16 +282,16 @@
                             <tbody>
                             <tr>
                                 <td>Class X</td>
-                                <td><input placeholder="E.g CBSE" id="xp" type="text" class="" name="cand_X_board">
-                                <td><input id="xb" type="text" class="" name="cand_X_pass_year"></td>
-                                <td><select name="cand_X_division">
+                                <td><input ng-model="x_board" placeholder="E.g CBSE" id="xp" type="text" class="" name="cand_X_board">
+                                <td><input ng-model="cand_x_pass_year" id="xb" type="text" class="" name="cand_X_pass_year"></td>
+                                <td><select ng-model="cand_x_division" name="cand_X_division">
                                         <option value="" disabled selected>Select</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="2">3</option>
                                     </select></td>
-                                <td><input id="xs" type="text" class="" name="cand_X_grade"></td>
-                                <td><input placeholder="E.g English,Mathematics,Physics ... " id="xd" type="text" class="" name="cand_X_subject"></td>
+                                <td><input ng-model="cand_x_grade" id="xs" type="text" class="" name="cand_X_grade"></td>
+                                <td><input ng-model="cand_x_subject" placeholder="E.g English,Mathematics,Physics ... " id="xd" type="text" class="" name="cand_X_subject"></td>
                             </tr>
                             <tr>
 
@@ -300,16 +300,16 @@
 
 
                                 <td>Class XII</td>
-                                <td><input placeholder="E.g CBSE" id="xii" type="text" class="" name="cand_XII_board">
-                                <td><input id="xoop" type="text" class="" name="cand_XII_pass_year"></td>
-                                <td><select name="cand_XII_division">
+                                <td><input ng-model="cand_xii_board" placeholder="E.g CBSE" id="xii" type="text" class="" name="cand_XII_board">
+                                <td><input ng-model="cand_xii_pass_year" id="xoop" type="text" class="" name="cand_XII_pass_year"></td>
+                                <td><select ng-model="cand_xii_division" name="cand_XII_division">
                                         <option value="" disabled selected>Select</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="2">3</option>
                                     </select></td>
-                                <td><input id="xpppp" type="text" class="" name="cand_XII_grade"></td>
-                                <td><input placeholder="E.g English,Mathematics,Physics ... " id="xmmmm" type="text" class="" name="cand_XII_subject"></td>
+                                <td><input ng-model="cand_xii_grade" id="xpppp" type="text" class="" name="cand_XII_grade"></td>
+                                <td><input ng-model="cand_xii_subject" placeholder="E.g English,Mathematics,Physics ... " id="xmmmm" type="text" class="" name="cand_XII_subject"></td>
                             </tr>
                             <tr>
 
@@ -317,22 +317,22 @@
 
 
                                 <td>M.Tech</td>
-                                <td><input placeholder="College/Univ" id="mp" type="text" class="" name="cand_mtech_board">
-                                <td><input id="mb" type="text" class="" name="cand_mtech_pass_year"></td>
-                                <td><select name="cand_mtech_division">
+                                <td><input ng-model="cand_mtech_board" placeholder="College/Univ" id="mp" type="text" class="" name="cand_mtech_board">
+                                <td><input ng-model="cand_mtech_pass_year" id="mb" type="text" class="" name="cand_mtech_pass_year"></td>
+                                <td><select name="cand_mtech_division" ng-model="cand_mtech_division">
                                         <option value="" disabled selected>Select</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="2">3</option>
                                     </select></td>
-                                <td><input id="mq" type="text" class="" name="cand_mtech_grade"></td>
-                                <td><input placeholder="E.g English,Mathematics,Physics ... " id="mr" type="text" class="" name="cand_mtech_subject"></td>
+                                <td><input ng-model="cand_mtech_grade" id="mq" type="text" class="" name="cand_mtech_grade"></td>
+                                <td><input ng-model="cand_mtech_subject" placeholder="E.g English,Mathematics,Physics ... " id="mr" type="text" class="" name="cand_mtech_subject"></td>
                             </tr>
                             <tr>
 
                                 <td>Ph.D</td>
-                                <td><input placeholder="College/Univ" id="ps" type="text" class="" name="cand_phd_board">
-                                <td><input id="pt" type="text" class="" name="cand_phd_pass_year"></td>
+                                <td><input ng-model="cand_phd_board" placeholder="College/Univ" id="ps" type="text" class="" name="cand_phd_board">
+                                <td><input ng-model="cand_phd_pass_year" id="pt" type="text" class="" name="cand_phd_pass_year"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -344,11 +344,11 @@
                     <div class="container" ng-show="selected==4">
                         <div class="row">
                             <div  class="ss-item-required input-field col s9">
-                                <textarea id="textarea5" class="materialize-textarea" name="cand_employer_address"></textarea>
+                                <textarea id="textarea5" class="materialize-textarea" ng-model="cand_employer_address" placeholder="Current Employer Address"></textarea>
 
                             </div>
                             <div  class="ss-item-required input-field col s3">
-                                <textarea id="textarea6" class="materialize-textarea valid_pin" name="cand_employer_pin"></textarea>
+                                <textarea id="textarea6" class="materialize-textarea valid_pin" ng-model="cand_employer_pin" placeholder="Pincode"></textarea>
 
                             </div>
                         </div>
@@ -357,11 +357,11 @@
                     <div ng-show="selected==5" class="container">
                         <div class="row">
                             <div  class="ss-item-required input-field col s6">
-                                <input id="datepicker" placeholder="Date of submission of PhD Thesis" type="text" class="datepicker" name="cand_phd_thesis_submission">
+                                <input  id="datepicker" placeholder="Date of submission of PhD Thesis" type="text" class="datepicker" ng-model="cand_phd_thesis_submission">
 
                             </div>
                             <div  class="ss-item-required input-field col s6">
-                                <input id="datepicker" placeholder="Title of Ph.D thesis" type="text" class="" name="cand_phd_thesis_title">
+                                <input id="datepicker" placeholder="Title of Ph.D thesis" type="text" class="" ng-model="cand_phd_thesis_title">
 
                             </div>
                         </div>
@@ -371,11 +371,11 @@
 
                         <div class="row">
                             <div  class="ss-item-required input-field col s6">
-                                <input placeholder="Month and year of passing of NET/GATE" id="mpg" type="text" class="" name="cand_gate_date">
+                                <input placeholder="Month and year of passing of NET/GATE" id="mpg" type="text" class="" ng-model="cand_gate_date">
 
                             </div>
                             <div  class="ss-item-required input-field col s6">
-                                <input id="datepicker" placeholder="Corresponding Roll Number" type="text" class="" name="cand_gate_roll_number">
+                                <input id="datepicker" placeholder="Corresponding Roll Number" type="text" class="" ng-model="cand_gate_roll_number">
 
                             </div>
                         </div>
@@ -386,7 +386,7 @@
 
                         <div class="row">
                             <div  class="ss-item-required input-field col s12">
-                                <input id="datepicker" placeholder="Field of specialization" type="text" class="" name="cand_specialization">
+                                <input id="datepicker" placeholder="Field of specialization" type="text" class="" ng-model="cand_specialization">
 
                             </div>
                         </div>
@@ -396,21 +396,21 @@
                         <p class = "center extra">Name and Address of two persons to whom references can be made</p>
                         <div class="row">
                             <div  class="ss-item-required input-field col s6">
-                                <input id="datepicker" placeholder="Name" type="text" class="" name="cand_ref1_name">
+                                <input  id="datepicker" placeholder="Name" type="text" class="" ng-model="cand_ref1_name">
                             </div>
                             <div  class="ss-item-required input-field col s6">
-                                <input id="datepicker" placeholder="Address" type="text" class="" name="cand_ref1_address">
+                                <input  id="datepicker" placeholder="Address" type="text" class="" ng-model="cand_ref1_address">
                             </div>
                         </div>
 
 
                         <div class="row">
                             <div  class="ss-item-required input-field col s6">
-                                <input id="datepicker" type="text" placeholder="Name" class="" name="cand_ref2_name">
+                                <input id="datepicker" type="text" placeholder="Name" class="" ng-model="cand_ref2_name">
 
                             </div>
                             <div  class="ss-item-required input-field col s6">
-                                <input id="datepicker" type="text" placeholder="Address" class="" name="cand_ref2_address">
+                                <input id="datepicker" type="text" placeholder="Address" class="" ng-model="cand_ref2_address">
 
                             </div>
                         </div>
@@ -420,7 +420,7 @@
 
                         <div class="row">
                             <div class="ss-item-required input-field col s12">
-                                <input id="extras" placeholder="Any Other Additonal Details" type="text" class="" name="cand_extras">
+                                <input id="extras" placeholder="Any Other Additonal Details" type="text" class="" ng-model="cand_extras">
                             </div>
                         </div>
 
