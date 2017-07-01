@@ -10,28 +10,36 @@ app.controller('fc', function ($scope) {
             "val" : 0
         },
         {
-            "key" : "Academic Details",
+            "key" : "Contact Details",
             "val" : 1
         },
         {
-            "key" : "Experience",
+            "key" : "Additional Details",
             "val" : 2
         },
         {
-            "key" : "Research and Academic",
+            "key" : "Academic Details",
             "val" : 3
         },
         {
-            "key" : "Curricular Activities",
+            "key" : "Experience",
             "val" : 4
         },
         {
-            "key" : "Other Declaration",
+            "key" : "PhD Details",
             "val" : 5
         },
         {
-            "key" : "Uploads",
+            "key" : "References",
             "val" : 6
+        },
+        {
+            "key" : "Other Information",
+            "val" : 7
+        },
+        {
+            "key" : "Uploads",
+            "val" : 8
         }
     ]
     $scope.isSelected = function (value) {

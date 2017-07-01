@@ -94,7 +94,7 @@
             <div class="table-title">INFORMATION</div>
             <div class="row border-top">
                 <div class="col m3">
-                    <ul>
+                    <ul class="flexed">
                         <li ng-repeat="info in attributes">
                             <div ng-click="setSelected(info.val)" ng-class="{'grey-text':!isSelected(info)}" class="time">{{ info.key }}</div>
                         </li>
@@ -148,10 +148,20 @@
                         </div>
 
                         <div class="row">
-                            <div  class="input-field col s12">
+                            <div  class="input-field col s6">
                                 <input id="ame" type="text" placeholder="Aadhar Number" class="aadhar_number" name="aadhar_number">
                             </div>
+                            <div  class="ss-item-required input-field col s6">
+                                <input id="datepicker" type="text" class="datepicker" name="cand_dob">
+
+                            </div>
                         </div>
+
+
+                    </div>
+
+
+                    <div class="container" ng-show="selected==1">
                         <div class="row">
                             <div  class="input-field col s9">
                                 <textarea id="textarea2 " placeholder="Correspondence Address" class="materialize-textarea" name="corresp_address"></textarea>
@@ -181,7 +191,7 @@
                             </div>
                             <div  class="input-field col s6">
                                 <input id="icon_telephone " type="tel" class="valid_num_ll" name="landline_number">
-                                 </div>
+                            </div>
                         </div>
 
 
@@ -195,18 +205,11 @@
                         </div>
 
 
+                    </div>
 
+                    <div ng-show="selected==2" class="container">
                         <div class="row">
-                            <div  class="ss-item-required input-field col s12">
-                                <input id="datepicker" type="text" class="datepicker" name="cand_dob">
-
-                            </div>
-                        </div>
-
-
-
-                        <div class="row">
-                            <div  class="ss-item-required input-field col s6">
+                            <div  class="input-field col s6">
                                 <select name="gender">
                                     <option value="" disabled selected>Choose your option</option>
                                     <option value="male">Male</option>
@@ -214,7 +217,7 @@
                                 </select>
 
                             </div>
-                            <div  class="ss-item-required input-field col s6">
+                            <div  class="input-field col s6">
                                 <select name="marital_status">
                                     <option value="" disabled selected>Choose your option</option>
                                     <option value="married">Married</option>
@@ -230,28 +233,25 @@
                         <div class="row">
                             <div  class="ss-item-required input-field col s12">
                                 <input id="lme" type="text" class="" name="cand_nation">
-
                             </div>
                         </div>
                         <div class="row">
-                            <div  class="ss-item-required input-field col s5">
+                            <div class="input-field col s4">
                                 <select name="category">
-                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="" disabled selected>Choose Category</option>
                                     <option value="general">GENERAL</option>
                                     <option value="obc">OBC</option>
                                     <option value="sc">SC</option>
                                     <option value="st">ST</option>
                                     <option value="pwd">PWD</option>
                                 </select>
-                                <label>Category</label>
-                                <span class="category_error"></span>
                             </div>
                             <div  class="ss-item-required input-field col s4">
                                 <input id="rel" type="text" class="" name="cand_religion">
                             </div>
-                            <div  class="ss-item-required input-field col s3">
+                            <div  class="ss-item-required input-field col s4">
                                 <select name="minority">
-                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="" disabled selected>Minority Yes/No</option>
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
                                 </select>
@@ -262,6 +262,86 @@
 
 
 
+
+
+                    </div>
+                    <div ng-show="selected==3" class="container">
+                        <br>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Examination</th>
+                                <th>University/Board</th>
+                                <th>Year of passing/Award</th>
+                                <th>Division</th>
+                                <th>Percentage/Grade</th>
+                                <th>Subject</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>Class X</td>
+                                <td><input placeholder="E.g CBSE" id="xp" type="text" class="" name="cand_X_board">
+                                <td><input id="xb" type="text" class="" name="cand_X_pass_year"></td>
+                                <td><select name="cand_X_division">
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="2">3</option>
+                                    </select></td>
+                                <td><input id="xs" type="text" class="" name="cand_X_grade"></td>
+                                <td><input placeholder="E.g English,Mathematics,Physics ... " id="xd" type="text" class="" name="cand_X_subject"></td>
+                            </tr>
+                            <tr>
+
+
+
+
+
+                                <td>Class XII</td>
+                                <td><input placeholder="E.g CBSE" id="xii" type="text" class="" name="cand_XII_board">
+                                <td><input id="xoop" type="text" class="" name="cand_XII_pass_year"></td>
+                                <td><select name="cand_XII_division">
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="2">3</option>
+                                    </select></td>
+                                <td><input id="xpppp" type="text" class="" name="cand_XII_grade"></td>
+                                <td><input placeholder="E.g English,Mathematics,Physics ... " id="xmmmm" type="text" class="" name="cand_XII_subject"></td>
+                            </tr>
+                            <tr>
+
+
+
+
+                                <td>M.Tech</td>
+                                <td><input placeholder="College/Univ" id="mp" type="text" class="" name="cand_mtech_board">
+                                <td><input id="mb" type="text" class="" name="cand_mtech_pass_year"></td>
+                                <td><select name="cand_mtech_division">
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="2">3</option>
+                                    </select></td>
+                                <td><input id="mq" type="text" class="" name="cand_mtech_grade"></td>
+                                <td><input placeholder="E.g English,Mathematics,Physics ... " id="mr" type="text" class="" name="cand_mtech_subject"></td>
+                            </tr>
+                            <tr>
+
+                                <td>Ph.D</td>
+                                <td><input placeholder="College/Univ" id="ps" type="text" class="" name="cand_phd_board">
+                                <td><input id="pt" type="text" class="" name="cand_phd_pass_year"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+
+                    <div class="container" ng-show="selected==4">
                         <div class="row">
                             <div  class="ss-item-required input-field col s9">
                                 <textarea id="textarea5" class="materialize-textarea" name="cand_employer_address"></textarea>
@@ -272,21 +352,79 @@
 
                             </div>
                         </div>
-
-
-
                     </div>
 
-                    <div ng-show="selected==1" class="container">
-                        <br>
+                    <div ng-show="selected==5" class="container">
                         <div class="row">
-                            <div class="input-field col s6">
-                                <input placeholder="First Name" id="first_name" type="text">
+                            <div  class="ss-item-required input-field col s6">
+                                <input id="datepicker" placeholder="Date of submission of PhD Thesis" type="text" class="datepicker" name="cand_phd_thesis_submission">
+
                             </div>
-                            <div class="input-field col s6">
-                                <input placeholder="Last Name" id="first_name" type="text">
+                            <div  class="ss-item-required input-field col s6">
+                                <input id="datepicker" placeholder="Title of Ph.D thesis" type="text" class="" name="cand_phd_thesis_title">
+
                             </div>
                         </div>
+
+
+
+
+                        <div class="row">
+                            <div  class="ss-item-required input-field col s6">
+                                <input placeholder="Month and year of passing of NET/GATE" id="mpg" type="text" class="" name="cand_gate_date">
+
+                            </div>
+                            <div  class="ss-item-required input-field col s6">
+                                <input id="datepicker" placeholder="Corresponding Roll Number" type="text" class="" name="cand_gate_roll_number">
+
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="row">
+                            <div  class="ss-item-required input-field col s12">
+                                <input id="datepicker" placeholder="Field of specialization" type="text" class="" name="cand_specialization">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div ng-show="selected==6" class="container">
+                        <p class = "center extra">Name and Address of two persons to whom references can be made</p>
+                        <div class="row">
+                            <div  class="ss-item-required input-field col s6">
+                                <input id="datepicker" placeholder="Name" type="text" class="" name="cand_ref1_name">
+                            </div>
+                            <div  class="ss-item-required input-field col s6">
+                                <input id="datepicker" placeholder="Address" type="text" class="" name="cand_ref1_address">
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div  class="ss-item-required input-field col s6">
+                                <input id="datepicker" type="text" placeholder="Name" class="" name="cand_ref2_name">
+
+                            </div>
+                            <div  class="ss-item-required input-field col s6">
+                                <input id="datepicker" type="text" placeholder="Address" class="" name="cand_ref2_address">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div ng-show="selected==7"  class="container">
+
+                        <div class="row">
+                            <div class="ss-item-required input-field col s12">
+                                <input id="extras" placeholder="Any Other Additonal Details" type="text" class="" name="cand_extras">
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
@@ -301,7 +439,7 @@
 </body>
 </html>
 <style>
-    .info ul:before {
+    .info ul.flexed:before {
         content: "";
         position: absolute;
         left: 0.9em;
@@ -310,13 +448,13 @@
         background: #c0392b;
     }
 
-    .info ul li{
+    .info ul.flexed li{
         margin-left:4em;
         margin-bottom: 2em;
         flex: 1;
     }
 
-    .info ul .time:before{
+    .info ul.flexed .time:before{
         content: "";
         position: absolute;
         left: 0.5em;
@@ -372,10 +510,30 @@
     .info .time {
         cursor: pointer;
     }
-    .info ul {
+    .info ul.flexed {
         display: flex;
         flex-direction: column;
         height: 100%;
     }
-
+    .info .select-wrapper span.caret {
+        color: black;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        height: 10px;
+        margin: auto 0;
+        font-size: 10px;
+        line-height: 10px;
+        z-index: 999;
+        margin-right: 1em;
+    }
+    .info .m9 .row {
+        margin-bottom: 0 !important;
+    }
 </style>
+<script>
+    $(document).ready(function () {
+        $('select').material_select();
+    })
+</script>

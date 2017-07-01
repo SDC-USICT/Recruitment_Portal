@@ -103,7 +103,7 @@ h6 {
 
 @media only screen and (min-width: 993px){
   .container {
-    width: 80%;
+    width: 90%;
   }
 }
 
@@ -135,8 +135,8 @@ h6 {
   position: relative;
   text-align: center;
   background-color: #fff;
-  padding-left: 10vw;
-  padding-right: 10vw;
+  padding-left: 5vw;
+  padding-right: 5vw;
 }
 
 .secondary-navbar  .indicator {
