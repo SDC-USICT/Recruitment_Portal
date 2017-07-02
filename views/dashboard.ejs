@@ -32,6 +32,13 @@
     <br><br>
 
 
+    <!--  Notifications for wrong input in Login form-->
+    <% if (site.message && site.message.length>0) { %>
+      <div class="card-panel green lighten-1">
+              <center><%= site.message %></center>
+      </div>
+        <% } %>
+
     <div id="test1" class="vacancy container">
         <div class="section">
             <div class="card table-title">VACANCIES</div>

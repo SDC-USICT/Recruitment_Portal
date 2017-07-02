@@ -24,10 +24,9 @@ module.exports = function(sequelize, DataTypes){
     //   type: DataTypes.STRING.BINARY,
     //   allowNull:false
     // },
-    verify: {
+    verification: {
       type: DataTypes.STRING.BINARY,
-      allowNull:false,
-      defaultValue:false
+      allowNull:false
     }
 
   },{

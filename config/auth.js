@@ -4,6 +4,7 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var models = require('../models');
 var bcrypt = require('bcrypt-nodejs');
+var nodemail = require('./nodemail');
 module.exports = function(passport){
 
 
@@ -35,17 +36,42 @@ module.exports = function(passport){
 
             // create the user
             var newUser = {};
+            var verificationCode = Math.floor(100000000 + Math.random() * 900000000);
+            console.log(verificationCode);
             // set the user's local credentials
             newUser.email    = email;
             newUser.password = bcrypt.hashSync(password, bcrypt.genSaltSync(8),null);
             newUser.name = req.body.name;
             newUser.confirm_password = 'none';
+            newUser.verification = verificationCode;
             // save the user
             models.User.create(newUser).then(user=>{
               console.log(user);
-              req.flash('verify' , 'Please verify your Email. Link sent to your email');
+              //req.flash('verify' , 'Please verify your Email. Link sent to your email');
+              //setup email data with unicode symbols
+              var mailOptions = {
+                  from: '"GGSIPU Jobs Portal 👻" <ggsipu.jobs@ggsipu.com>', // sender address
+                  to: email, // list of receivers
+                  subject: 'Accout Verifcation Code on GGSIPU Jobs Portal', // Subject line
+                  //text: 'Hello world ?', // plain text body
+                  html: '<p>Please verify your account using this verification code.</p><br><b>Verifcation Code: '+verificationCode+'</b>' // html body
+              };
+
+              //Calling nodemailer for email sending.
+              nodemail(mailOptions);
+
+
+
+
               return done(null,user);
+            }).catch(function(err){
+              console.log("Error Occurred: "+err);
+              return done(null,false,req.flash('signupMessage','Error Occurred!!'));
             });
+
+
+
+
         }
 
       });

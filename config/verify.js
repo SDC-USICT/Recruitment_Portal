@@ -52,3 +52,8 @@ exports.isLoggedIn = function(req,res,next){
 
   res.redirect('/dashboard');
 }
+
+exports.isVerified = function(req,res,next){
+  console.log(req.body);
+  next();
+}
