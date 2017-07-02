@@ -51,7 +51,7 @@ router.get('/verify', function(req, res, next) {
     desc : desc,
     loginMessage : req.flash('loginMessage'),
     signupMessage : req.flash('signupMessage'),
-    verify : req.flash('verify')
+    message : req.flash('message')
   }
 
   res.render('verify', { site : site});
@@ -66,8 +66,9 @@ router.post('/verify', function(req, res, next) {
   console.log(req.body);
   models.User.findOne({where:{verification : req.body.verification}}).then(user=>{
     console.log(user);
-    if(user.verification !== req.body.verification){
-      res.redirect('/verify',req.flash('message', 'Verifcation code is Incorrect'));
+    if(user == null){
+      req.flash('message', 'Verifcation code is Incorrect')
+      res.redirect('/verify');
     }
     else if(user.verification === req.body.verification){
       // Also create user as per your requiremnt
@@ -75,7 +76,8 @@ router.post('/verify', function(req, res, next) {
       res.redirect('/');
     }
     else{
-      res.redirect('/',req.flash('loginMessage', 'Something Wrong Happned!!'));
+      req.flash('loginMessage', 'Something Wrong Happned!!')
+      res.redirect('/');
     }
   });
 
