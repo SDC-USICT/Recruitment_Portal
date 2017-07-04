@@ -1,9 +1,9 @@
 'use strict';
 var bcrypt = require('bcrypt-nodejs');
 module.exports = function(sequelize, DataTypes){
-  var User = sequelize.define("User", {
+  var tempUser = sequelize.define("tempUser", {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER.UNSIGNED.ZEROFILL,
       allowNull:false,
       primaryKey:true,
       autoIncrement:true,
@@ -21,12 +21,24 @@ module.exports = function(sequelize, DataTypes){
     password: {
       type: DataTypes.STRING.BINARY,
       allowNull:false
+    },
+    confirm_password: {
+      type: DataTypes.STRING.BINARY,
+      allowNull:false
+    },
+    verification: {
+      type: DataTypes.STRING.BINARY,
+      allowNull:false
+    },
+    isVerified: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
 
   },{
-    tableName: 'user'
+    tableName: 'tempUser'
   });
 
 
-return User;
+return tempUser;
 };

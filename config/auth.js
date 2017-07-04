@@ -48,7 +48,7 @@ module.exports = function(passport){
             //Transaction started.
             models.sequelize.transaction(t=>{
               //Transaction Is used for only one session per user.
-              return models.User.create(newUser).then(user=>{
+              return models.tempUser.create(newUser).then(user=>{
                 console.log(user);
                 //req.flash('verify' , 'Please verify your Email. Link sent to your email');
                 //setup email data with unicode symbols
@@ -66,7 +66,7 @@ module.exports = function(passport){
 
 
 
-                return done(null,user);
+                return done(null,false);
               }).catch(function(err){
                 console.log("Error Occurred: "+err);
                 return done(null,false,req.flash('signupMessage','Error Occurred!!'));
@@ -100,11 +100,10 @@ module.exports = function(passport){
         models.sequelize.transaction(t=>{
           //Transaction Is used for only one session per user.
           return models.User.findOne({where:{email:username}}).then(user=>{
-                console.log("User is here login");
+                console.log("User is here login: "+user);
                 if (!user)
                     return done(null, false, req.flash('loginMessage', 'No user found.'));
-
-                if (!bcrypt.compareSync(password,user.password))
+                else if (!bcrypt.compareSync(password,user.password))
                     return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
 
                 return done(null, user);

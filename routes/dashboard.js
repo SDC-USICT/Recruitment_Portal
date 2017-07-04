@@ -12,13 +12,14 @@ router.get('/',verify.isAuthenticated, function(req, res, next) {
         title : title,
         desc : desc
     }
-
+    console.log(req.user.name);//It will console out Surender Kumar.
     res.render('dashboard', { site : site});
 
 });
 
 router.post('/userinfo',verify.isAuthenticated, function(req, res, next) {
-          var userinfo = {id:123,AadharId:123456}//req.body//applicant_mapping(req.body);
+          console.log(req);
+          //var userinfo = {id:123,AadharId:123456}//req.body//applicant_mapping(req.body);
           //console.log(req.body);
           //Transaction started.
           models.sequelize.transaction(t=>{

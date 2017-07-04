@@ -23,8 +23,8 @@ router.get('/',verify.isVerified, function(req, res, next) {
 //Passport Authentication is done is signup.
 //Signup Route.
 router.post('/signup',passport.authenticate('local-signup',{
-    successRedirect : '/verify',
-    failureRedirect : '/#signup',
+    successRedirect : '/#signup',
+    failureRedirect : '/verify',
     failureFlash : true
 }));
 
@@ -68,16 +68,30 @@ router.post('/verify', function(req, res, next) {
   //Transaction started.
   models.sequelize.transaction(t=>{
     //Transaction Is used for only one session per user.
-    return models.User.findOne({where:{verification : req.body.verification}}).then(user=>{
-      console.log(user);
+    return models.tempUser.findOne({where:{verification : req.body.verification}}).then(user=>{
       if(user == null){
         req.flash('message', 'Verifcation code is Incorrect')
         res.redirect('/verify');
       }
       else if(user.verification === req.body.verification){
         // Also create user as per your requiremnt
-        req.flash('message', 'Successfully Created Account! Login to apply for jobs.')
-        res.redirect('/');
+        user.isVerified = true;
+        var newUser = {};
+        newUser.name = user.name;
+        newUser.email = user.email;
+        newUser.password = user.password;
+        return models.User.create(newUser).then(user=>{
+          models.tempUser.destroy({where: {email:user.email}}).then(user=>{
+            console.log("Temporary User Deleted");
+          }).catch(function(err){
+            throw err;
+          });
+          req.flash('message', 'Successfully Created Account! Login to apply for jobs.')
+          res.redirect('/');
+        }).catch(function(err){
+          console.log("Error: "+err);
+        })
+
       }
       else{
         req.flash('loginMessage', 'Something Wrong Happned!!')

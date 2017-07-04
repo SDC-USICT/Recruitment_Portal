@@ -24,8 +24,9 @@
         <div class="col m5">
           <!--  Notifications for wrong input in Login form-->
           <% if (site.loginMessage && site.loginMessage.length>0) { %>
-            <div class="card-panel red lighten-1">
-                    <center><%= site.loginMessage %></center>
+            <div class="card-panel red lighten-2">
+                    <center><%= site.loginMessage %> <a href="/verify" >CLICK HERE!</a></center>
+
             </div>
               <% } %>
 
