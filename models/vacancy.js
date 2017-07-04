@@ -3,7 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('vacancy', {
     vacancy_id: {
-      type: DataTypes.INTEGER(250),
+      type: DataTypes.INTEGER(20),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
@@ -17,12 +17,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     start_date: {
-      type: DataTypes.STRING(500),
-      allowNull: true
+      type: DataTypes.DATEONLY,
+      allowNull: true,
+      defaultValue: DataTypes.NOW
     },
     end_date: {
-      type: DataTypes.STRING(500),
-      allowNull: true
+      type: DataTypes.DATEONLY,
+      allowNull: true,
+      defaultValue: DataTypes.NOW
     },
     school: {
       type: DataTypes.STRING(10),

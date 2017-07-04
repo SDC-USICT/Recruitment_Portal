@@ -45,33 +45,41 @@ module.exports = function(passport){
             newUser.confirm_password = 'none';
             newUser.verification = verificationCode;
             // save the user
-            models.User.create(newUser).then(user=>{
-              console.log(user);
-              //req.flash('verify' , 'Please verify your Email. Link sent to your email');
-              //setup email data with unicode symbols
-              var mailOptions = {
-                  from: '"GGSIPU Jobs Portal 👻" <ggsipu.jobs@ggsipu.com>', // sender address
-                  to: email, // list of receivers
-                  subject: 'Accout Verifcation Code on GGSIPU Jobs Portal', // Subject line
-                  //text: 'Hello world ?', // plain text body
-                  html: '<p>Please verify your account using this verification code.</p><br><b>Verifcation Code: '+verificationCode+'</b>' // html body
-              };
+            //Transaction started.
+            models.sequelize.transaction(t=>{
+              //Transaction Is used for only one session per user.
+              return models.User.create(newUser).then(user=>{
+                console.log(user);
+                //req.flash('verify' , 'Please verify your Email. Link sent to your email');
+                //setup email data with unicode symbols
+                var mailOptions = {
+                    from: '"GGSIPU Jobs Portal 👻" <ggsipu.jobs@ggsipu.com>', // sender address
+                    to: email, // list of receivers
+                    subject: 'Accout Verifcation Code on GGSIPU Jobs Portal', // Subject line
+                    //text: 'Hello world ?', // plain text body
+                    html: '<p>Please verify your account using this verification code.</p><br><b>Verifcation Code: '+verificationCode+'</b>' // html body
+                };
 
-              //Calling nodemailer for email sending.
-              nodemail(mailOptions);
+                //Calling nodemailer for email sending.
+                nodemail(mailOptions);
 
 
 
 
-              return done(null,user);
+                return done(null,user);
+              }).catch(function(err){
+                console.log("Error Occurred: "+err);
+                return done(null,false,req.flash('signupMessage','Error Occurred!!'));
+              });
+
+            }).then(function(transaction){
+              console.log("Transaction : "+ transaction);
+
             }).catch(function(err){
-              console.log("Error Occurred: "+err);
-              return done(null,false,req.flash('signupMessage','Error Occurred!!'));
+              console.log(err);
+
             });
-
-
-
-
+            //Transaction ended.
         }
 
       });
@@ -87,18 +95,30 @@ module.exports = function(passport){
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req,username, password, done) {
-        models.User.findOne({where:{email:username}}).then(user=>{
-              console.log("User is here login");
-              if (!user)
-                  return done(null, false, req.flash('loginMessage', 'No user found.'));
 
-              if (!bcrypt.compareSync(password,user.password))
-                  return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+        //Transaction started.
+        models.sequelize.transaction(t=>{
+          //Transaction Is used for only one session per user.
+          return models.User.findOne({where:{email:username}}).then(user=>{
+                console.log("User is here login");
+                if (!user)
+                    return done(null, false, req.flash('loginMessage', 'No user found.'));
 
-              return done(null, user);
+                if (!bcrypt.compareSync(password,user.password))
+                    return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
 
+                return done(null, user);
+          });
+
+        }).then(function(transaction){
+          console.log("Transaction : "+ transaction);
+
+        }).catch(function(err){
+          console.log(err);
 
         });
+        //Transaction ended.
+
     }));
 
 };

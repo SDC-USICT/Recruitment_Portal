@@ -2,40 +2,7 @@
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('applicable_cand_details', {
-    acd_id: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    vacancy_id: {
-      type: DataTypes.INTEGER(250),
-      allowNull: false,
-      references: {
-        model: 'vacancy',
-        key: 'vacancy_id'
-      }
-    },
-    AadharId: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false,
-      defaultValue: '1'
-    },
-    Image: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false,
-      defaultValue: '1'
-    },
-    TID: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false,
-      defaultValue: '1'
-    },
-    Discipline: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false,
-      defaultValue: '1'
-    },
+
     FirstName: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
@@ -46,10 +13,30 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: '1'
     },
-    Age: {
+    FHFirstName: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
       defaultValue: '1'
+    },
+    FHLastName: {
+      type: DataTypes.INTEGER(1),
+      allowNull: false,
+      defaultValue: '1'
+    },
+    Discipline: {
+      type: DataTypes.STRING.BINARY,
+      allowNull: false,
+      defaultValue: '1'
+    },
+    AadharId: {
+      type: DataTypes.STRING.BINARY,
+      allowNull: false,
+      defaultValue: '1'
+    },
+    DOB: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
     },
     CAddress: {
       type: DataTypes.INTEGER(1),
@@ -76,21 +63,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: '1'
     },
-    DOB: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false,
-      defaultValue: '1'
-    },
-    FHFirstName: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false,
-      defaultValue: '1'
-    },
-    FHLastName: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false,
-      defaultValue: '1'
-    },
     Gender: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
@@ -106,27 +78,17 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: '1'
     },
+    Category: {
+      type: DataTypes.INTEGER(1),
+      allowNull: false,
+      defaultValue: '1'
+    },
     Religion: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
       defaultValue: '1'
     },
     Minority: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false,
-      defaultValue: '1'
-    },
-    Category: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false,
-      defaultValue: '1'
-    },
-    EmpAddress: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false,
-      defaultValue: '1'
-    },
-    XP: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
       defaultValue: '1'
@@ -141,17 +103,18 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: '1'
     },
-    XS: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false,
-      defaultValue: '1'
-    },
     XD: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
       defaultValue: '1'
     },
-    XIIP: {
+    XP: {
+      type: DataTypes.INTEGER(1),
+      allowNull: false,
+      defaultValue: '1'
+    },
+
+    XS: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
       defaultValue: '1'
@@ -166,17 +129,29 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: '1'
     },
-    XIIS: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false,
-      defaultValue: '1'
-    },
     XIID: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
       defaultValue: '1'
     },
-    MP: {
+    XIIP: {
+      type: DataTypes.INTEGER(1),
+      allowNull: false,
+      defaultValue: '1'
+    },
+
+    XIIS: {
+      type: DataTypes.INTEGER(1),
+      allowNull: false,
+      defaultValue: '1'
+    },
+
+    GYear: {
+      type: DataTypes.INTEGER(1),
+      allowNull: false,
+      defaultValue: '1'
+    },
+    GRoll: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
       defaultValue: '1'
@@ -191,12 +166,17 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: '1'
     },
-    MS: {
+    MD: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
       defaultValue: '1'
     },
-    MD: {
+    MP: {
+      type: DataTypes.INTEGER(1),
+      allowNull: false,
+      defaultValue: '1'
+    },
+    MS: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
       defaultValue: '1'
@@ -211,6 +191,12 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: '1'
     },
+
+    EmpAddress: {
+      type: DataTypes.INTEGER(1),
+      allowNull: false,
+      defaultValue: '1'
+    },
     PD: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
@@ -221,21 +207,47 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: '1'
     },
+
+    TID: {
+      type: DataTypes.INTEGER(1),
+      allowNull: false,
+      defaultValue: '1'
+    },
     FOS: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
       defaultValue: '1'
     },
-    GRoll: {
+    acd_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    vacancy_id: {
+      type: DataTypes.INTEGER(250),
+      allowNull: false,
+      references: {
+        model: 'vacancy',
+        key: 'vacancy_id'
+      }
+    },
+
+    Image: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
       defaultValue: '1'
     },
-    GYear: {
+
+    Age: {
       type: DataTypes.INTEGER(1),
       allowNull: false,
       defaultValue: '1'
     },
+
+
+
+
     Reference1: {
       type: DataTypes.INTEGER(1),
       allowNull: false,

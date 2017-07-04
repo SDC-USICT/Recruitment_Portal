@@ -1,10 +1,12 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('applicant', {
+  return sequelize.define('Applicant', {
     AadharId: {
       type: DataTypes.CHAR(25),
-      allowNull: true
+      allowNull: true,
+      validate: {not: ["[a-z]",'i'],
+                  len: [12,12]}
     },
     Image: {
       type: DataTypes.CHAR(255),
@@ -27,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     Age: {
-      type: DataTypes.CHAR(250),
+      type: DataTypes.INTEGER(100).UNSIGNED,
       allowNull: true
     },
     CAddress: {
@@ -39,20 +41,25 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     MNumber: {
-      type: DataTypes.CHAR(250),
+      type: DataTypes.INTEGER(20).UNSIGNED,
       allowNull: true
     },
     LLNumber: {
-      type: DataTypes.CHAR(250),
+      type: DataTypes.INTEGER(11).UNSIGNED,
       allowNull: true
     },
     Email: {
       type: DataTypes.CHAR(100),
-      allowNull: true
+      allowNull: true,
+      validate: {
+        isEmail: true
+      }
+
     },
     DOB: {
-      type: DataTypes.CHAR(50),
-      allowNull: true
+      type: DataTypes.DATEONLY,
+      allowNull: true,
+      defaultValue: DataTypes.NOW
     },
     FHFirstName: {
       type: DataTypes.CHAR(250),
@@ -199,11 +206,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     id: {
-      type: DataTypes.INTEGER(10),
+      type: DataTypes.INTEGER(10).UNSIGNED.ZEROFILL,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      unique: true,
+      autoIncrement: true
     }
   }, {
     tableName: 'applicant'
   });
+
 };

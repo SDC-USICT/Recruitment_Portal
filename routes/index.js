@@ -64,31 +64,39 @@ router.post('/verify', function(req, res, next) {
 
 
   console.log(req.body);
-  models.User.findOne({where:{verification : req.body.verification}}).then(user=>{
-    console.log(user);
-    if(user == null){
-      req.flash('message', 'Verifcation code is Incorrect')
-      res.redirect('/verify');
-    }
-    else if(user.verification === req.body.verification){
-      // Also create user as per your requiremnt
-      req.flash('message', 'Successfully Created Account! Login to apply for jobs.')
-      res.redirect('/');
-    }
-    else{
-      req.flash('loginMessage', 'Something Wrong Happned!!')
-      res.redirect('/');
-    }
+
+  //Transaction started.
+  models.sequelize.transaction(t=>{
+    //Transaction Is used for only one session per user.
+    return models.User.findOne({where:{verification : req.body.verification}}).then(user=>{
+      console.log(user);
+      if(user == null){
+        req.flash('message', 'Verifcation code is Incorrect')
+        res.redirect('/verify');
+      }
+      else if(user.verification === req.body.verification){
+        // Also create user as per your requiremnt
+        req.flash('message', 'Successfully Created Account! Login to apply for jobs.')
+        res.redirect('/');
+      }
+      else{
+        req.flash('loginMessage', 'Something Wrong Happned!!')
+        res.redirect('/');
+      }
+    });
+
+
+  }).then(function(transaction){
+    console.log("Transaction : "+ transaction);
+
+  }).catch(function(err){
+    console.log(err);
+
   });
-
-  // .catch(function(err){
-  //     res.redirect('/',req.flash('loginMessage','Error Occurred!!!'));
-  //     console.log("Error Occurred: "+err);
-  // });
+  //Transaction ended.
 
 
-  //res.redirect('/verify',req.flash('message','Verification failed !'));
-  //res.render('verify', { site : site});
+
 
 
 });
