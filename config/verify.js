@@ -5,6 +5,7 @@ var jwt = require('jwt-simple');
 //configuration for app
 var config = require('./config');
 var moment = require('moment');
+var models = require('../models');
 
 // Checks if user is registered or not.
 exports.registeredUser = function(req, res, next) {
@@ -39,9 +40,13 @@ exports.registeredUser = function(req, res, next) {
 }
 
 exports.isAuthenticated = function(req,res,next){
-  if (req.isAuthenticated())
-       return next();
+  console.log("inside auth")
+  if (req.isAuthenticated()){
+    console.log("is auth")
+      return next();
 
+  }
+console.log("not authed")
    res.redirect('/');
 }
 
@@ -55,5 +60,20 @@ exports.isLoggedIn = function(req,res,next){
 
 exports.isVerified = function(req,res,next){
   console.log(req.body);
-  next();
+    models.User.findOne({where:{UserId : req.body.UserId}})
+        .then(user=>{
+
+
+    if(user == null) {
+        req.flash('loginMessage', 'Get verified first!')
+
+
+    } else  if(user.verification == 'true'){
+    } else {
+        req.flash('loginMessage', 'Get verified first!')
+
+    }
+    })
+    next();
+
 }

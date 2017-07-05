@@ -12,10 +12,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.CHAR(255),
       allowNull: true
     },
-    TID: {
-      type: DataTypes.CHAR(25),
-      allowNull: true
-    },
     Discipline: {
       type: DataTypes.CHAR(50),
       allowNull: true
@@ -205,13 +201,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(10000),
       allowNull: true
     },
-    id: {
+    ApplicantId: {
       type: DataTypes.INTEGER(10).UNSIGNED.ZEROFILL,
       allowNull: false,
       primaryKey: true,
       unique: true,
       autoIncrement: true
     }
+
   }, {
     tableName: 'applicant'
   });

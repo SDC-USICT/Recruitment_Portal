@@ -6,15 +6,15 @@ var passport = require('passport');
 //var authPassport = require('../config/auth')(passport);
 router.get('/',verify.isVerified, function(req, res, next) {
 
-  var site = {
-    title : title,
-    desc : desc,
-    loginMessage : req.flash('loginMessage'),
-    signupMessage : req.flash('signupMessage'),
-    message : req.flash('message')
-  }
+    var site = {
+        title : title,
+        desc : desc,
+        loginMessage : req.flash('loginMessage'),
+        signupMessage : req.flash('signupMessage'),
+        message : req.flash('message')
+    }
 
-  res.render('index', { site : site});
+    res.render('index', { site : site});
 
 
 });
@@ -32,29 +32,29 @@ router.post('/signup',passport.authenticate('local-signup',{
 // Login route
 //passport Authenticationis yet to implement.
 router.post('/login',passport.authenticate('local-login',{
-  successRedirect : '/dashboard',
-  failureRedirect : '/',
-  failureFlash : true
+    successRedirect : '/dashboard',
+    failureRedirect : '/',
+    failureFlash : true
 }));
 
 router.get('/logout', function (req, res){
-  req.logOut();
-  req.session.destroy(function (err) {
-    res.redirect('/'); //Inside a callback… bulletproof!
-  });
+    req.logOut();
+    req.session.destroy(function (err) {
+        res.redirect('/'); //Inside a callback… bulletproof!
+    });
 });
 
 router.get('/verify', function(req, res, next) {
 
-  var site = {
-    title : title,
-    desc : desc,
-    loginMessage : req.flash('loginMessage'),
-    signupMessage : req.flash('signupMessage'),
-    message : req.flash('message')
-  }
+    var site = {
+        title : title,
+        desc : desc,
+        loginMessage : req.flash('loginMessage'),
+        signupMessage : req.flash('signupMessage'),
+        message : req.flash('message')
+    }
 
-  res.render('verify', { site : site});
+    res.render('verify', { site : site});
 
 
 });
@@ -63,17 +63,17 @@ router.get('/verify', function(req, res, next) {
 router.post('/verify', function(req, res, next) {
 
 
-  console.log(req.body);
+    console.log(req.body);
 
-  //Transaction started.
-  models.sequelize.transaction(t=>{
-    //Transaction Is used for only one session per user.
-    return models.tempUser.findOne({where:{verification : req.body.verification}}).then(user=>{
-      if(user == null){
+    //Transaction started.
+    models.sequelize.transaction(t=>{
+        //Transaction Is used for only one session per user.
+        return models.tempUser.findOne({where:{verification : req.body.verification}}).then(user=>{
+            if(user == null){
         req.flash('message', 'Verifcation code is Incorrect')
         res.redirect('/verify');
-      }
-      else if(user.verification === req.body.verification){
+    }
+    else if(user.verification === req.body.verification){
         // Also create user as per your requiremnt
         user.isVerified = true;
         var newUser = {};
@@ -81,33 +81,33 @@ router.post('/verify', function(req, res, next) {
         newUser.email = user.email;
         newUser.password = user.password;
         return models.User.create(newUser).then(user=>{
-          models.tempUser.destroy({where: {email:user.email}}).then(user=>{
-            console.log("Temporary User Deleted");
-          }).catch(function(err){
+                models.tempUser.destroy({where: {email:user.email}}).then(user=>{
+                console.log("Temporary User Deleted");
+    }).catch(function(err){
             throw err;
-          });
-          req.flash('message', 'Successfully Created Account! Login to apply for jobs.')
-          res.redirect('/');
-        }).catch(function(err){
-          console.log("Error: "+err);
+        });
+        req.flash('message', 'Successfully Created Account! Login to apply for jobs.')
+        res.redirect('/');
+    }).catch(function(err){
+            console.log("Error: "+err);
         })
 
-      }
-      else{
+    }
+    else{
         req.flash('loginMessage', 'Something Wrong Happned!!')
         res.redirect('/');
-      }
+    }
+});
+
+
+}).then(function(transaction){
+        console.log("Transaction : "+ transaction);
+
+    }).catch(function(err){
+        console.log(err);
+
     });
-
-
-  }).then(function(transaction){
-    console.log("Transaction : "+ transaction);
-
-  }).catch(function(err){
-    console.log(err);
-
-  });
-  //Transaction ended.
+    //Transaction ended.
 
 
 

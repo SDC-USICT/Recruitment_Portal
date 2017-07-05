@@ -10,12 +10,12 @@ module.exports = function(passport){
 
   // used to serialize the user for the session
   passport.serializeUser(function(user, done) {
-      done(null, user.id);
+      done(null, user.UserId);
   });
 
   // used to deserialize the user
   passport.deserializeUser(function(id, done) {
-      models.User.findOne({where:{id:id}}).then(user=>{done(null,user)})
+      models.User.findOne({where:{UserId:id}}).then(user=>{done(null,user)})
   });
 
 
@@ -42,8 +42,8 @@ module.exports = function(passport){
             newUser.email    = email;
             newUser.password = bcrypt.hashSync(password, bcrypt.genSaltSync(8),null);
             newUser.name = req.body.name;
-            newUser.confirm_password = 'none';
-            newUser.verification = verificationCode;
+            newUser.verification = 'false';
+            newUser.random = verificationCode;
             // save the user
             //Transaction started.
             models.sequelize.transaction(t=>{
@@ -105,7 +105,6 @@ module.exports = function(passport){
                     return done(null, false, req.flash('loginMessage', 'No user found.'));
                 else if (!bcrypt.compareSync(password,user.password))
                     return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
-
                 return done(null, user);
           });
 
