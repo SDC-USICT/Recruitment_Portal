@@ -25,7 +25,7 @@
           <!--  Notifications for wrong input in Login form-->
           <% if (site.loginMessage && site.loginMessage.length>0) { %>
             <div class="card-panel red lighten-2">
-                    <center><%= site.loginMessage %> <a href="/verify" >CLICK HERE!</a></center>
+                    <div class="center"><%= site.loginMessage %> </div>
 
             </div>
               <% } %>
@@ -33,7 +33,7 @@
               <!--  Notifications for wrong input in Signup form-->
               <% if (site.signupMessage && site.signupMessage.length>0) { %>
                 <div class="card-panel red lighten-1">
-                        <center><%= site.signupMessage %></center>
+                        <div class="center"><%= site.signupMessage %></div>
                 </div>
                   <% } %>
 
@@ -46,7 +46,7 @@
               <!--  Notifications for wrong input in Login form-->
               <% if (site.message && site.message.length>0) { %>
                 <div class="card-panel green lighten-1">
-                      <center><%= site.message %></center>
+                      <div class="center"><%= site.message %></div>
                   </div>
               <% } %>
 

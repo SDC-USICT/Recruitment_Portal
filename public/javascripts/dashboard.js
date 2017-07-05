@@ -56,5 +56,15 @@ app.controller('fc', function ($scope, $http) {
                 console.log(data);
             })
     }
+
+
 });
 
+app.controller('vc', function ($scope, $http) {
+    $http.get('/dashboard/vacancies')
+        .then(function (data) {
+            console.log(data)
+            $scope.vacancies = data.data;
+            console.log($scope.vacancies)
+        })
+})

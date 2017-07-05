@@ -39,7 +39,7 @@
       </div>
         <% } %>
 
-    <div id="test1" class="vacancy container">
+    <div  ng-controller="vc" id="test1" class="vacancy container">
         <div class="section">
             <div class="card table-title">VACANCIES</div>
             <table class="card responsive-table bordered centered">
@@ -52,42 +52,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr ng-repeat="vacancy in vacancies">
                     <td>
                         <h6>
-                            Assistant Professor
+                            {{ vacancy.designation }}
                         </h6>
                     </td>
-                    <td class="grey-text">Contractual</td>
-                    <td class="grey-text">16 June 2017</td>
+                    <td class="grey-text">{{ vacancy.basis }}</td>
+                    <td class="grey-text">{{ vacancy.end_date }}</td>
                     <td>
-                        <a href="#!" class="btn waves-effect waves-teal">APPLY NOW</a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <h6>
-                            Assistant Professor
-                        </h6>
-                    </td>
-                    <td class="grey-text">Contractual</td>
-                    <td class="grey-text">16 June 2017</td>
-                    <td>
-                        <a href="#!" class="btn waves-effect waves-teal">APPLY NOW</a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <h6>
-                            Lab Assistant
-                        </h6>
-                    </td>
-                    <td class="grey-text">Contractual</td>
-                    <td class="grey-text">16 June 2017</td>
-                    <td>
-                        <a href="#!" class="btn waves-effect waves-teal disabled">APPLY NOW</a>
+                        <a href="#!" ng-class="{disabled:(vacancy.vacancy_status!='1')}" class="btn waves-effect waves-teal">APPLY NOW</a>
                     </td>
                 </tr>
 
@@ -299,7 +273,7 @@
                                 <td>Class XII</td>
                                 <td><input class="validate" ng-model="candidate.cand_xii_board" placeholder="E.g CBSE" id="xii" type="text" class="" name="cand_XII_board">
                                 <td><input class="validate" ng-model="candidate.cand_xii_pass_year" id="xoop" type="text" class="" name="cand_XII_pass_year"></td>
-                                <td><select ng-model="candidate.cand_xii_division" name="cand_XII_division">
+                                <td><select ng-model="candidate.cand_xii_division" name="cand_xii_division">
                                         <option value="" disabled selected>Select</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
