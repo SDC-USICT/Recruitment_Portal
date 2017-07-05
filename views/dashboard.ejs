@@ -126,19 +126,19 @@
                         <br>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input ng-model="candidate.first_name" placeholder="First Name" id="first_name" type="text">
+                                <input ng-model="candidate.first_name" placeholder="First Name" id="first_name" type="text" class="validate">
                             </div>
                             <div class="input-field col s6">
-                                <input ng-model="candidate.last_name" placeholder="Last Name" id="last_name" type="text">
+                                <input ng-model="candidate.last_name" placeholder="Last Name" id="last_name" type="text" class="validate">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="input-field col s6">
-                                <input ng-model="candidate.fhf_name" type="text" placeholder="Father's First Name" name="cand_parent_fname">
+                                <input ng-model="candidate.fhf_name" type="text" placeholder="Father's First Name" name="cand_parent_fname" class="validate">
                             </div>
                             <div  class="input-field col s6">
-                                <input ng-model="candidate.fhl_name" type="text" placeholder="Father's Last Name" name="cand_parent_lname">
+                                <input ng-model="candidate.fhl_name" type="text" placeholder="Father's Last Name" name="cand_parent_lname" class="validate">
                             </div>
                         </div>
 
@@ -170,10 +170,10 @@
 
                         <div class="row">
                             <div  class="input-field col s6">
-                                <input ng-model="candidate.aadhar" id="ame" type="text" placeholder="Aadhar Number" class="aadhar_number" name="aadhar_number">
+                                <input class="validate" ng-model="candidate.aadhar" id="ame" type="text" placeholder="Aadhar Number" class="aadhar_number" name="aadhar_number">
                             </div>
                             <div  class="ss-item-required input-field col s6">
-                                <input ng-model="candidate.dob" placeholder="Date Of Birth" id="datepicker" type="text" class="datepicker" name="cand_dob">
+                                <input class="validate" ng-model="candidate.dob" placeholder="Date Of Birth" id="datepicker" type="text" class="datepicker" name="cand_dob">
 
                             </div>
                         </div>
@@ -201,17 +201,17 @@
 
                         <div class="row">
                             <div  class="input-field col s6">
-                                <input ng-model="candidate.mobile" placeholder="Mobile" id="icon_prefix " type="text" class="valid_num" name="mobile_number">
+                                <input class="validate" ng-model="candidate.mobile" placeholder="Mobile" id="icon_prefix " type="text" class="valid_num" name="mobile_number">
 
                             </div>
                             <div  class="input-field col s6">
-                                <input ng-model="candidate.landline" id="icon_telephone " placeholder="Landline" type="text" class="valid_num_ll" name="landline_number">
+                                <input class="validate" ng-model="candidate.landline" id="icon_telephone " placeholder="Landline" type="text" class="valid_num_ll" name="landline_number">
                             </div>
                         </div>
 
                         <div class="row">
                             <div  class="ss-item-required input-field col s12">
-                                <input placeholder="Email ID" ng-model="candidate.email" id="email" type="email" class="" name="cand_email">
+                                <input class="validate" placeholder="Email ID" ng-model="candidate.email" id="email" type="email" class="" name="cand_email">
 
                             </div>
                         </div>
@@ -239,7 +239,7 @@
 
                         <div class="row">
                             <div  class="ss-item-required input-field col s12">
-                                <input ng-model="candidate.nationality" placeholder="Nationality" id="lme" type="text" class="" name="cand_nation">
+                                <input class="validate" ng-model="candidate.nationality" placeholder="Nationality" id="lme" type="text" class="" name="cand_nation">
                             </div>
                         </div>
                         <div class="row">
@@ -254,7 +254,7 @@
                                 </select>
                             </div>
                             <div  class="ss-item-required input-field col s4">
-                                <input ng-model="candidate.religion" placeholder="Religion" id="rel" type="text" class="" name="cand_religion">
+                                <input class="validate" ng-model="candidate.religion" placeholder="Religion" id="rel" type="text" class="" name="cand_religion">
                             </div>
                             <div  class="ss-item-required input-field col s4">
                                 <select ng-model="candidate.minority" name="minority">
@@ -291,42 +291,42 @@
                                         <option value="2">2</option>
                                         <option value="2">3</option>
                                     </select></td>
-                                <td><input ng-model="candidate.cand_x_grade" id="xs" type="text" class="" name="cand_X_grade"></td>
-                                <td><input ng-model="candidate.cand_x_subject" placeholder="E.g English,Mathematics,Physics ... " id="xd" type="text" class="" name="cand_X_subject"></td>
+                                <td><input class="validate" ng-model="candidate.cand_x_grade" id="xs" type="text" class="" name="cand_X_grade"></td>
+                                <td><input class="validate" ng-model="candidate.cand_x_subject" placeholder="E.g English,Mathematics,Physics ... " id="xd" type="text" class="" name="cand_X_subject"></td>
                             </tr>
                             <tr>
 
                                 <td>Class XII</td>
-                                <td><input ng-model="candidate.cand_xii_board" placeholder="E.g CBSE" id="xii" type="text" class="" name="cand_XII_board">
-                                <td><input ng-model="candidate.cand_xii_pass_year" id="xoop" type="text" class="" name="cand_XII_pass_year"></td>
+                                <td><input class="validate" ng-model="candidate.cand_xii_board" placeholder="E.g CBSE" id="xii" type="text" class="" name="cand_XII_board">
+                                <td><input class="validate" ng-model="candidate.cand_xii_pass_year" id="xoop" type="text" class="" name="cand_XII_pass_year"></td>
                                 <td><select ng-model="candidate.cand_xii_division" name="cand_XII_division">
                                         <option value="" disabled selected>Select</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="2">3</option>
                                     </select></td>
-                                <td><input ng-model="candidate.cand_xii_grade" id="xpppp" type="text" class="" name="cand_XII_grade"></td>
-                                <td><input ng-model="candidate.cand_xii_subject" placeholder="E.g English,Mathematics,Physics ... " id="xmmmm" type="text" class="" name="cand_XII_subject"></td>
+                                <td><input class="validate" ng-model="candidate.cand_xii_grade" id="xpppp" type="text" class="" name="cand_XII_grade"></td>
+                                <td><input class="validate" ng-model="candidate.cand_xii_subject" placeholder="E.g English,Mathematics,Physics ... " id="xmmmm" type="text" class="" name="cand_XII_subject"></td>
                             </tr>
                             <tr>
 
                                 <td>M.Tech</td>
-                                <td><input ng-model="candidate.cand_mtech_board" placeholder="College/Univ" id="mp" type="text" class="" name="cand_mtech_board">
-                                <td><input ng-model="candidate.cand_mtech_pass_year" id="mb" type="text" class="" name="cand_mtech_pass_year"></td>
+                                <td><input class="validate" ng-model="candidate.cand_mtech_board" placeholder="College/Univ" id="mp" type="text" class="" name="cand_mtech_board">
+                                <td><input class="validate" ng-model="candidate.cand_mtech_pass_year" id="mb" type="text" class="" name="cand_mtech_pass_year"></td>
                                 <td><select name="cand_mtech_division" ng-model="candidate.cand_mtech_division">
                                         <option value="" disabled selected>Select</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="2">3</option>
                                     </select></td>
-                                <td><input ng-model="candidate.cand_mtech_grade" id="mq" type="text" class="" name="cand_mtech_grade"></td>
-                                <td><input ng-model="candidate.cand_mtech_subject" placeholder="E.g English,Mathematics,Physics ... " id="mr" type="text" class="" name="cand_mtech_subject"></td>
+                                <td><input class="validate" ng-model="candidate.cand_mtech_grade" id="mq" type="text" class="" name="cand_mtech_grade"></td>
+                                <td><input class="validate" ng-model="candidate.cand_mtech_subject" placeholder="E.g English,Mathematics,Physics ... " id="mr" type="text" class="" name="cand_mtech_subject"></td>
                             </tr>
                             <tr>
 
                                 <td>Ph.D</td>
-                                <td><input ng-model="candidate.cand_phd_board" placeholder="College/Univ" id="ps" type="text" class="" name="cand_phd_board">
-                                <td><input ng-model="candidate.cand_phd_pass_year" id="pt" type="text" class="" name="cand_phd_pass_year"></td>
+                                <td><input class="validate" ng-model="candidate.cand_phd_board" placeholder="College/Univ" id="ps" type="text" class="" name="cand_phd_board">
+                                <td><input class="validate" ng-model="candidate.cand_phd_pass_year" id="pt" type="text" class="" name="cand_phd_pass_year"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -349,29 +349,29 @@
                     <div ng-show="selected==5" class="container">
                         <div class="row">
                             <div  class="ss-item-required input-field col s6">
-                                <input  id="datepicker" placeholder="Date of submission of PhD Thesis" type="text" class="datepicker" ng-model="candidate.cand_phd_thesis_submission">
+                                <input  class="validate" id="datepicker" placeholder="Date of submission of PhD Thesis" type="text" class="datepicker" ng-model="candidate.cand_phd_thesis_submission">
 
                             </div>
                             <div  class="ss-item-required input-field col s6">
-                                <input id="datepicker" placeholder="Title of Ph.D thesis" type="text" class="" ng-model="candidate.cand_phd_thesis_title">
+                                <input class="validate" id="datepicker" placeholder="Title of Ph.D thesis" type="text" class="" ng-model="candidate.cand_phd_thesis_title">
 
                             </div>
                         </div>
 
                         <div class="row">
                             <div  class="ss-item-required input-field col s6">
-                                <input placeholder="Month and year of passing of NET/GATE" id="mpg" type="text" class="" ng-model="candidate.cand_gate_date">
+                                <input class="validate" placeholder="Month and year of passing of NET/GATE" id="mpg" type="text" class="" ng-model="candidate.cand_gate_date">
 
                             </div>
                             <div  class="ss-item-required input-field col s6">
-                                <input id="datepicker" placeholder="Corresponding Roll Number" type="text" class="" ng-model="candidate.cand_gate_roll_number">
+                                <input class="validate" id="datepicker" placeholder="Corresponding Roll Number" type="text" class="" ng-model="candidate.cand_gate_roll_number">
 
                             </div>
                         </div>
 
                         <div class="row">
                             <div  class="ss-item-required input-field col s12">
-                                <input id="datepicker" placeholder="Field of specialization" type="text" class="" ng-model="candidate.cand_specialization">
+                                <input class="validate" id="datepicker" placeholder="Field of specialization" type="text" class="" ng-model="candidate.cand_specialization">
 
                             </div>
                         </div>
@@ -381,21 +381,21 @@
                         <p class = "center extra">Name and Address of two persons to whom references can be made</p>
                         <div class="row">
                             <div  class="ss-item-required input-field col s6">
-                                <input  id="datepicker" placeholder="Name" type="text" class="" ng-model="candidate.cand_ref1_name">
+                                <input class="validate"  id="datepicker" placeholder="Name" type="text" class="" ng-model="candidate.cand_ref1_name">
                             </div>
                             <div  class="ss-item-required input-field col s6">
-                                <input  id="datepicker" placeholder="Address" type="text" class="" ng-model="candidate.cand_ref1_address">
+                                <input class="validate" id="datepicker" placeholder="Address" type="text" class="" ng-model="candidate.cand_ref1_address">
                             </div>
                         </div>
 
 
                         <div class="row">
                             <div  class="ss-item-required input-field col s6">
-                                <input id="datepicker" type="text" placeholder="Name" class="" ng-model="candidate.cand_ref2_name">
+                                <input class="validate" id="datepicker" type="text" placeholder="Name" class="" ng-model="candidate.cand_ref2_name">
 
                             </div>
                             <div  class="ss-item-required input-field col s6">
-                                <input id="datepicker" type="text" placeholder="Address" class="" ng-model="candidate.cand_ref2_address">
+                                <input class="validate" id="datepicker" type="text" placeholder="Address" class="" ng-model="candidate.cand_ref2_address">
 
                             </div>
                         </div>
@@ -405,7 +405,7 @@
 
                         <div class="row">
                             <div class="ss-item-required input-field col s12">
-                                <input id="extras" placeholder="Any Other Additonal Details" type="text" class="" ng-model="candidate.cand_extras">
+                                <input class="validate" id="extras" placeholder="Any Other Additonal Details" type="text" class="" ng-model="candidate.cand_extras">
                             </div>
                         </div>
 
