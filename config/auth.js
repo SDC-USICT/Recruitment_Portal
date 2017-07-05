@@ -42,8 +42,9 @@ module.exports = function(passport){
             newUser.email    = email;
             newUser.password = bcrypt.hashSync(password, bcrypt.genSaltSync(8),null);
             newUser.name = req.body.name;
-            newUser.verification = 'false';
-            newUser.random = verificationCode;
+            newUser.verification = verificationCode;
+            console.log("NEW USER")
+            console.log(newUser)
             // save the user
             //Transaction started.
             models.sequelize.transaction(t=>{
