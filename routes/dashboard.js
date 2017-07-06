@@ -46,49 +46,55 @@ router.post('/userinfo',verify.isAuthenticated, function(req, res, next) {
 });
 
 router.post('/apply',verify.isAuthenticated, function(req, res, next) {
-        //Transaction Started
-        models.sequelize.transaction(t=>{
-            //Transaction Is used for only one session per user.
-            return models.candidates_2017.findOne({
-              where:{
-                vacancy_id:req.body.vacancy_id,
-                ApplicantId:req.user.UserId
-              }}).then(application=>{
-                var applicationForm = applicant_mapping(req);
-                applicationForm.vacancy_id = req.body.vacancy_id;
-                applicationForm.ApplicantId = req.user.UserId;
-            if(!application){
-              return models.candidates_2017.create(applicationForm).then(application=>{
-                req.flash('message','Your application submitted Successfully');
-                console.log("Application Submitted");
-                return res.redirect('/admin/dashboard');
-              }).catch(function(err){
-                console.log(err);
-              });
+    console.log('insideeee')
+  //  console.log(req.body);
+    var userinfo = applicant_mapping(req);
+    userinfo["vacancy_id"] = req.body.vacancy_id
+    userinfo["ApplicantId"] = req.user.UserId;
 
-            }
-            else if(application){
-              req.flash('message','Your Application Already Submitted');
-              return res.redirect('/dashboard');
-            }
-            req.flash('message','Error Occurred!!');
-            return res.redirect('/dashboard');
-        }).catch(function(err){
-                console.log("Error: "+err);
-                throw err;
+    console.log(userinfo);
+
+    models.sequelize.transaction(function (t) {
+        return models.candidates_2017.findOne({where: {'ApplicantId' : req.user.UserId, 'vacancy_id' : req.body.vacancy_id}})
+            .then(function (v) {
+
+                    if(v) {
+                        console.log('found')
+                        //console.log(v);
+                        console.log(userinfo)
+                        return v.update(userinfo);
+                    } else {
+                        models.candidates_2017.create(userinfo);
+                    }
+
             });
     }).then(function(transaction){
-            console.log("Transaction : "+ transaction);
-            res.redirect('/dashboard');
 
-        }).catch(function(err){
-            console.log(err);
-            throw err;
+        if(req.body.saveback == true){
+            models.sequelize.transaction(tt=>{
+                //Transaction Is used for only one session per user.
+                return models.Applicant.findOne({where: { ApplicantId: req.user.UserId }})
+                    .then(
+                        function (userDb) {
+                            if(userDb)
+                                return userDb.update(userinfo);
+                            else {
+                                return models.Applicant.create(userinfo);
+                            }
+                        }
+                    );
 
-        });
-        res.redirect('/dashboard');
-        //Transaction ended.
-    // console.log(req.user.UserId);
+            }).then(function(transactiont){
+
+                res.send({'data' : '', 'success' : true})
+
+            }).catch(function(errt){
+                console.log(errt)
+            });
+        }
+    }).catch(function(err){
+        console.log(err);
+    });
 
 });
 
@@ -105,7 +111,7 @@ router.post('/app_data', verify.isAuthenticated, function (req, res, next) {
     console.log("app_data \n"+req.body)
     return models.candidates_2017.findAll({where: {'ApplicantId' : req.user.UserId, 'vacancy_id' : req.body.vid}})
         .then(v=> {
-            if(v){
+            if(v) {
                 res.send(JSON.stringify(v));
             }
         });
@@ -133,5 +139,7 @@ router.get('/information', verify.isAuthenticated, function (req, res, next) {
             }
         });
 });
+
+
 
 module.exports = router;

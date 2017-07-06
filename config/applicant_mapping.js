@@ -1,6 +1,7 @@
 
 
 module.exports = function(req){
+    console.log('imherebiteches')
   var userinfo = {
       "AadharId" : req.body.aadhar,
       "Discipline" : req.body.cse,
@@ -50,5 +51,7 @@ module.exports = function(req){
       "Reference2_Address" : req.body.cand_ref2_address,
       "extradetail" : req.body.cand_extras
   }
+
+  console.log(userinfo)
 return userinfo;
 }

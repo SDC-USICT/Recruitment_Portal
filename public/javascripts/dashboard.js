@@ -138,6 +138,25 @@ app.controller('mc', function ($scope, $http) {
             console.log(data)
             $scope.vacancies = data.data;
             console.log($scope.vacancies)
+
+
+            $http.post('dashboard/applied_to')
+                .then(function (response) {
+                    console.log(response);
+                    angular.forEach(response.data, function (k,v) {
+                        angular.forEach($scope.vacancies, function (kv, vv) {
+                            if(kv.vacancy_id == k.vacancy_id){
+                                console.log('I matched');
+                                console.log(kv);
+                                console.log(k);
+                                k['vacancy_details'] = kv;
+                            }
+                        })
+                    })
+                    $scope.applications = response.data;
+                    console.log($scope.applications);
+                })
+
         })
     $scope.selectvc = function (val) {
         $(document).ready(function(){
@@ -146,11 +165,12 @@ app.controller('mc', function ($scope, $http) {
             $('#apply').click();
         })
         $scope.cur_vacancy = val;
+        $scope.cur_vacancy_id = val.vacancy_id;
         $scope.$evalAsync();
 
-        if($scope.cur_vacancy) {
+        if($scope.cur_vacancy_id) {
             console.log('inside')
-            $http.post('/dashboard/app_data', JSON.stringify({vid : $scope.cur_vacancy}))
+            $http.post('/dashboard/app_data', JSON.stringify({vid : $scope.cur_vacancy_id}))
                 .then(function (data) {
                     if(data.data.length == 1) {
                         console.log('length1')
@@ -171,14 +191,24 @@ app.controller('mc', function ($scope, $http) {
 
 
     $scope.submit_application = function () {
-        $scope.cur_candidate['vacancy_id'] = $scope.cur_vacancy;
+        $scope.cur_candidate['vacancy_id'] = $scope.cur_vacancy_id;
         $scope.cur_candidate['ApplicantId'] = $scope.s.UserId;
         $scope.cur_candidate['saveback']  = true;
         console.log($scope.cur_candidate);
 
         $http.post('/dashboard/apply', JSON.stringify($scope.cur_candidate))
             .then(function (data) {
+                console.log('filled!')
                 console.log(data);
+                if(data.data.success == true) {
+
+                    $(document).ready(function () {
+                        $('#apply').addClass('hide');
+                        $('#dash').click()
+                        $('ul.tabs').tabs();
+                    })
+                    $scope.$evalAsync();
+                }
             })
 
     }

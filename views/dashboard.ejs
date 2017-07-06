@@ -9,7 +9,7 @@
     <nav  class="secondary-navbar">
         <div class="nav-wrapper">
             <ul class="tabs">
-                <li class="tab"><a class="active" href="#test1">DASHBOARD</a></li>
+                <li class="tab"><a id="dash" class="active" href="#test1">DASHBOARD</a></li>
                 <li class="tab"><a class=""  href="#test2">INFORMATION</a></li>
                 <li  class="tab"><a id="apply" class="hide" href="#test6">APPLICATION</a></li>
                 <ul class="right hide-on-med-and-down">
@@ -39,8 +39,66 @@
         <% } %>
 
     <div id="test1" class="vacancy container">
+
         <div class="section">
-            <div class="card table-title">VACANCIES</div>
+            <div class="card table-title">YOUR APPLICATIONS</div>
+            <table class="card responsive-table bordered centered">
+                <thead>
+                <tr class="center">
+                    <th>Designation</th>
+                    <th>Basis</th>
+                    <th>Last Date</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="app in applications">
+                    <td>
+                        <p>
+                            {{ app.vacancy_details.designation }}
+                        </p>
+                    </td>
+                    <td class="grey-text">{{ app.vacancy_details.basis }}</td>
+                    <td class="grey-text">{{ app.vacancy_details.end_date }}</td>
+                    <td>
+                        <a style=
+                           "-webkit-border-radius: 0;
+                           -moz-border-radius: 0;
+                           border-radius: 0;
+
+                            "
+                           ng-click="selectvc(vacancy)"
+                           ng-class="{disabled:(app.vacancy_details.vacancy_status!='1')}"
+                           class="btn waves-effect waves-teal">VIEW</a>
+
+                        <a style=
+                           "-webkit-border-radius: 0;
+                           -moz-border-radius: 0;
+                           border-radius: 0;
+
+                            "
+                           ng-click="selectvc(vacancy)"
+                           ng-class="{disabled:(app.vacancy_details.vacancy_status!='1')}"
+                           class="btn waves-effect waves-teal">EDIT</a>
+
+                        <a style=
+                           "-webkit-border-radius: 0;
+                           -moz-border-radius: 0;
+                           border-radius: 0;
+
+                            "
+                           ng-click="selectvc(vacancy)"
+                           ng-class="{disabled:(app.vacancy_details.vacancy_status!='1')}"
+                           class="btn waves-effect waves-teal">PRINT</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <div class="card table-title">VACANCIES OPEN</div>
             <table class="card responsive-table bordered centered">
                 <thead>
                 <tr class="center">
@@ -53,14 +111,22 @@
                 <tbody>
                 <tr ng-repeat="vacancy in vacancies">
                     <td>
-                        <h6>
+                        <p>
                             {{ vacancy.designation }}
-                        </h6>
+                        </p>
                     </td>
                     <td class="grey-text">{{ vacancy.basis }}</td>
                     <td class="grey-text">{{ vacancy.end_date }}</td>
                     <td>
-                        <a ng-click="selectvc(vacancy.vacancy_id)" ng-class="{disabled:(vacancy.vacancy_status!='1')}" class="btn waves-effect waves-teal">APPLY NOW</a>
+                        <a style=
+                           "-webkit-border-radius: 0;
+                           -moz-border-radius: 0;
+                           border-radius: 0;
+
+                            "
+                                ng-click="selectvc(vacancy)"
+                           ng-class="{disabled:(vacancy.vacancy_status!='1')}"
+                                class="btn waves-effect waves-teal">APPLY NOW</a>
                     </td>
                 </tr>
 
@@ -393,11 +459,18 @@
 
 
     <div   ng-init="selected=0" id="test6" class="info container">
+
         <form class="candidate_form" ng-submit="submit_application()">
-            <div class="card">
-                <div class="row no-margins">
+            <div class="card no-margins">
+                <div class="no-margins row">
+                    <div class="table-title">APPLICATION FOR THE POST OF <span style="color: crimson;">{{ cur_vacancy.designation.toUpperCase() }}</span></div>
+                </div>
+            </div>
+            <div class="card no-margins">
+
+                <div class="row border-top no-margins">
                     <div style="padding:0 0;" class="col m3">
-                        <div class="table-title">INFORMATION</div>
+                        <div class="table-title">APPLY</div>
 
                     </div>
                     <div class="col m9">
@@ -721,6 +794,9 @@
 </body>
 </html>
 <style>
+    .vacancy td {
+        padding: 0.5em !important;
+    }
     .info ul.flexed:before {
         content: "";
         position: absolute;
