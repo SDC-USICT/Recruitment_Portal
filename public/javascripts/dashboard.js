@@ -153,10 +153,8 @@ app.controller('mc', function ($scope, $http) {
             $http.post('/dashboard/app_data', JSON.stringify({vid : $scope.cur_vacancy}))
                 .then(function (data) {
                     if(data.data.length == 1) {
+                        console.log('length1')
                         $scope.cur_candidate = mapper(data.data[0]);
-                        console.log('length 1')
-                        console.log($scope.cur_candidate)
-                        $scope.setCurCandidates(mapper(data.data[0]));
 
                     } else {
                         $scope.cur_candidate = $scope.candidate;
