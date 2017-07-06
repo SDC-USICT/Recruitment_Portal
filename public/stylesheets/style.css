@@ -86,10 +86,12 @@ main {
 }
 
 .table-title {
+  font-family: Roboto !important;
   padding: 1em;
   border-left: 0.3em solid crimson;
   font-weight: 600;
   letter-spacing: 0.1em;
+  background: white !important;
 }
 
 .vacancy td {
@@ -174,4 +176,9 @@ h6 {
 .no-borders {
   border: 0 !important;
   border-radius: 0 !important;
+}
+
+.btn:focus, .btn-large:focus, .btn-floating:focus {
+  background-color: crimson;
+  color: white;
 }

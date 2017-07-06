@@ -6,13 +6,14 @@
 <body id="dashboard">
 <main ng-app="Form">
     <% include includes/header.ejs %>
-    <nav class="secondary-navbar">
+    <nav ng-controller='mc' class="secondary-navbar">
         <div class="nav-wrapper">
             <ul class="tabs">
-                <li class="tab col s3"><a href="#test1">DASHBOARD</a></li>
-                <li class="tab col s3"><a class="active"  href="#test2">INFORMATION</a></li>
-                <li class="tab col s3 disabled"><a href="#test3">FAQ</a></li>
+                <li class="tab"><a href="#test1">DASHBOARD</a></li>
+                <li class="tab"><a class="active"  href="#test2">INFORMATION</a></li>
+                <li ng-show='applying' class="tab"><a href="#application">APPLICATION</a></li>
                 <ul class="right hide-on-med-and-down">
+                    <li class="tab"><a href="#test3">FAQ</a></li>
                     <li>
                         <a href="notifications">
                             <i class="fa fa-bell" aria-hidden="true"></i>
@@ -24,9 +25,7 @@
                         </a>
                     </li>
                 </ul>
-
             </ul>
-
         </div>
     </nav>
     <br><br>
@@ -39,7 +38,7 @@
       </div>
         <% } %>
 
-    <div  ng-controller="vc" id="test1" class="vacancy container">
+    <div  ng-controller="mc" id="test1" class="vacancy container">
         <div class="section">
             <div class="card table-title">VACANCIES</div>
             <table class="card responsive-table bordered centered">
@@ -61,7 +60,7 @@
                     <td class="grey-text">{{ vacancy.basis }}</td>
                     <td class="grey-text">{{ vacancy.end_date }}</td>
                     <td>
-                        <a href="#!" ng-class="{disabled:(vacancy.vacancy_status!='1')}" class="btn waves-effect waves-teal">APPLY NOW</a>
+                        <a ng-click="selectvc(vacancy.vacancy_id)" ng-class="{disabled:(vacancy.vacancy_status!='1')}" class="btn waves-effect waves-teal">APPLY NOW</a>
                     </td>
                 </tr>
 
@@ -510,3 +509,4 @@
         })
     })
 </script>
+<script>s=<%- JSON.stringify(site) %>;</script>

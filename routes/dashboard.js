@@ -10,10 +10,11 @@ router.get('/',verify.isAuthenticated, function(req, res, next) {
 
     var site = {
         title : title,
-        desc : desc
+        desc : desc,
+        ApplicantId: req.user.UserId
     }
     console.log(req.user.name);//It will console out Surender Kumar.
-    res.render('dashboard', { site : site});
+    res.render('dashboard', { 'site' : site});
 
 });
 
@@ -115,5 +116,36 @@ router.get('/vacancies', verify.isAuthenticated, function(req, res, next) {
         })
 })
 
+router.post('/app_data', verify.isAuthenticated, function (req, res, next) {
+    console.log(req.body)
+    return models.candidates_2017.findAll({where: {'ApplicantId' : req.user.UserId, 'vacancy_id' : req.body.vid}})
+        .then(function (v) {
+            if(v){
+                res.send(JSON.stringify(v));
+            }
+        })
+});
+
+router.post('applied_to', verify.isAuthenticated, function (req, res,next) {
+    return models.candidates_2017.findAll({where: {'ApplicantId' : req.user.UserId}})
+        .then(function (v) {
+            if(v){
+                res.send(JSON.stringify(v));
+            } else {
+                res.send(JSON.stringify({'error' : 'No Applications by this candidate!'}))
+            }
+        })
+})
+
+
+router.get('/information', verify.isAuthenticated, function (req, res, next) {
+    console.log(req.body)
+    return models.Applicant.findAll({where: {'ApplicantId' : req.user.UserId}})
+        .then(function (v) {
+            if(v){
+                res.send(JSON.stringify(v));
+            }
+        })
+});
 
 module.exports = router;

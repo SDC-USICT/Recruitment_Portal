@@ -1,6 +1,62 @@
 /**
  * Created by Hemang on 30/06/17.
  */
+//utils
+
+function mapper(r) {
+    console.log(r);
+    return  {
+        "aadhar" : r.AadharId,
+        "cse" : r.Discipline,
+        "first_name" : r.FirstName,
+        "last_name" : r.LastName,
+        "age" : r.age,
+        "correspondence_addr" : r.CAddress,
+        "perm_addr" : r.PAddress,
+        "mobile" : r.MNumber,
+        "landline" : r.LNumber,
+        "email" : r.Email,
+        "dob" : r.DOB,
+        "fhf_name" : r.FHFirstName,
+        "fhl_name" : r.FHLastName,
+        "gender" : r.gender,
+        "marital_status" : r.Marital,
+        "nationality" : r.Nationality,
+        "religion" : r.Religion,
+        "minority" : r.Minority,
+        "category" : r.Category,
+        "cand_employer_address" : r.EmpAddress,
+        "x_board" : r.XP,
+        "cand_x_pass_year" : r.XB,
+        "cand_x_division" : r.XY,
+        "can_x_grade" : r.XD,
+        "cand_x_subject" : r.XS,
+        "cand_xii_board" : r.XIIB,
+        "cand_xii_pass_year" : r.XIIY,
+        "cand_xii_division" : r.XIIP,
+        "cand_xii_grade" : r.XIID,
+        "cand_xii_subject" : r.XIIS,
+        "cand_mtech_board" : r.MP,
+        "cand_mtech_pass_year" : r.MB,
+        "cand_mtech_division" : r.MY,
+        "cand_mtech_subject" : r.MS,
+        "cand_mtech_grade" : r.MD,
+        "cand_phd_board" : r.PB,
+        "cand_phd_pass_year" : r.PY,
+        "cand_phd_thesis_submission" : r.PD,
+        "cand_phd_thesis_title" : r.PT,
+        "cand_specialization" : r.FOS,
+        "cand_gate_roll_number" : r.GRoll,
+        "cand_gate_date" : r.GYear,
+        "cand_ref1_name" : r.Reference1,
+        "cand_ref1_address" : r.Reference1_Address,
+        "cand_ref1_name" : r.Reference2,
+        "cand_ref2_address" : r.Reference2_Address,
+        "cand_extras" : r.extradetail,
+
+    }
+}
+
 var app = angular.module('Form', [])
 
 app.controller('fc', function ($scope, $http) {
@@ -56,15 +112,48 @@ app.controller('fc', function ($scope, $http) {
                 console.log(data);
             })
     }
-
-
+    $http.get('/dashboard/information')
+        .then(function (data) {
+            console.log('inside cand')
+            $scope.candidate = mapper(data.data[0]);
+            $scope.$evalAsync();
+            console.log($scope.candidate.first_name)
+        })
 });
 
-app.controller('vc', function ($scope, $http) {
+app.controller('mc', function ($scope, $http) {
+    $scope.s = window.s;
     $http.get('/dashboard/vacancies')
         .then(function (data) {
             console.log(data)
             $scope.vacancies = data.data;
             console.log($scope.vacancies)
         })
+    $scope.selectvc = function (val) {
+        console.log(val);
+        $scope.cur_vacancy = val;
+        $(document).ready(function () {
+            $http.post('/dashboard/app_data', JSON.stringify({vid : val}))
+                .then(function (data) {
+                    console.log(data)
+                    if(data.data.length == 1){
+                        $scope.cur_candidate = mapper(data.data[0]);
+                    } else {
+                        $scope.cur_candidate = $scope.candidate;
+                    }
+                })
+            console.log($scope.s);
+        })
+    }
+
+    $scope.submit_application = function () {
+        $scope.cur_candidate['vacancy_id'] = $scope.cur_vacancy;
+        $scope.cur_candidate['ApplicantId'] = $scope.s.UserId;
+        $scope.cur_candidate['saveback']  = true;
+
+        $http.post('/dashboard/apply', JSON.stringify($scope.cur_candidate))
+            .then(function (data) {
+                console.log(data);
+            })
+    }
 })
