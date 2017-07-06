@@ -37,12 +37,12 @@
                 </div>
                   <% } %>
 
-<!--
+
                   <% if (site.verify && site.verify.length>0) { %>
                     <div class="card-panel blue lighten-1">
-                            <center><%= site.verify %></center>
+                            <center><%= site.verify %> <a href="/verify" class="bold">CLICK HERE</a> </center>
                     </div>
-                      <% } %> -->
+                      <% } %>
               <!--  Notifications for wrong input in Login form-->
               <% if (site.message && site.message.length>0) { %>
                 <div class="card-panel green lighten-1">

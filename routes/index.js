@@ -4,14 +4,15 @@ var models = require('../models');
 var verify = require('../config/verify');
 var passport = require('passport');
 //var authPassport = require('../config/auth')(passport);
-router.get('/',verify.isVerified, function(req, res, next) {
+router.get('/',verify.isLoggedIn, function(req, res, next) {
 
     var site = {
         title : title,
         desc : desc,
         loginMessage : req.flash('loginMessage'),
         signupMessage : req.flash('signupMessage'),
-        message : req.flash('message')
+        message : req.flash('message'),
+        verify : req.flash('verify')
     }
 
     res.render('index', { site : site});
@@ -44,7 +45,7 @@ router.get('/logout', function (req, res){
     });
 });
 
-router.get('/verify', function(req, res, next) {
+router.get('/verify',verify.isLoggedIn, function(req, res, next) {
 
     var site = {
         title : title,

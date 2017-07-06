@@ -102,8 +102,14 @@ module.exports = function(passport){
           //Transaction Is used for only one session per user.
           return models.User.findOne({where:{email:username}}).then(user=>{
                 console.log("User is here login: "+user);
-                if (!user)
-                    return done(null, false, req.flash('loginMessage', 'No user found.'));
+                if (!user){
+                 return models.tempUser.findOne({where:{email:username}}).then(user=>{
+                   if(!user)
+                     return done(null,false, req.flash('loginMessage','User is not registered.'));
+                   else if(!user.isVerified)
+                     return done(null,false, req.flash('verify','Please verify your account'));
+                 });
+               }
                 else if (!bcrypt.compareSync(password,user.password))
                     return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
                 return done(null, user);
