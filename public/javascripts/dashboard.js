@@ -59,7 +59,7 @@ function mapper(r) {
 
 var app = angular.module('Form', [])
 
-app.controller('fc', function ($scope, $http) {
+app.controller('mc', function ($scope, $http) {
     $scope.candidate = {};
     $scope.attributes = [
         {
@@ -119,10 +119,20 @@ app.controller('fc', function ($scope, $http) {
             $scope.$evalAsync();
             console.log($scope.candidate.first_name)
         })
-});
 
-app.controller('mc', function ($scope, $http) {
     $scope.s = window.s;
+    $scope.applying = false;
+    $scope.cur_candidate = {};
+
+
+    $scope.setCurCandidates = function (value) {
+        console.log('updating');
+        $scope.cur_candidate = value;
+        console.log($scope.cur_candidate)
+        console.log($scope.cur_candidate.first_name);
+
+        $scope.$evalAsync();
+    }
     $http.get('/dashboard/vacancies')
         .then(function (data) {
             console.log(data)
@@ -130,30 +140,48 @@ app.controller('mc', function ($scope, $http) {
             console.log($scope.vacancies)
         })
     $scope.selectvc = function (val) {
-        console.log(val);
+        $(document).ready(function(){
+            $('#apply').removeClass('hide');
+            $('ul.tabs').tabs();
+            $('#apply').click();
+        })
         $scope.cur_vacancy = val;
-        $(document).ready(function () {
-            $http.post('/dashboard/app_data', JSON.stringify({vid : val}))
+        $scope.$evalAsync();
+
+        if($scope.cur_vacancy) {
+            console.log('inside')
+            $http.post('/dashboard/app_data', JSON.stringify({vid : $scope.cur_vacancy}))
                 .then(function (data) {
-                    console.log(data)
-                    if(data.data.length == 1){
+                    if(data.data.length == 1) {
                         $scope.cur_candidate = mapper(data.data[0]);
+                        console.log('length 1')
+                        console.log($scope.cur_candidate)
+                        $scope.setCurCandidates(mapper(data.data[0]));
+
                     } else {
                         $scope.cur_candidate = $scope.candidate;
                     }
+                    
+
                 })
-            console.log($scope.s);
-        })
+        }
+        console.log('printing final')
+        console.log($scope.cur_candidate)
     }
+
+
+
 
     $scope.submit_application = function () {
         $scope.cur_candidate['vacancy_id'] = $scope.cur_vacancy;
         $scope.cur_candidate['ApplicantId'] = $scope.s.UserId;
         $scope.cur_candidate['saveback']  = true;
+        console.log($scope.cur_candidate);
 
         $http.post('/dashboard/apply', JSON.stringify($scope.cur_candidate))
             .then(function (data) {
                 console.log(data);
             })
+
     }
 })
