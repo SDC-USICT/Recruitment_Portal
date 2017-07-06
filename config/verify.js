@@ -40,18 +40,14 @@ exports.registeredUser = function(req, res, next) {
 }
 
 exports.isAuthenticated = function(req,res,next){
-  console.log("inside auth")
   if (req.isAuthenticated()){
-    console.log("is auth")
       return next();
 
   }
-console.log("not authed")
    res.redirect('/');
 }
 
 exports.isLoggedIn = function(req,res,next){
-  console.log(req.isAuthenticated());
   if(!req.isAuthenticated())
     return next();
 
@@ -59,7 +55,7 @@ exports.isLoggedIn = function(req,res,next){
 }
 
 exports.isVerified = function(req,res,next){
-  console.log(req.body);
+
     models.User.findOne({where:{UserId : req.body.UserId}})
         .then(user=>{
 
