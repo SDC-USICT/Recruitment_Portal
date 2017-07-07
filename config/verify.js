@@ -44,6 +44,7 @@ exports.isAuthenticated = function(req,res,next){
       return next();
 
   }
+  req.flash('loginMessage','Please Log In !!!');
    res.redirect('/');
 }
 
