@@ -3,7 +3,8 @@ var router = express.Router();
 var verify = require('../config/verify');
 var applicant_mapping = require('../config/applicant_mapping');
 var models = require('../models')
-
+var multer = require('multer');
+var mkdirp = require('mkdirp');
 
 router.get('/',verify.isAuthenticated, function(req, res, next) {
 
@@ -11,8 +12,11 @@ router.get('/',verify.isAuthenticated, function(req, res, next) {
     var site = {
         title : title,
         desc : desc,
-        ApplicantId: req.user.UserId
+        ApplicantId: req.user.UserId,
+        emailId: req.user.email
     }
+    console.log("IAM CALEED")
+    console.log(site)
     res.render('dashboard', { 'site' : site});
 
 });
@@ -141,5 +145,43 @@ router.get('/information', verify.isAuthenticated, function (req, res, next) {
 });
 
 
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        var dest = './public/images/uploads/'+req.user.email;
+        console.log(dest);
+        console.log('inside!!')
+        mkdirp(dest, function(err){
+            if(err) cb(err,dest)
+            else cb(null,dest);
+        });
+    },
+    filename: function (req, file, cb) {
+        console.log(file);
+        if (file.mimetype=='image/png')
+        cb(null, file.fieldname +'.jpg')
+        else cb(null, file.fieldname + file.originalname.substr(file.originalname.lastIndexOf(".")))
+    }
+});
+var upload = multer({ storage: storage });
+
+router.post('/upload', verify.isAuthenticated, upload.any(), function (req, res) {
+
+    if(req.file ){
+        response = {
+            'data' : req.file
+        }
+    } else if(req.files ){
+        response = {
+            'data' : req.files
+        }
+    } else {
+        console.log(req.files)
+        response = {
+            'error' : 'Error!'
+        }
+    }
+    res.send(response)
+});
 
 module.exports = router;

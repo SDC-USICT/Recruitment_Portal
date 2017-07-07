@@ -3,8 +3,7 @@ var router = express.Router();
 var models = require('../models');
 var verify = require('../config/verify');
 var passport = require('passport');
-var multer = require('multer');
-var mkdirp = require('mkdirp');
+
 //var authPassport = require('../config/auth')(passport);
 router.get('/',verify.isLoggedIn, function(req, res, next) {
 
@@ -110,56 +109,6 @@ router.post('/verify', function(req, res, next) {
     //Transaction ended.
 });
 
-
-// router.get('/error', function(req, res, next) {
-//
-//   var site = {
-//     title : title,
-//     desc : desc,
-//     loginMessage : req.flash('loginMessage'),
-//     signupMessage : req.flash('signupMessage'),
-//     verify : req.flash('verify')
-//   }
-//
-//   res.render('error', { site : site});
-//
-//
-// });
-
-// Route for uploading files
-
-var storage = multer.diskStorage({
-  destination: function(req, file, cb){
-    //Destination is set to email for temporary.
-    //dest to save image.
-    var dest = './public/images/uploads/'+req.user.email;
-    console.log(dest);
-    mkdirp(dest, function(err){
-      if(err) cb(err,dest)
-      else cb(null,dest);
-    });
-  },
-  //file name same sa fieldname in form. JPG is attached to each images.
-  filename: function(req, file, cb){
-    console.log(file);
-    cb(null, file.fieldname+'.jpg');
-  }
-})
-
-//Upload is multer callback with data being send using storage.
-var upload = multer({storage: storage});
-// isAuthenticated is user to send USER ID or User details after serialization.
-router.post('/upload',verify.isAuthenticated,upload.any(), function(req, res) {
-  //Flash message for final submission message to user.
-  req.flash('message','Your files uploaded');
-  //Set redirect or whatever want to set.
-  res.redirect('/dashboard');
-});
-
-router.get('/upload', function(req, res) {
-  //This route is used to test. LogIn first then manually goto /upload route and upload file.
-  res.render('upload');
-});
 
 
 module.exports = router;

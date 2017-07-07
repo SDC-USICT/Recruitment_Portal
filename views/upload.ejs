@@ -1,19 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  <form id        =  "uploadForm"
+
+<form id        =  "uploadForm"
      enctype   =  "multipart/form-data"
-     action    =  "/upload"
+     ng-submit = "uploadData()"
      method    =  "post"
 >
-<input type="file" name="photo" />
-<input type="submit" value="Upload Image" name="submit">
+    <input type="file" file-model="upload.photo"  />
+    <input type="file" file-model="upload.signature"  />
+    <button type="submit" style="margin-top: 0.4em" class="btn waves-effect no-borders">
+        UPLOAD
+    </button>
 </form>
-</body>
-</html>
+<br>
+<div class="row">
+    <div ng-if="!!uploaded.photo.path"  class="col s6"
+          >
+
+    <h6 class="uppercase">{{ uploaded.photo.fieldname.toUpperCase() }}</h6> <br>
+        <img class="responsive-img"  ng-src="{{uploaded.photo.path.substr(7)}}">
+    </div>
+    <div ng-if="!!uploaded.signature.path" class="col s6"
+
+    >
+        <h6 class="uppercase">{{ uploaded.signature.fieldname.toUpperCase() }}</h6> <br>
+        <img class="responsive-img" ng-src="{{uploaded.signature.path.substr(7)}}">
+    </div>
+
+</div>

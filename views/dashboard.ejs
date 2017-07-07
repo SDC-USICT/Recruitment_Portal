@@ -136,7 +136,6 @@
     </div>
 
     <div   ng-init="selected=0" id="test2" class="info container">
-        <form class="candidate_form" ng-submit="submitForm()">
         <div class="card">
             <div class="row no-margins">
                 <div style="padding:0 0;" class="col m3">
@@ -161,6 +160,8 @@
                     </ul>
                 </div>
                 <div class="col m9">
+                    <form class="candidate_form" ng-submit="submitForm()">
+
                     <div ng-show="selected==0" class="container">
                         <br>
                         <div class="row">
@@ -450,10 +451,15 @@
 
 
                     </div>
+                    </form>
+                    <br>
+                    <div class="container" ng-show="selected==8">
+                        <% include upload.ejs %>
+                    </div>
+
                 </div>
             </div>
         </div>
-        </form>
     </div>
 
 

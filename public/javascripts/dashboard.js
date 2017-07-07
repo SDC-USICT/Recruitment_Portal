@@ -57,8 +57,23 @@ function mapper(r) {
     }
 }
 
-var app = angular.module('Form', [])
+var app = angular.module('Form', ["ng-file-model"])
 
+app.directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
 app.controller('mc', function ($scope, $http) {
     $scope.candidate = {};
     $scope.attributes = [
@@ -211,5 +226,59 @@ app.controller('mc', function ($scope, $http) {
                 }
             })
 
+    }
+    $scope.uploaded = {
+        photo: {
+            fieldname: 'photo',
+            path: 'public/images/uploads/' + $scope.s.emailId + '/photo.jpg'
+        },
+        signature: {
+            fieldname: 'signature',
+            path:'public/images/uploads/' + $scope.s.emailId + '/signature.jpg'
+        }
+     };
+
+    console.log(window.s)
+
+
+    $scope.uploadData = function () {
+        var photos = $scope.upload.photo;
+        var signature = $scope.upload.signature;
+        var fd = new FormData();
+        fd.append('photo', photos);
+        fd.append('signature', signature)
+        console.log(fd)
+        $http.post('/dashboard/upload',fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        }).then(function(res){
+                console.log(res.data);
+                if(res.data.data.length == 2){
+                    $scope.uploaded.photo = res.data.data[0];
+                    $scope.uploaded.signature = res.data.data[1];
+                    $scope.uploaded.photo.path = $scope.uploaded.photo.path + "?timestamp=" + new Date().getTime()
+                    $scope.uploaded.signature.path = $scope.uploaded.signature.path + "?timestamp=" + new Date().getTime()
+
+                } else if (res.data.data.length == 1 ) {
+                    if(res.data.data[0].fieldname=="photo"){
+                        console.log('rege')
+                        $scope.uploaded.photo = res.data.data[0];
+                        console.log($scope.uploaded.photo)
+
+                    } else {
+                        $scope.uploaded.signature = res.data.data[1];
+
+                    }
+                    $scope.uploaded.photo.path = $scope.uploaded.photo.path + "?timestamp=" + new Date().getTime()
+                    $scope.uploaded.signature.path = $scope.uploaded.signature.path + "?timestamp=" + new Date().getTime()
+
+                }
+
+                $scope.$evalAsync();
+                $scope.$applyAsync();
+                //console.log($scope.uploaded.photo.path)
+                }, function(err){
+                console.log("error!!");
+            });
     }
 })
