@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "test" : "mocha"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -25,5 +26,7 @@
     "sequelize": "^4.2.1",
     "serve-favicon": "~2.4.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "request": "^2.81.0"
+  }
 }
