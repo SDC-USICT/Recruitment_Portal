@@ -72,7 +72,7 @@
                            border-radius: 0;
 
                             "
-                           ng-click="selectvc(vacancy)"
+                           ng-click="selectvc(app.vacancy_details)"
                            ng-class="{disabled:(app.vacancy_details.vacancy_status!='1')}"
                            class="btn waves-effect waves-teal">VIEW</a>
 
@@ -82,7 +82,7 @@
                            border-radius: 0;
 
                             "
-                           ng-click="selectvc(vacancy)"
+                           ng-click="selectvc(app.vacancy_details)"
                            ng-class="{disabled:(app.vacancy_details.vacancy_status!='1')}"
                            class="btn waves-effect waves-teal">EDIT</a>
 
@@ -92,7 +92,7 @@
                            border-radius: 0;
 
                             "
-                           ng-click="selectvc(vacancy)"
+                           ng-click="selectvc(app.vacancy_details)"
                            ng-class="{disabled:(app.vacancy_details.vacancy_status!='1')}"
                            class="btn waves-effect waves-teal">PRINT</a>
                     </td>
@@ -528,23 +528,23 @@
                             <div style="margin-bottom: 2em !important;" class="row">
                                 <div  class="ss-item-required input-field col s6">
                                     <p>
-                                        <input ng-model="cur_candidate.cse" type="checkbox" class="filled-in" id="filled-in-box1" name="discipline[]" value="cse" />
-                                        <label for="filled-in-box1">CSE/IT</label>
+                                        <input ng-model="cur_candidate.cse" type="checkbox" class="filled-in" id="filled-in-box5" name="discipline[]" value="cse" />
+                                        <label for="filled-in-box5">CSE/IT</label>
                                     </p>
                                     <p>
-                                        <input ng-model="cur_candidate.ee" type="checkbox" class="filled-in" id="filled-in-box2" name="discipline[]" value="electrical" />
-                                        <label for="filled-in-box2">ELECTRICAL</label>
+                                        <input ng-model="cur_candidate.ee" type="checkbox" class="filled-in" id="filled-in-box6" name="discipline[]" value="electrical" />
+                                        <label for="filled-in-box6">ELECTRICAL</label>
                                         <span class="discipline[]_error"></span
                                     </p>
                                 </div>
                                 <div  class="ss-item-required input-field col s6">
                                     <p>
-                                        <input ng-model="cur_candidate.ece" type="checkbox" class="filled-in" id="filled-in-box3" name="discipline[]" value="ece" />
-                                        <label for="filled-in-box3">ELECTRONICS AND COMMUNICATION ENGINEERING(ECE)</label>
+                                        <input ng-model="cur_candidate.ece" type="checkbox" class="filled-in" id="filled-in-box7" name="discipline[]" value="ece" />
+                                        <label for="filled-in-box7">ELECTRONICS AND COMMUNICATION ENGINEERING(ECE)</label>
                                     </p>
                                     <p>
-                                        <input ng-model="cur_candidate.mae" type="checkbox" class="filled-in" id="filled-in-box4" name="discipline[]" value="mae" />
-                                        <label for="filled-in-box4">MECHANICAL AND AUTOMATION ENGINEERING(MAE)</label>
+                                        <input ng-model="cur_candidate.mae" type="checkbox" class="filled-in" id="filled-in-box8" name="discipline[]" value="mae" />
+                                        <label for="filled-in-box8">MECHANICAL AND AUTOMATION ENGINEERING(MAE)</label>
                                     </p>
                                 </div>
                             </div>
