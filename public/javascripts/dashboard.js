@@ -173,31 +173,37 @@ app.controller('mc', function ($scope, $http) {
 
         $scope.$evalAsync();
     }
-    $http.get('/dashboard/vacancies')
-        .then(function (data) {
-            console.log(data)
-            $scope.vacancies = data.data;
-            console.log($scope.vacancies)
+
+    $scope.update_vacancy_data = function () {
+        $http.get('/dashboard/vacancies')
+            .then(function (data) {
+                console.log(data)
+                $scope.vacancies = data.data;
+                console.log($scope.vacancies)
 
 
-            $http.post('dashboard/applied_to')
-                .then(function (response) {
-                    console.log(response);
-                    angular.forEach(response.data, function (k,v) {
-                        angular.forEach($scope.vacancies, function (kv, vv) {
-                            if(kv.vacancy_id == k.vacancy_id){
-                                console.log('I matched');
-                                console.log(kv);
-                                console.log(k);
-                                k['vacancy_details'] = kv;
-                            }
+                $http.post('dashboard/applied_to')
+                    .then(function (response) {
+                        console.log(response);
+                        angular.forEach(response.data, function (k,v) {
+                            angular.forEach($scope.vacancies, function (kv, vv) {
+                                if(kv.vacancy_id == k.vacancy_id){
+                                    console.log('I matched');
+                                    console.log(kv);
+                                    console.log(k);
+                                    k['vacancy_details'] = kv;
+                                }
+                            })
                         })
+                        $scope.applications = response.data;
+                        console.log($scope.applications);
                     })
-                    $scope.applications = response.data;
-                    console.log($scope.applications);
-                })
 
-        })
+            })
+    }
+
+    $scope.update_vacancy_data();
+
     $scope.selectvc = function (val) {
         $(document).ready(function(){
             $('#apply').removeClass('hide');
@@ -247,6 +253,8 @@ app.controller('mc', function ($scope, $http) {
                         $('#apply').addClass('hide');
                         $('#dash').click()
                         $('ul.tabs').tabs();
+                        $scope.update_vacancy_data();
+
                     })
                     $scope.$evalAsync();
                 }
@@ -302,6 +310,7 @@ app.controller('mc', function ($scope, $http) {
 
                 $scope.$evalAsync();
                 $scope.$applyAsync();
+                $scope.set_status('');
                 //console.log($scope.uploaded.photo.path)
                 }, function(err){
                 console.log("error!!");

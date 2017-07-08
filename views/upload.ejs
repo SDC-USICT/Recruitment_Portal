@@ -4,25 +4,28 @@
      ng-submit = "uploadData()"
      method    =  "post"
 >
-    <input type="file" file-model="upload.photo"  />
-    <input type="file" file-model="upload.signature"  />
-    <button type="submit" style="margin-top: 0.4em" class="btn waves-effect no-borders">
-        UPLOAD
-    </button>
-</form>
+
+
 <br>
 <div class="row">
-    <div ng-if="!!uploaded.photo.path"  class="col s6"
-          >
+    <div ng-if="!!uploaded.photo.path"  class="col s6">
+        <h6 class="uppercase">{{ uploaded.photo.fieldname.toUpperCase() }}</h6><br>
 
-    <h6 class="uppercase">{{ uploaded.photo.fieldname.toUpperCase() }}</h6> <br>
+        <input type="file" file-model="upload.photo"  /><br><br>
+        <button type="submit" style="margin-top: 0.4em" class="btn waves-effect no-borders">
+            UPLOAD
+        </button><br><br>
         <img class="responsive-img"  ng-src="{{uploaded.photo.path.substr(7)}}">
     </div>
-    <div ng-if="!!uploaded.signature.path" class="col s6"
-
-    >
+    <div ng-if="!!uploaded.signature.path" class="col s6">
         <h6 class="uppercase">{{ uploaded.signature.fieldname.toUpperCase() }}</h6> <br>
+
+        <input type="file" file-model="upload.signature"  /><br><br>
+        <button type="submit" style="margin-top: 0.4em" class="btn waves-effect no-borders">
+            UPLOAD
+        </button><br><br>
         <img class="responsive-img" ng-src="{{uploaded.signature.path.substr(7)}}">
     </div>
 
 </div>
+</form>
