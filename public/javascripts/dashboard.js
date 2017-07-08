@@ -5,6 +5,9 @@
 
 function mapper(r) {
     console.log(r);
+    try {
+
+
     return  {
         "aadhar" : r.AadharId,
         "cse" : r.Discipline,
@@ -54,6 +57,10 @@ function mapper(r) {
         "cand_ref2_address" : r.Reference2_Address,
         "cand_extras" : r.extradetail,
 
+    }
+    } catch (TypeError){
+        console.log('Erro!')
+        return {}
     }
 }
 
@@ -114,6 +121,20 @@ app.controller('mc', function ($scope, $http) {
             "val" : 8
         }
     ]
+    $scope.save_status = null;
+    $scope.set_status = function (val) {
+        console.log('iAm calleddddddd')
+        $(document).ready(function () {
+            $(document).ready(function(){
+                $('.tooltipped').tooltip({delay: 50});
+            });
+            Materialize.toast('Data Saved Successfully', 4000)
+        })
+        $scope.save_status = val;
+    }
+    $scope.get_status = function () {
+        return $scope.save_status;
+    }
     $scope.isSelected = function (value) {
         return value.val == $scope.selected;
     }
@@ -121,10 +142,14 @@ app.controller('mc', function ($scope, $http) {
         $scope.selected = value;
     }
     $scope.submitForm = function () {
+        console.log('i macalled');
         console.log($scope.candidate);
         $http.post('/dashboard/userinfo', JSON.stringify($scope.candidate))
             .then(function (data) {
-                console.log(data);
+
+                console.log('successs');
+                $scope.set_status('SAVED SUCCESSFULLY!');
+
             })
     }
     $http.get('/dashboard/information')
@@ -213,6 +238,7 @@ app.controller('mc', function ($scope, $http) {
 
         $http.post('/dashboard/apply', JSON.stringify($scope.cur_candidate))
             .then(function (data) {
+                $scope.set_status('SAVED SUCCESSFULLY!');
                 console.log('filled!')
                 console.log(data);
                 if(data.data.success == true) {

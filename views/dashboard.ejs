@@ -44,14 +44,19 @@
             <div class="card table-title">YOUR APPLICATIONS</div>
             <table class="card responsive-table bordered centered">
                 <thead>
-                <tr class="center">
+                <tr ng-show="applications.length == 0">
+                    <td class="center">
+                        <p>You haven't submitted any applications yet.</p>
+                    </td>
+                </tr>
+                <tr ng-show="applications.length > 0" class="center">
                     <th>Designation</th>
                     <th>Basis</th>
                     <th>Last Date</th>
                     <th></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody ng-show="applications.length > 0">
                 <tr ng-repeat="app in applications">
                     <td>
                         <p>
@@ -144,7 +149,7 @@
                 </div>
                 <div class="col m9">
                     <div class="right">
-                        <button type="submit" style="margin-top: 0.4em" class="btn waves-effect waves-light no-borders">
+                        <button type="submit" ng-click="submitForm()" style="margin-top: 0.4em" class="btn waves-effect waves-light no-borders">
                             SAVE
                         </button>
                     </div>
@@ -160,7 +165,7 @@
                     </ul>
                 </div>
                 <div class="col m9">
-                    <form class="candidate_form" ng-submit="submitForm()">
+                    <form class="candidate_form" >
 
                     <div ng-show="selected==0" class="container">
                         <br>
@@ -466,7 +471,6 @@
 
     <div   ng-init="selected=0" id="test6" class="info container">
 
-        <form class="candidate_form" ng-submit="submit_application()">
             <div class="card no-margins">
                 <div class="no-margins row">
                     <div class="table-title">APPLICATION FOR THE POST OF <span style="color: crimson;">{{ cur_vacancy.designation.toUpperCase() }}</span></div>
@@ -481,7 +485,7 @@
                     </div>
                     <div class="col m9">
                         <div class="right">
-                            <button type="submit" style="margin-top: 0.4em" class="btn waves-effect waves-light no-borders">
+                            <button type="submit" ng-click="submit_application()" style="margin-top: 0.4em" class="btn waves-effect waves-light no-borders">
                                 SAVE
                             </button>
                         </div>
@@ -497,6 +501,8 @@
                         </ul>
                     </div>
                     <div class="col m9">
+                        <form class="candidate_form">
+
                         <div ng-show="selected==0" class="container">
                             <br>
                             <div class="row">
@@ -786,10 +792,11 @@
 
 
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </form>
+
     </div>
 
 

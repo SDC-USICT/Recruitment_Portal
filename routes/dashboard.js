@@ -40,6 +40,7 @@ router.post('/userinfo',verify.isAuthenticated, function(req, res, next) {
                 );
 
           }).then(function(transaction){
+              res.send('Successfully Transferred!')
 
           }).catch(function(err){
 
