@@ -5,11 +5,14 @@ var applicant_mapping = require('../config/applicant_mapping');
 var models = require('../models')
 var multer = require('multer');
 var mkdirp = require('mkdirp');
+var models = require('../models');
+var nodemail = require('../config/nodemail');
+var ejs = require('ejs');
+var fs = require('fs');
+var path = require('path');
 
 router.get('/',verify.isAuthenticated, function(req, res, next) {
-
-
-    var site = {
+  var site = {
         title : title,
         desc : desc,
         ApplicantId: req.user.UserId,
@@ -35,6 +38,7 @@ router.post('/userinfo',verify.isAuthenticated, function(req, res, next) {
                         return userDb.update(userinfo);
                         else {
                             return models.Applicant.create(userinfo);
+
                         }
                     }
                 );
@@ -69,7 +73,43 @@ router.post('/apply',verify.isAuthenticated, function(req, res, next) {
                         console.log(userinfo)
                         return v.update(userinfo);
                     } else {
-                        models.candidates_2017.create(userinfo);
+
+                        models.candidates_2017.create(userinfo).then(userinfo=>{
+
+                          //Mapping values for successfull application to email.
+                          var site = {};
+                          site.name = userinfo.FirstName;
+                          site.post = userinfo.vacancy_id;
+                          site.school = 'USICT';
+                          site.reg = userinfo.regId;
+                          site.post = userinfo.vacancy_id;
+                          site.school = 'USICT';
+                          site.department = 'CSE/IT';
+
+                          var file = path.join(__dirname, '..', 'views', 'successemail.html');
+                          fs.readFile(file, 'utf8', function (err,data) {
+                                  if (err) {
+                                    return console.log(err);
+                                  }
+                                  console.log("FS Data");
+                                  var data = ejs.render(data, {site: site});
+                                  var email = req.user.email;
+                                  //setup email data with unicode symbols
+                                  var mailOptions = {
+                                      from: '"GGSIPU Jobs Portal 👻" <ggsipu.jobs@ggsipu.com>', // sender address
+                                      to: email, // list of receivers
+                                      subject: 'Application Successfully Submitted to GGSIPU Jobs Portal.', // Subject line
+                                      //text: 'Hello world ?', // plain text body
+                                      html: data // html body
+                                  };
+
+                                  //Calling nodemailer for email sending.
+                                  nodemail(mailOptions);
+
+                                });
+
+
+                        });
                     }
 
             });
