@@ -66,13 +66,13 @@ router.post('/apply',verify.isAuthenticated, function(req, res, next) {
     models.sequelize.transaction(function (t) {
         return models.candidates_2017.findOne({where: {'ApplicantId' : req.user.UserId, 'vacancy_id' : req.body.vacancy_id}})
             .then(function (v) {
-
                     if(v) {
                         console.log('found')
                         //console.log(v);
                         console.log(userinfo)
                         return v.update(userinfo);
-                    } else {
+                    }
+                    else if(req.body.vacancy_id!==null) {
 
                         models.candidates_2017.create(userinfo).then(userinfo=>{
 
@@ -111,7 +111,10 @@ router.post('/apply',verify.isAuthenticated, function(req, res, next) {
 
                         });
                     }
-
+                    else {
+                      res.sendStatus(400);
+                      throw new Error();
+                    }
             });
     }).then(function(transaction){
 
