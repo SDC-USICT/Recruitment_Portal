@@ -10,8 +10,8 @@ var transporter = nodemailer.createTransport({
     port: 465,
     secure: true, // secure:true for port 465, secure:false for port 587
     auth: {
-        user: 'ggsipu.jobs@gmail.com',
-        pass: 'ggsipujobsportal'
+        user: process.env.MAIL_EMAIL,
+        pass: process.env.MAIL_PASS
     }
 });
 
