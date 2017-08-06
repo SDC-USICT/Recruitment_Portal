@@ -88,7 +88,7 @@ main {
 .table-title {
   font-family: Roboto !important;
   padding: 1em;
-  border-left: 0.3em solid crimson;
+  border-left: 0.3em solid #FA8072;
   font-weight: 600;
   letter-spacing: 0.1em;
   background: white !important;
