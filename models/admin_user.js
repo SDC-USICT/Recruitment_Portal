@@ -26,7 +26,5 @@ module.exports = function(sequelize, DataTypes){
   },{
     tableName: 'user'
   });
-
-
 return adminUser;
 };

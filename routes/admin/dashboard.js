@@ -12,5 +12,4 @@ router.get('/', function(req, res, next) {
     res.render('admin/dashboard', { site : site});
 
 });
-
 module.exports = router;

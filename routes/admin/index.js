@@ -40,7 +40,6 @@ router.post('/signup',passport.authenticate('local-signup',{
     failureFlash : true
 }));
 
-
 // Login route
 //passport Authenticationis yet to implement.
 router.post('/login',passport.authenticate('local-login',{
