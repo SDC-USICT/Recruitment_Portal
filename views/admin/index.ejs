@@ -18,7 +18,7 @@
         <div class="row flex-row">
             <div class="col m5">
                 <br><br><br>
-                <h2 class="thin">Welcome to ADMIN <%= site.title %></h2>
+                <h2 class="thin">Welcome to the Admin <%= site.title %></h2>
                 <h5 class="light"><%= site.desc %></h5>
             </div>
             <div class="col m5">
@@ -55,6 +55,11 @@
                       <form action="/signup" method="post">
                         <div id="signup">
                             <div class="row">
+                              <!-- Name added  -->
+                              <div class="input-field col s12">
+                                <input id="name" type="text" placeholder="Full Name"
+                                       class="validate" name="name">
+                              </div>
                                 <div class="input-field col s12">
                                     <input id="email" type="email" placeholder="Email ID"
                                            class="validate" name="email">

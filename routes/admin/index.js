@@ -76,35 +76,35 @@ router.post('/verify', function(req, res, next) {
     //Transaction started.
     models.sequelize.transaction(t=>{
         //Transaction Is used for only one session per user.
-        return models.tempUser.findOne({where:{verification : req.body.verification}}).then(user=>{
-   if(user == null){
+        return models.tempAdminUser.findOne({where:{verification : req.body.verification}}).then(admin_user=>{
+   if(admin_user == null){
          req.flash('message', 'Verifcation code is Incorrect')
         res.redirect('/verify');
     }
     //else if(user.verification === req.body.verification){
-    else if(user.verification === req.body.verification){
+    else if(adminUser.verification === req.body.verification){
         // Also create user as per your requiremnt
-        user.isVerified = true;
-        var newUser = {};
-        newUser.name = user.name;
-        newUser.email = user.email;
-        newUser.password = user.password;
-        return models.User.create(newUser).then(user=>{
-                models.tempUser.destroy({where: {email:user.email}}).then(user=>{
-                console.log("Temporary User Deleted");
+        adminUser.isVerified = true;
+        var newAdminUser = {};
+        newAdminUser.name = adminUser.name;
+        newAdminUser.email = adminUser.email;
+        newAdminUser.password = adminUser.password;
+        return models.adminUser.create(newAdminUser).then(admin_user=>{
+                models.tempAdminUser.destroy({where: {email:adminUser.email}}).then(admin_user=>{
+                console.log("Temporary Admin User Deleted");
     }).catch(function(err){
             throw err;
         });
-        req.flash('message', 'Successfully Created Account! Login to apply for jobs.')
-        res.redirect('/');
+        req.flash('message', 'Successfully Created Admin Account')
+        res.redirect('/admin');
     }).catch(function(err){
             console.log("Error: "+err);
         })
 
     }
     else{
-        req.flash('loginMessage', 'Something Wrong Happned!!')
-        res.redirect('/');
+        req.flash('loginMessage', 'Error occurred during login')
+        res.redirect('/admin');
     }
 });
 
