@@ -18,7 +18,7 @@
         <div class="row flex-row">
             <div class="col m5">
                 <br><br><br>
-                <h2 class="thin">Welcome to <%= site.title %></h2>
+                <h2 class="thin">Welcome to ADMIN <%= site.title %></h2>
                 <h5 class="light"><%= site.desc %></h5>
             </div>
             <div class="col m5">
@@ -30,12 +30,13 @@
                         </ul>
                     </div>
                     <div class="card-content deep-blue fixed-height-card-content">
+                    <form action="/login" method="post">
                         <div id="login">
 
                             <div class="row">
 
                                 <div class="input-field col s12">
-                                    <input id="username" type="text" placeholder="Username"
+                                    <input id="username" type="text" placeholder="Email"
                                            class="validate" name="username">
                                 </div>
 
@@ -46,11 +47,13 @@
 
                                 <div class="center col s12">
                                     <br><br>
-                                    <a class="waves-effect waves-light btn">LOGIN</a>
+                                    <button class="waves-effect waves-light btn" type="submit">LOGIN</button>
                                 </div>
 
                             </div>
                         </div>
+                      </form>
+                      <form action="/signup" method="post">
                         <div id="signup">
                             <div class="row">
                                 <div class="input-field col s12">
@@ -64,16 +67,17 @@
                                 </div>
 
                                 <div class="input-field col s12">
-                                    <input id="confirm_password" type="text" placeholder="Confirm Password"
+                                    <input id="confirm_password" type="password" placeholder="Confirm Password"
                                            class="validate" name="confirm_password">
                                 </div>
 
                                 <div class="center col s12">
                                     <br><br>
-                                    <a class="waves-effect waves-light btn">SIGN UP</a>
+                                    <button class="btn waves-effect waves-light" type="submit">Sign Up</button>
                                 </div>
                             </div>
                         </div>
+                      <form action="/signup" method="post">
                     </div>
                 </div>
             </div>

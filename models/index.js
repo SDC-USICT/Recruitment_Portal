@@ -9,9 +9,9 @@ var env       = process.env.NODE_ENV || "development";
 var Relation = require('./relation');
 
 /* Sequelize settings */
-const sequelize = new Sequelize('recruitment_portal_dev', 'root', '', {
+const sequelize = new Sequelize('recruitment_portal_dev', 'root', 'root', {
   host: 'localhost',
-  port: 3307,
+  port: 3306,
   dialect: 'mysql',
 
   pool: {

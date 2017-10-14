@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+  <% include includes/head.ejs %>
+
+  <body>
+    <main>
+    <% include includes/header.ejs %>
+    <br><br>
+
+
+
+
+    <!-- Verification process -->
+    <div class="center">
+      <div class="row">
+        <div class="col  m6 offset-m3">
+
+          <!--  Notifications for wrong input in Login form-->
+          <% if (site.message && site.message.length>0) { %>
+            <div class="card-panel red lighten-1">
+                    <center><%= site.message %></center>
+            </div>
+              <% } %>
+              <!-- Verification Box -->
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Email Verification</span>
+              <p>Please verify your email id by entering the code sent to your email id.</p>
+            </div>
+              <form action="/verify" method="post">
+                <!-- Text Field to enter code sent over email.  -->
+                <div class="input-field col s12">
+                  <input id="verification" type="text" placeholder="Verification Code"
+                         class="validate" name="verification">
+                </div>
+                <!-- Submit Button for verification. -->
+                <div class="center col s12">
+                  <br><br>
+                  <button class="btn waves-effect waves-light" type="submit">Submit
+                  </button>
+                </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <br><br>
+  <% include includes/footer.ejs %>
+
+</body>
+</html>
