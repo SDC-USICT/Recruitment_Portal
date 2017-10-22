@@ -34,7 +34,7 @@ router.get('/',verify.isLoggedIn, function(req, res, next) {
 
 //Passport Authentication is done is signup.
 //Signup Route.
-router.post('/signup',passport.authenticate('local-signup',{
+router.post('/signup',passport.authenticate('admin-local-signup',{
     successRedirect : '/#signup',
     failureRedirect : '/verify',
     failureFlash : true
@@ -42,7 +42,7 @@ router.post('/signup',passport.authenticate('local-signup',{
 
 // Login route
 //passport Authenticationis yet to implement.
-router.post('/login',passport.authenticate('local-login',{
+router.post('/login',passport.authenticate('admin-local-login',{
     successRedirect : '/admin/dashboard',
     failureRedirect : '/admin',
     failureFlash : true
@@ -51,7 +51,7 @@ router.post('/login',passport.authenticate('local-login',{
 router.get('/logout', function (req, res){
     req.logOut();
     req.session.destroy(function (err) {
-        res.redirect('/admin'); //Inside a callback… bulletproof!
+        res.redirect('./admin'); //Inside a callback… bulletproof!
     });
 });
 
@@ -82,15 +82,15 @@ router.post('/verify', function(req, res, next) {
         res.redirect('/verify');
     }
     //else if(user.verification === req.body.verification){
-    else if(adminUser.verification === req.body.verification){
+    else if(admin_user.verification === req.body.verification){
         // Also create user as per your requiremnt
-        adminUser.isVerified = true;
+        admin_user.isVerified = true;
         var newAdminUser = {};
-        newAdminUser.name = adminUser.name;
-        newAdminUser.email = adminUser.email;
-        newAdminUser.password = adminUser.password;
+        newAdminUser.name = admin_user.name;
+        newAdminUser.email = admin_user.email;
+        newAdminUser.password = admin_user.password;
         return models.adminUser.create(newAdminUser).then(admin_user=>{
-                models.tempAdminUser.destroy({where: {email:adminUser.email}}).then(admin_user=>{
+                models.tempAdminUser.destroy({where: {email:admin_user.email}}).then(admin_user=>{
                 console.log("Temporary Admin User Deleted");
     }).catch(function(err){
             throw err;
