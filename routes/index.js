@@ -68,10 +68,11 @@ router.post('/verify', function(req, res, next) {
     models.sequelize.transaction(t=>{
         //Transaction Is used for only one session per user.
         return models.tempUser.findOne({where:{verification : req.body.verification}}).then(user=>{
-            if(user == null){
-        req.flash('message', 'Verifcation code is Incorrect')
+   if(user == null){
+         req.flash('message', 'Verifcation code is Incorrect')
         res.redirect('/verify');
     }
+    //else if(user.verification === req.body.verification){
     else if(user.verification === req.body.verification){
         // Also create user as per your requiremnt
         user.isVerified = true;

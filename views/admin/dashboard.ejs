@@ -2,41 +2,77 @@
 <html>
 
 <% include ../includes/head.ejs %>
-
 <body id="dashboard">
-<main>
+<main ng-controller="mc" ng-app="form">
     <% include ../includes/header.ejs %>
     <nav class="secondary-navbar">
         <div class="nav-wrapper">
             <ul class="tabs">
-                <li class="tab col s3"><a href="#test1">POST NEW VACANCY</a></li>
-                <li class="tab col s3"><a class="active"  href="#test2">VIEW ALL VACANCIES</a></li>
-                <li class="tab col s3 disabled"><a href="#test3">FAQ</a></li>
+                <li class="tab col s3"><a id="dash" class="active" href="#test1">DASHBOARD</a></li>
+                <li class="tab col s3"><a class="active"  href="#test2">VACANCIES</a></li>
+                <li class="tab col s3"><a href="#test3">FAQ</a></li>
                 <ul class="right hide-on-med-and-down">
                     <li>
                         <a href="notifications">
                             <i class="fa fa-bell" aria-hidden="true"></i>
                         </a>
                     </li>
-                    <li>
-                        <a href="logout">
-                            <i class="fa fa-sign-out" aria-hidden="true"></i>
-                        </a>
-                    </li>
+                    <li><a href="/admin">
+                      <i class="fa fa-sign-out"></i>Logout
+                    </a></li>
                 </ul>
 
             </ul>
-
         </div>
     </nav>
     <br><br>
+    <div id="test1" class="vacancy container">
+        <center><div class="section">Dashboard</div></center>
+    </div>
+    <div id="test2" class="vacancy container">
+        <div class="section">
+            <div class="card table-title"><p>VACANCIES</p><a href="#formModal" rel="modal:open"><button class="btn waves-effect waves-default blue darken-3">New<span id="addBtn"class="addBtn"><i class="fa fa-plus"></i></span></button></a>
+          <!--<button ng-click="addRow()"></button>-->
+          <!--jquery modal-->
+          <div id="formModal" class="modal">
+          <p>Add Information About New Vacancy</p>
+          <button ng-click="addVacancy()"><a href="#!" class="btn-flat modal-action modal-close waves-effect waves-default">Add<a/></button><a href="#" class="btn-flat modal-action modal-close waves-effect waves-default" rel="modal:close">Cancel<a/>
+          </div>
+        </div>
 
+            <table class="card responsive-table bordered centered">
+                <thead>
+
+                </thead>
+                <tbody>
+                  <tr ng-repeat="rowContent in rows">
+                    <td>{{rowContent}}</td><!--<span id="removeBtn"class="removeBtn"><i class="fa fa-trash"></i></span>-->
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </main>
 <br><br>
 <% include ../includes/footer.ejs %>
 
 </body>
 </html>
+<script>
+//function to add new vacancy
+//function to add new vacancy
+angular.module('form', [])
+.controller('mc', [ '$scope', function($scope) {
+  $scope.rows = [];
+
+  $scope.counter = 0;
+
+  $scope.addVacancy = function() {
+    $scope.rows.push(' ' + $scope.counter);
+    $scope.counter++;
+  }
+}]);
+</script>
 <style>
     .info ul:before {
         content: "";
@@ -101,5 +137,8 @@
 
     .info :-ms-input-placeholder {
         color: #26a69a;
+    }
+    .addBtn{
+      padding: 5px;
     }
 </style>

@@ -18,7 +18,7 @@
         <div class="row flex-row">
             <div class="col m5">
                 <br><br><br>
-                <h2 class="thin">Welcome to <%= site.title %></h2>
+                <h2 class="thin">Welcome to the Admin <%= site.title %></h2>
                 <h5 class="light"><%= site.desc %></h5>
             </div>
             <div class="col m5">
@@ -30,15 +30,15 @@
                         </ul>
                     </div>
                     <div class="card-content deep-blue fixed-height-card-content">
+                    <form action="/login" method="post">
                         <div id="login">
 
                             <div class="row">
 
                                 <div class="input-field col s12">
-                                    <input id="username" type="text" placeholder="Username"
+                                    <input id="username" type="text" placeholder="Email"
                                            class="validate" name="username">
                                 </div>
-
                                 <div class="input-field col s12">
                                     <input id="password" type="password" placeholder="Password"
                                            class="validate" name="password">
@@ -46,13 +46,20 @@
 
                                 <div class="center col s12">
                                     <br><br>
-                                    <a class="waves-effect waves-light btn">LOGIN</a>
+                                    <button class="waves-effect waves-light btn" type="submit">LOGIN</button>
                                 </div>
 
                             </div>
                         </div>
+                      </form>
+                      <form action="/signup" method="post">
                         <div id="signup">
                             <div class="row">
+                              <!-- Name added  -->
+                              <div class="input-field col s12">
+                                <input id="name" type="text" placeholder="Full Name"
+                                       class="validate" name="name">
+                              </div>
                                 <div class="input-field col s12">
                                     <input id="email" type="email" placeholder="Email ID"
                                            class="validate" name="email">
@@ -64,16 +71,17 @@
                                 </div>
 
                                 <div class="input-field col s12">
-                                    <input id="confirm_password" type="text" placeholder="Confirm Password"
+                                    <input id="confirm_password" type="password" placeholder="Confirm Password"
                                            class="validate" name="confirm_password">
                                 </div>
 
                                 <div class="center col s12">
                                     <br><br>
-                                    <a class="waves-effect waves-light btn">SIGN UP</a>
+                                    <button class="btn waves-effect waves-light" type="submit">Sign Up</button>
                                 </div>
                             </div>
                         </div>
+                      </form>
                     </div>
                 </div>
             </div>

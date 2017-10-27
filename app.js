@@ -12,7 +12,6 @@ var LocalStrategy = require('passport-local').Strategy;
 //Website Meta Details.
 title = "Recruitment Portal";
 desc = "Online Portal to apply for various posts at GGSIP University";
-
 //Express app created.
 var app = express();
 
