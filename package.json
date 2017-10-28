@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "test" : "mocha"
+    "test": "mocha"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -27,6 +27,7 @@
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
+    "dotenv": "^4.0.0",
     "request": "^2.81.0"
   }
 }
