@@ -32,11 +32,17 @@
     <div id="test2" class="vacancy container">
         <div class="section">
             <div class="card table-title"><p>VACANCIES</p><a href="#formModal" rel="modal:open"><button class="btn waves-effect waves-default blue darken-3">New<span id="addBtn"class="addBtn"><i class="fa fa-plus"></i></span></button></a>
-          <!--<button ng-click="addRow()"></button>-->
           <!--jquery modal-->
           <div id="formModal" class="modal">
+          <form name="modalForm" ng-submit="modalForm.$valid" novalidate>
           <p>Add Information About New Vacancy</p>
-          <button ng-click="addVacancy()"><a href="#!" class="btn-flat modal-action modal-close waves-effect waves-default">Add<a/></button><a href="#" class="btn-flat modal-action modal-close waves-effect waves-default" rel="modal:close">Cancel<a/>
+          <input id="title" name="title" ng-model="title" type="text" placeholder="Vacancy Title" required="true">
+          <input  id="description" type="text" ng-model="description" placeholder="Description" required="true">
+          <p>Start Date: <input type="text" id="endDatepicker"></p>
+          <p>End Date: <input type="text" id="startDatepicker"></p>
+          <input id="status" name="status" type="text" ng-model="status" placeholder="Vacancy Status" required="true"><!--This needs to be a drop down-->
+          <a href="#"><button ng-click="addVacancy()" class="btn-flat modal-action modal-close waves-effect waves-default" rel="modal:close">Add<a/></button><a href="#"><button class="btn-flat modal-action modal-close waves-effect waves-default" rel="modal:close">Cancel</button><a/>
+          </form>
           </div>
         </div>
 
@@ -65,13 +71,14 @@ angular.module('form', [])
 .controller('mc', [ '$scope', function($scope) {
   $scope.rows = [];
 
-  $scope.counter = 0;
+  $scope.counter = 1;
 
   $scope.addVacancy = function() {
-    $scope.rows.push(' ' + $scope.counter);
+    $scope.rows.push( $scope.counter +" "+ $scope.title);
     $scope.counter++;
   }
 }]);
+
 </script>
 <style>
     .info ul:before {

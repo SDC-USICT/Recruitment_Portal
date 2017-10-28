@@ -11,25 +11,22 @@
             <ul class="tabs">
                 <li class="tab"><a id="dash" class="active" href="#test1">DASHBOARD</a></li>
                 <li class="tab"><a class=""  href="#test2">INFORMATION</a></li>
-                <li  class="tab"><a id="apply" class="hide" href="#test6">APPLICATION</a></li>
+                <li  class="tab"><a id="apply" class="hide" href="#test3">APPLICATION</a></li>
                 <ul class="right hide-on-med-and-down">
-                    <li class="tab"><a href="#test3">FAQ</a></li>
+                    <li class="tab"><a href="#test4">FAQ</a></li>
                     <li>
                         <a href="notifications">
                             <i class="fa fa-bell" aria-hidden="true"></i>
                         </a>
                     </li>
-                    <li>
-                        <a  class="logout" href="/logout">
+                    <li><a  class="logout" href="/logout">
                             <i class="fa fa-sign-out" aria-hidden="true"></i>
-                        </a>
-                    </li>
+                    </a></li>
                 </ul>
             </ul>
         </div>
     </nav>
     <br><br>
-
 
     <!--  Notifications for wrong input in Login form-->
     <% if (site.message && site.message.length>0) { %>
@@ -807,6 +804,10 @@
 </body>
 </html>
 <style>
+*hide role-specific div html*/
+div.agent, div.manager {
+display: none;
+}
     .vacancy td {
         padding: 0.5em !important;
     }

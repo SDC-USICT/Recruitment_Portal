@@ -1,23 +1,19 @@
 // config/auth.js
 //This is separate module for passport Authentication.
-
 var LocalStrategy   = require('passport-local').Strategy;
 var models = require('../models');
 var bcrypt = require('bcrypt-nodejs');
 var nodemail = require('./nodemail');
+
 module.exports = function(passport){
-
-
   // used to serialize the user for the session
   passport.serializeUser(function(user, done) {
       done(null, user.UserId);
   });
-
   // used to deserialize the user
   passport.deserializeUser(function(id, done) {
       models.User.findOne({where:{UserId:id}}).then(user=>{done(null,user)})
   });
-
 
   passport.use('local-signup', new LocalStrategy({
       // by default, local strategy uses username and password, we will override with email
@@ -64,9 +60,6 @@ module.exports = function(passport){
                 //Calling nodemailer for email sending.
                 nodemail(mailOptions);
 
-
-
-
                 return done(null,false);
               }).catch(function(err){
                 console.log("Error Occurred: "+err);
@@ -88,7 +81,6 @@ module.exports = function(passport){
   })
 
 }));
-
   passport.use('local-login', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'username',
@@ -125,5 +117,4 @@ module.exports = function(passport){
         //Transaction ended.
 
     }));
-
 };
