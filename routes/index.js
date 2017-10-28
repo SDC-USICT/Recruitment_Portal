@@ -80,6 +80,7 @@ router.post('/verify', function(req, res, next) {
         newUser.name = user.name;
         newUser.email = user.email;
         newUser.password = user.password;
+        newUser.isAdmin = false;
         return models.User.create(newUser).then(user=>{
                 models.tempUser.destroy({where: {email:user.email}}).then(user=>{
                 console.log("Temporary User Deleted");

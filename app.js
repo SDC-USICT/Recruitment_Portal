@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var adminPassport = require('passport');
 var flash = require('connect-flash');
 var session = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
@@ -31,28 +32,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//separate passport module is created.
-
-
-
 //importing routes.
 var index = require('./routes/index');
 var dashboard = require('./routes/dashboard');
-
-var admin = require('./routes/admin/index');
+//var admin = require('./routes/admin/index');
 var adminDashboard = require('./routes/admin/dashboard');
 
 
 //Using different routes
 app.use('/', index);
 app.use('/dashboard', dashboard);
-app.use('/admin', admin);
+//app.use('/admin', admin);
 app.use('/admin/dashboard', adminDashboard);
 
-
-
 require('./config/auth')(passport);
-
+require('./config/auth')(adminPassport);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

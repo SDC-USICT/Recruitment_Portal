@@ -17,11 +17,15 @@ module.exports = function(sequelize, DataTypes){
     email: {
       type: DataTypes.STRING,
       unique: true,
-      allowNull: false
+      allowNull:false
     },
     password: {
       type: DataTypes.STRING.BINARY,
       allowNull:false
+    },
+    isAdmin:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   },{
     tableName: 'user'
