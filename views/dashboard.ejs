@@ -12,6 +12,7 @@
                 <li class="tab"><a class="" id="info" href="#test2">INFORMATION</a></li>
                 <li  class="tab"><a id="apply" class="hide" href="#test3">APPLICATION</a></li>
               <% if (site.role == 'USER') { %>  <li class="tab"><a id="vacancies" class=""  href="#test4">VACANCIES</a></li> <% } %>
+
                 <ul class="right hide-on-med-and-down">
                     <li class="tab"><a href="#test5">FAQ</a></li>
                     <li>
@@ -797,6 +798,7 @@
                   </div>
           </div>
     </div>-->
+
     <% if (site.role == 'USER') { %>
     <div id="test4" class="vacancy container">
         <div class="section">
@@ -957,6 +959,7 @@ display: none;
         $('.logout').click(function () {
             window.location.href="/logout";
         })
+
         //jquery UI modal form from http://jqueryui.com/dialog/#modal-form
         $( function() {
       var dialog, form,
