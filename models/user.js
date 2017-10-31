@@ -23,9 +23,10 @@ module.exports = function(sequelize, DataTypes){
       type: DataTypes.STRING.BINARY,
       allowNull:false
     },
-    isAdmin:{
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
+    role:{
+      type: DataTypes.STRING.BINARY,
+      enum: ['STUDENT', 'ADMIN', 'USER'],
+      defaultValue: 'USER'
     }
   },{
     tableName: 'user'

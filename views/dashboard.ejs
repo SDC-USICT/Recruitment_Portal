@@ -6,17 +6,24 @@
 <body id="dashboard">
 <main  ng-controller="mc"  ng-app="Form">
     <% include includes/header.ejs %>
+    <h1>Welcome </h1> {{email}}
     <nav  class="secondary-navbar">
         <div class="nav-wrapper">
             <ul class="tabs">
                 <li class="tab"><a id="dash" class="active" href="#test1">DASHBOARD</a></li>
-                <li class="tab"><a class=""  href="#test2">INFORMATION</a></li>
+                <li class="tab"><a class="" id="info" href="#test2">INFORMATION</a></li>
                 <li  class="tab"><a id="apply" class="hide" href="#test3">APPLICATION</a></li>
+                <li class="tab"><a id="vacancies" class=""  href="#test4">VACANCIES</a></li>
                 <ul class="right hide-on-med-and-down">
-                    <li class="tab"><a href="#test4">FAQ</a></li>
+                    <li class="tab"><a href="#test5">FAQ</a></li>
                     <li>
                         <a href="notifications">
                             <i class="fa fa-bell" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-gear" aria-hidden="true"></i>
                         </a>
                     </li>
                     <li><a  class="logout" href="/logout">
@@ -34,7 +41,6 @@
               <center><%= site.message %></center>
       </div>
         <% } %>
-
     <div id="test1" class="vacancy container">
 
         <div class="section">
@@ -137,7 +143,7 @@
         </div>
     </div>
 
-    <div   ng-init="selected=0" id="test2" class="info container">
+    <div ng-init="selected=0" id="test2" class="info container">
         <div class="card">
             <div class="row no-margins">
                 <div style="padding:0 0;" class="col m3">
@@ -462,341 +468,359 @@
                 </div>
             </div>
         </div>
-    </div>
+        <!--<div ng-init="selected==0" id="test6" class="info container">-->
+                  <div class="card no-margins">
+                      <div class="no-margins row">
+                          <div class="table-title">APPLICATION FOR THE POST OF <span style="color: crimson;">{{ cur_vacancy.designation.toUpperCase() }}</span></div>
+                      </div>
+                  </div>
+                    </div>
+                  <!--<div class="card no-margins">
+
+                      <div class="row border-top no-margins">
+                          <div style="padding:0 0;" class="col m3">
+                              <div class="table-title">APPLY</div>
+
+                          </div>
+                          <div class="col m9">
+                              <div class="right">
+                                  <button type="submit" ng-click="submit_application()" style="margin-top: 0.4em" class="btn waves-effect waves-light no-borders">
+                                      SAVE
+                                  </button>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="row border-top">
+                          <div class="col m3">
+                              <ul class="flexed">
+                                  <li ng-repeat="info in attributes">
+                                      <div ng-click="setSelected(info.val)" ng-class="{'grey-text':!isSelected(info)}" class="time">{{ info.key }}</div>
+                                  </li>
+                              </ul>
+                          </div>
+                          <div class="col m9">
+                              <form class="candidate_form">
+
+                              <div ng-show="selected==0" class="container">
+                                  <br>
+                                  <div class="row">
+                                      <div class="input-field col s6">
+                                          <input ng-model="cur_candidate.first_name" placeholder="First Name" id="first_name" type="text" class="validate">
+                                      </div>
+                                      <div class="input-field col s6">
+                                          <input ng-model="cur_candidate.last_name" placeholder="Last Name" id="last_name" type="text" class="validate">
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="input-field col s6">
+                                          <input ng-model="cur_candidate.fhf_name" type="text" placeholder="Father's First Name" name="cand_parent_fname" class="validate">
+                                      </div>
+                                      <div  class="input-field col s6">
+                                          <input ng-model="cur_candidate.fhl_name" type="text" placeholder="Father's Last Name" name="cand_parent_lname" class="validate">
+                                      </div>
+                                  </div>
 
 
+                                  <p class = "center">Discipline</p>
+                                  <div style="margin-bottom: 2em !important;" class="row">
+                                      <div  class="ss-item-required input-field col s6">
+                                          <p>
+                                              <input ng-model="cur_candidate.cse" type="checkbox" class="filled-in" id="filled-in-box5" name="discipline[]" value="cse" />
+                                              <label for="filled-in-box5">CSE/IT</label>
+                                          </p>
+                                          <p>
+                                              <input ng-model="cur_candidate.ee" type="checkbox" class="filled-in" id="filled-in-box6" name="discipline[]" value="electrical" />
+                                              <label for="filled-in-box6">ELECTRICAL</label>
+                                              <span class="discipline[]_error"></span
+                                          </p>
+                                      </div>
+                                      <div  class="ss-item-required input-field col s6">
+                                          <p>
+                                              <input ng-model="cur_candidate.ece" type="checkbox" class="filled-in" id="filled-in-box7" name="discipline[]" value="ece" />
+                                              <label for="filled-in-box7">ELECTRONICS AND COMMUNICATION ENGINEERING(ECE)</label>
+                                          </p>
+                                          <p>
+                                              <input ng-model="cur_candidate.mae" type="checkbox" class="filled-in" id="filled-in-box8" name="discipline[]" value="mae" />
+                                              <label for="filled-in-box8">MECHANICAL AND AUTOMATION ENGINEERING(MAE)</label>
+                                          </p>
+                                      </div>
+                                  </div>
 
-    <div   ng-init="selected=0" id="test6" class="info container">
+                                  <div class="row">
+                                      <div  class="input-field col s6">
+                                          <input class="validate" ng-model="cur_candidate.aadhar" id="ame" type="text" placeholder="Aadhar Number" class="aadhar_number" name="aadhar_number">
+                                      </div>
+                                      <div  class="ss-item-required input-field col s6">
+                                          <input class="validate" ng-model="cur_candidate.dob" placeholder="Date Of Birth" id="datepicker" type="text" class="datepicker" name="cand_dob">
 
-            <div class="card no-margins">
-                <div class="no-margins row">
-                    <div class="table-title">APPLICATION FOR THE POST OF <span style="color: crimson;">{{ cur_vacancy.designation.toUpperCase() }}</span></div>
-                </div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="container" ng-show="selected==1">
+                                  <div class="row">
+                                      <div  class="input-field col s9">
+                                          <textarea ng-model="cur_candidate.correspondence_addr" id="textarea2 " placeholder="Correspondence Address" class="materialize-textarea" name="corresp_address"></textarea>
+
+                                      </div>
+                                      <div  class="input-field col s3">
+                                          <textarea ng-model="cur_candidate.corresp_pi" id="textarea1 " placeholder="Pincode" class="materialize-textarea" name="corresp_pin"></textarea>
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div  class="ss-item-required input-field col s9">
+                                          <textarea placeholder="Permanent Address" ng-model="cur_candidate.perm_addr" id="textarea3 " class="materialize-textarea" name="perm_address"></textarea>
+                                      </div>
+                                      <div  class="ss-item-required input-field col s3">
+                                          <textarea id="textarea4 " ng-model="cur_candidate.perm_pin" class="materialize-textarea valid_pin" placeholder="Pincode" name="perm_pin"></textarea>
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div  class="input-field col s6">
+                                          <input class="validate" ng-model="cur_candidate.mobile" placeholder="Mobile" id="icon_prefix " type="text" class="valid_num" name="mobile_number">
+
+                                      </div>
+                                      <div  class="input-field col s6">
+                                          <input class="validate" ng-model="cur_candidate.landline" id="icon_telephone " placeholder="Landline" type="text" class="valid_num_ll" name="landline_number">
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div  class="ss-item-required input-field col s12">
+                                          <input class="validate" placeholder="Email ID" ng-model="cur_candidate.email" id="email" type="email" class="" name="cand_email">
+
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div ng-show="selected==2" class="container">
+                                  <div class="row">
+                                      <div  class="input-field col s6">
+                                          <select ng-model="cur_candidate.gender" name="gender">
+                                              <option value="" disabled selected>Choose your option</option>
+                                              <option value="male">Male</option>
+                                              <option value="female">Female</option>
+                                          </select>
+
+                                      </div>
+                                      <div  class="input-field col s6">
+                                          <select ng-model="cur_candidate.marital_status" name="marital_status">
+                                              <option value="" disabled selected>Choose your option</option>
+                                              <option value="married">Married</option>
+                                              <option value="unmarried">Unmarried</option>
+                                          </select>
+
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div  class="ss-item-required input-field col s12">
+                                          <input class="validate" ng-model="cur_candidate.nationality" placeholder="Nationality" id="lme" type="text" class="" name="cand_nation">
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="input-field col s4">
+                                          <select ng-model="cur_candidate.category" name="category">
+                                              <option value="" disabled selected>Choose Category</option>
+                                              <option value="general">GENERAL</option>
+                                              <option value="obc">OBC</option>
+                                              <option value="sc">SC</option>
+                                              <option value="st">ST</option>
+                                              <option value="pwd">PWD</option>
+                                          </select>
+                                      </div>
+                                      <div  class="ss-item-required input-field col s4">
+                                          <input class="validate" ng-model="cur_candidate.religion" placeholder="Religion" id="rel" type="text" class="" name="cand_religion">
+                                      </div>
+                                      <div  class="ss-item-required input-field col s4">
+                                          <select ng-model="cur_candidate.minority" name="minority">
+                                              <option value="" disabled selected>Minority Yes/No</option>
+                                              <option value="yes">Yes</option>
+                                              <option value="no">No</option>
+                                          </select>
+
+                                      </div>
+                                  </div>
+                              </div>
+                              <div ng-show="selected==3" class="container">
+                                  <br>
+                                  <table>
+                                      <thead>
+                                      <tr>
+                                          <th>Examination</th>
+                                          <th>University/Board</th>
+                                          <th>Year of passing/Award</th>
+                                          <th>Division</th>
+                                          <th>Percentage/Grade</th>
+                                          <th>Subject</th>
+                                      </tr>
+                                      </thead>
+
+                                      <tbody>
+                                      <tr>
+                                          <td>Class X</td>
+                                          <td><input ng-model="cur_candidate.x_board" placeholder="E.g CBSE" id="xp" type="text" class="" name="cand_X_board">
+                                          <td><input ng-model="cur_candidate.cand_x_pass_year" id="xb" type="text" class="" name="cand_X_pass_year"></td>
+                                          <td><select ng-model="cur_candidate.cand_x_division" name="cand_X_division">
+                                                  <option value="" disabled selected>Select</option>
+                                                  <option value="1">1</option>
+                                                  <option value="2">2</option>
+                                                  <option value="2">3</option>
+                                              </select></td>
+                                          <td><input class="validate" ng-model="cur_candidate.cand_x_grade" id="xs" type="text" class="" name="cand_X_grade"></td>
+                                          <td><input class="validate" ng-model="cur_candidate.cand_x_subject" placeholder="E.g English,Mathematics,Physics ... " id="xd" type="text" class="" name="cand_X_subject"></td>
+                                      </tr>
+                                      <tr>
+
+                                          <td>Class XII</td>
+                                          <td><input class="validate" ng-model="cur_candidate.cand_xii_board" placeholder="E.g CBSE" id="xii" type="text" class="" name="cand_XII_board">
+                                          <td><input class="validate" ng-model="cur_candidate.cand_xii_pass_year" id="xoop" type="text" class="" name="cand_XII_pass_year"></td>
+                                          <td><select ng-model="cur_candidate.cand_xii_division" name="cand_xii_division">
+                                                  <option value="" disabled selected>Select</option>
+                                                  <option value="1">1</option>
+                                                  <option value="2">2</option>
+                                                  <option value="2">3</option>
+                                              </select></td>
+                                          <td><input class="validate" ng-model="cur_candidate.cand_xii_grade" id="xpppp" type="text" class="" name="cand_XII_grade"></td>
+                                          <td><input class="validate" ng-model="cur_candidate.cand_xii_subject" placeholder="E.g English,Mathematics,Physics ... " id="xmmmm" type="text" class="" name="cand_XII_subject"></td>
+                                      </tr>
+                                      <tr>
+
+                                          <td>M.Tech</td>
+                                          <td><input class="validate" ng-model="cur_candidate.cand_mtech_board" placeholder="College/Univ" id="mp" type="text" class="" name="cand_mtech_board">
+                                          <td><input class="validate" ng-model="cur_candidate.cand_mtech_pass_year" id="mb" type="text" class="" name="cand_mtech_pass_year"></td>
+                                          <td><select name="cand_mtech_division" ng-model="cur_candidate.cand_mtech_division">
+                                                  <option value="" disabled selected>Select</option>
+                                                  <option value="1">1</option>
+                                                  <option value="2">2</option>
+                                                  <option value="2">3</option>
+                                              </select></td>
+                                          <td><input class="validate" ng-model="cur_candidate.cand_mtech_grade" id="mq" type="text" class="" name="cand_mtech_grade"></td>
+                                          <td><input class="validate" ng-model="cur_candidate.cand_mtech_subject" placeholder="E.g English,Mathematics,Physics ... " id="mr" type="text" class="" name="cand_mtech_subject"></td>
+                                      </tr>
+                                      <tr>
+
+                                          <td>Ph.D</td>
+                                          <td><input class="validate" ng-model="cur_candidate.cand_phd_board" placeholder="College/Univ" id="ps" type="text" class="" name="cand_phd_board">
+                                          <td><input class="validate" ng-model="cur_candidate.cand_phd_pass_year" id="pt" type="text" class="" name="cand_phd_pass_year"></td>
+                                      </tr>
+                                      </tbody>
+                                  </table>
+
+                              </div>
+
+                              <div class="container" ng-show="selected==4">
+                                  <div class="row">
+                                      <div  class="ss-item-required input-field col s9">
+                                          <textarea id="textarea5" class="materialize-textarea" ng-model="cur_candidate.cand_employer_address" placeholder="Current Employer Address"></textarea>
+
+                                      </div>
+                                      <div  class="ss-item-required input-field col s3">
+                                          <textarea id="textarea6" class="materialize-textarea valid_pin" ng-model="cur_candidate.cand_employer_pin" placeholder="Pincode"></textarea>
+
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div ng-show="selected==5" class="container">
+                                  <div class="row">
+                                      <div  class="ss-item-required input-field col s6">
+                                          <input  class="validate" id="datepicker" placeholder="Date of submission of PhD Thesis" type="text" class="datepicker" ng-model="cur_candidate.cand_phd_thesis_submission">
+
+                                      </div>
+                                      <div  class="ss-item-required input-field col s6">
+                                          <input class="validate" id="datepicker" placeholder="Title of Ph.D thesis" type="text" class="" ng-model="cur_candidate.cand_phd_thesis_title">
+
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div  class="ss-item-required input-field col s6">
+                                          <input class="validate" placeholder="Month and year of passing of NET/GATE" id="mpg" type="text" class="" ng-model="cur_candidate.cand_gate_date">
+
+                                      </div>
+                                      <div  class="ss-item-required input-field col s6">
+                                          <input class="validate" id="datepicker" placeholder="Corresponding Roll Number" type="text" class="" ng-model="cur_candidate.cand_gate_roll_number">
+
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div  class="ss-item-required input-field col s12">
+                                          <input class="validate" id="datepicker" placeholder="Field of specialization" type="text" class="" ng-model="cur_candidate.cand_specialization">
+
+                                      </div>
+                                  </div>
+
+                              </div>
+                              <div ng-show="selected==6" class="container">
+                                  <p class = "center extra">Name and Address of two persons to whom references can be made</p>
+                                  <div class="row">
+                                      <div  class="ss-item-required input-field col s6">
+                                          <input class="validate"  id="datepicker" placeholder="Name" type="text" class="" ng-model="cur_candidate.cand_ref1_name">
+                                      </div>
+                                      <div  class="ss-item-required input-field col s6">
+                                          <input class="validate" id="datepicker" placeholder="Address" type="text" class="" ng-model="cur_candidate.cand_ref1_address">
+                                      </div>
+                                  </div>
+
+
+                                  <div class="row">
+                                      <div  class="ss-item-required input-field col s6">
+                                          <input class="validate" id="datepicker" type="text" placeholder="Name" class="" ng-model="cur_candidate.cand_ref2_name">
+
+                                      </div>
+                                      <div  class="ss-item-required input-field col s6">
+                                          <input class="validate" id="datepicker" type="text" placeholder="Address" class="" ng-model="cur_candidate.cand_ref2_address">
+
+                                      </div>
+                                  </div>
+
+                              </div>
+                              <div ng-show="selected==7"  class="container">
+
+                                  <div class="row">
+                                      <div class="ss-item-required input-field col s12">
+                                          <input class="validate" id="extras" placeholder="Any Other Additonal Details" type="text" class="" ng-model="cur_candidate.cand_extras">
+                                      </div>
+                                  </div>
+
+
+                              </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+          </div>
+    </div>-->
+
+    <div id="test4" class="vacancy container">
+        <div class="section">
+            <div class="card table-title"><p>VACANCIES</p>
+              <a href="#addModal"><button  class="btn waves-effect waves-default blue darken-3"> New <span id="addBtn"><i class="fa fa-plus"></i></span></button></a>
             </div>
-            <div class="card no-margins">
-
-                <div class="row border-top no-margins">
-                    <div style="padding:0 0;" class="col m3">
-                        <div class="table-title">APPLY</div>
-
-                    </div>
-                    <div class="col m9">
-                        <div class="right">
-                            <button type="submit" ng-click="submit_application()" style="margin-top: 0.4em" class="btn waves-effect waves-light no-borders">
-                                SAVE
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row border-top">
-                    <div class="col m3">
-                        <ul class="flexed">
-                            <li ng-repeat="info in attributes">
-                                <div ng-click="setSelected(info.val)" ng-class="{'grey-text':!isSelected(info)}" class="time">{{ info.key }}</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col m9">
-                        <form class="candidate_form">
-
-                        <div ng-show="selected==0" class="container">
-                            <br>
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input ng-model="cur_candidate.first_name" placeholder="First Name" id="first_name" type="text" class="validate">
-                                </div>
-                                <div class="input-field col s6">
-                                    <input ng-model="cur_candidate.last_name" placeholder="Last Name" id="last_name" type="text" class="validate">
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input ng-model="cur_candidate.fhf_name" type="text" placeholder="Father's First Name" name="cand_parent_fname" class="validate">
-                                </div>
-                                <div  class="input-field col s6">
-                                    <input ng-model="cur_candidate.fhl_name" type="text" placeholder="Father's Last Name" name="cand_parent_lname" class="validate">
-                                </div>
-                            </div>
-
-
-                            <p class = "center">Discipline</p>
-                            <div style="margin-bottom: 2em !important;" class="row">
-                                <div  class="ss-item-required input-field col s6">
-                                    <p>
-                                        <input ng-model="cur_candidate.cse" type="checkbox" class="filled-in" id="filled-in-box5" name="discipline[]" value="cse" />
-                                        <label for="filled-in-box5">CSE/IT</label>
-                                    </p>
-                                    <p>
-                                        <input ng-model="cur_candidate.ee" type="checkbox" class="filled-in" id="filled-in-box6" name="discipline[]" value="electrical" />
-                                        <label for="filled-in-box6">ELECTRICAL</label>
-                                        <span class="discipline[]_error"></span
-                                    </p>
-                                </div>
-                                <div  class="ss-item-required input-field col s6">
-                                    <p>
-                                        <input ng-model="cur_candidate.ece" type="checkbox" class="filled-in" id="filled-in-box7" name="discipline[]" value="ece" />
-                                        <label for="filled-in-box7">ELECTRONICS AND COMMUNICATION ENGINEERING(ECE)</label>
-                                    </p>
-                                    <p>
-                                        <input ng-model="cur_candidate.mae" type="checkbox" class="filled-in" id="filled-in-box8" name="discipline[]" value="mae" />
-                                        <label for="filled-in-box8">MECHANICAL AND AUTOMATION ENGINEERING(MAE)</label>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div  class="input-field col s6">
-                                    <input class="validate" ng-model="cur_candidate.aadhar" id="ame" type="text" placeholder="Aadhar Number" class="aadhar_number" name="aadhar_number">
-                                </div>
-                                <div  class="ss-item-required input-field col s6">
-                                    <input class="validate" ng-model="cur_candidate.dob" placeholder="Date Of Birth" id="datepicker" type="text" class="datepicker" name="cand_dob">
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="container" ng-show="selected==1">
-                            <div class="row">
-                                <div  class="input-field col s9">
-                                    <textarea ng-model="cur_candidate.correspondence_addr" id="textarea2 " placeholder="Correspondence Address" class="materialize-textarea" name="corresp_address"></textarea>
-
-                                </div>
-                                <div  class="input-field col s3">
-                                    <textarea ng-model="cur_candidate.corresp_pi" id="textarea1 " placeholder="Pincode" class="materialize-textarea" name="corresp_pin"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div  class="ss-item-required input-field col s9">
-                                    <textarea placeholder="Permanent Address" ng-model="cur_candidate.perm_addr" id="textarea3 " class="materialize-textarea" name="perm_address"></textarea>
-                                </div>
-                                <div  class="ss-item-required input-field col s3">
-                                    <textarea id="textarea4 " ng-model="cur_candidate.perm_pin" class="materialize-textarea valid_pin" placeholder="Pincode" name="perm_pin"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div  class="input-field col s6">
-                                    <input class="validate" ng-model="cur_candidate.mobile" placeholder="Mobile" id="icon_prefix " type="text" class="valid_num" name="mobile_number">
-
-                                </div>
-                                <div  class="input-field col s6">
-                                    <input class="validate" ng-model="cur_candidate.landline" id="icon_telephone " placeholder="Landline" type="text" class="valid_num_ll" name="landline_number">
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div  class="ss-item-required input-field col s12">
-                                    <input class="validate" placeholder="Email ID" ng-model="cur_candidate.email" id="email" type="email" class="" name="cand_email">
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div ng-show="selected==2" class="container">
-                            <div class="row">
-                                <div  class="input-field col s6">
-                                    <select ng-model="cur_candidate.gender" name="gender">
-                                        <option value="" disabled selected>Choose your option</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-
-                                </div>
-                                <div  class="input-field col s6">
-                                    <select ng-model="cur_candidate.marital_status" name="marital_status">
-                                        <option value="" disabled selected>Choose your option</option>
-                                        <option value="married">Married</option>
-                                        <option value="unmarried">Unmarried</option>
-                                    </select>
-
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div  class="ss-item-required input-field col s12">
-                                    <input class="validate" ng-model="cur_candidate.nationality" placeholder="Nationality" id="lme" type="text" class="" name="cand_nation">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s4">
-                                    <select ng-model="cur_candidate.category" name="category">
-                                        <option value="" disabled selected>Choose Category</option>
-                                        <option value="general">GENERAL</option>
-                                        <option value="obc">OBC</option>
-                                        <option value="sc">SC</option>
-                                        <option value="st">ST</option>
-                                        <option value="pwd">PWD</option>
-                                    </select>
-                                </div>
-                                <div  class="ss-item-required input-field col s4">
-                                    <input class="validate" ng-model="cur_candidate.religion" placeholder="Religion" id="rel" type="text" class="" name="cand_religion">
-                                </div>
-                                <div  class="ss-item-required input-field col s4">
-                                    <select ng-model="cur_candidate.minority" name="minority">
-                                        <option value="" disabled selected>Minority Yes/No</option>
-                                        <option value="yes">Yes</option>
-                                        <option value="no">No</option>
-                                    </select>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div ng-show="selected==3" class="container">
-                            <br>
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>Examination</th>
-                                    <th>University/Board</th>
-                                    <th>Year of passing/Award</th>
-                                    <th>Division</th>
-                                    <th>Percentage/Grade</th>
-                                    <th>Subject</th>
-                                </tr>
-                                </thead>
-
-                                <tbody>
-                                <tr>
-                                    <td>Class X</td>
-                                    <td><input ng-model="cur_candidate.x_board" placeholder="E.g CBSE" id="xp" type="text" class="" name="cand_X_board">
-                                    <td><input ng-model="cur_candidate.cand_x_pass_year" id="xb" type="text" class="" name="cand_X_pass_year"></td>
-                                    <td><select ng-model="cur_candidate.cand_x_division" name="cand_X_division">
-                                            <option value="" disabled selected>Select</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="2">3</option>
-                                        </select></td>
-                                    <td><input class="validate" ng-model="cur_candidate.cand_x_grade" id="xs" type="text" class="" name="cand_X_grade"></td>
-                                    <td><input class="validate" ng-model="cur_candidate.cand_x_subject" placeholder="E.g English,Mathematics,Physics ... " id="xd" type="text" class="" name="cand_X_subject"></td>
-                                </tr>
-                                <tr>
-
-                                    <td>Class XII</td>
-                                    <td><input class="validate" ng-model="cur_candidate.cand_xii_board" placeholder="E.g CBSE" id="xii" type="text" class="" name="cand_XII_board">
-                                    <td><input class="validate" ng-model="cur_candidate.cand_xii_pass_year" id="xoop" type="text" class="" name="cand_XII_pass_year"></td>
-                                    <td><select ng-model="cur_candidate.cand_xii_division" name="cand_xii_division">
-                                            <option value="" disabled selected>Select</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="2">3</option>
-                                        </select></td>
-                                    <td><input class="validate" ng-model="cur_candidate.cand_xii_grade" id="xpppp" type="text" class="" name="cand_XII_grade"></td>
-                                    <td><input class="validate" ng-model="cur_candidate.cand_xii_subject" placeholder="E.g English,Mathematics,Physics ... " id="xmmmm" type="text" class="" name="cand_XII_subject"></td>
-                                </tr>
-                                <tr>
-
-                                    <td>M.Tech</td>
-                                    <td><input class="validate" ng-model="cur_candidate.cand_mtech_board" placeholder="College/Univ" id="mp" type="text" class="" name="cand_mtech_board">
-                                    <td><input class="validate" ng-model="cur_candidate.cand_mtech_pass_year" id="mb" type="text" class="" name="cand_mtech_pass_year"></td>
-                                    <td><select name="cand_mtech_division" ng-model="cur_candidate.cand_mtech_division">
-                                            <option value="" disabled selected>Select</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="2">3</option>
-                                        </select></td>
-                                    <td><input class="validate" ng-model="cur_candidate.cand_mtech_grade" id="mq" type="text" class="" name="cand_mtech_grade"></td>
-                                    <td><input class="validate" ng-model="cur_candidate.cand_mtech_subject" placeholder="E.g English,Mathematics,Physics ... " id="mr" type="text" class="" name="cand_mtech_subject"></td>
-                                </tr>
-                                <tr>
-
-                                    <td>Ph.D</td>
-                                    <td><input class="validate" ng-model="cur_candidate.cand_phd_board" placeholder="College/Univ" id="ps" type="text" class="" name="cand_phd_board">
-                                    <td><input class="validate" ng-model="cur_candidate.cand_phd_pass_year" id="pt" type="text" class="" name="cand_phd_pass_year"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-                        </div>
-
-                        <div class="container" ng-show="selected==4">
-                            <div class="row">
-                                <div  class="ss-item-required input-field col s9">
-                                    <textarea id="textarea5" class="materialize-textarea" ng-model="cur_candidate.cand_employer_address" placeholder="Current Employer Address"></textarea>
-
-                                </div>
-                                <div  class="ss-item-required input-field col s3">
-                                    <textarea id="textarea6" class="materialize-textarea valid_pin" ng-model="cur_candidate.cand_employer_pin" placeholder="Pincode"></textarea>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div ng-show="selected==5" class="container">
-                            <div class="row">
-                                <div  class="ss-item-required input-field col s6">
-                                    <input  class="validate" id="datepicker" placeholder="Date of submission of PhD Thesis" type="text" class="datepicker" ng-model="cur_candidate.cand_phd_thesis_submission">
-
-                                </div>
-                                <div  class="ss-item-required input-field col s6">
-                                    <input class="validate" id="datepicker" placeholder="Title of Ph.D thesis" type="text" class="" ng-model="cur_candidate.cand_phd_thesis_title">
-
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div  class="ss-item-required input-field col s6">
-                                    <input class="validate" placeholder="Month and year of passing of NET/GATE" id="mpg" type="text" class="" ng-model="cur_candidate.cand_gate_date">
-
-                                </div>
-                                <div  class="ss-item-required input-field col s6">
-                                    <input class="validate" id="datepicker" placeholder="Corresponding Roll Number" type="text" class="" ng-model="cur_candidate.cand_gate_roll_number">
-
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div  class="ss-item-required input-field col s12">
-                                    <input class="validate" id="datepicker" placeholder="Field of specialization" type="text" class="" ng-model="cur_candidate.cand_specialization">
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div ng-show="selected==6" class="container">
-                            <p class = "center extra">Name and Address of two persons to whom references can be made</p>
-                            <div class="row">
-                                <div  class="ss-item-required input-field col s6">
-                                    <input class="validate"  id="datepicker" placeholder="Name" type="text" class="" ng-model="cur_candidate.cand_ref1_name">
-                                </div>
-                                <div  class="ss-item-required input-field col s6">
-                                    <input class="validate" id="datepicker" placeholder="Address" type="text" class="" ng-model="cur_candidate.cand_ref1_address">
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div  class="ss-item-required input-field col s6">
-                                    <input class="validate" id="datepicker" type="text" placeholder="Name" class="" ng-model="cur_candidate.cand_ref2_name">
-
-                                </div>
-                                <div  class="ss-item-required input-field col s6">
-                                    <input class="validate" id="datepicker" type="text" placeholder="Address" class="" ng-model="cur_candidate.cand_ref2_address">
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div ng-show="selected==7"  class="container">
-
-                            <div class="row">
-                                <div class="ss-item-required input-field col s12">
-                                    <input class="validate" id="extras" placeholder="Any Other Additonal Details" type="text" class="" ng-model="cur_candidate.cand_extras">
-                                </div>
-                            </div>
-
-
-                        </div>
-                        </form>
-                    </div>
-                </div>
+            <div class="modal" id="addModal">
+              <<div class="modal-content">
+                <h2>Vacancy Information</h2>
+              <input placeholder="name"/>
+              </div>
             </div>
+            <table class="card responsive-table bordered centered">
+                <thead>
 
+                </thead>
+                <tbody>
+                  <tr ng-repeat="rowContent in rows">
+                    <td>{{rowContent}}</td><!--<span id="removeBtn"class="removeBtn"><i class="fa fa-trash"></i></span>-->
+                  </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-
-
 </main>
 <br><br>
 <% include includes/footer.ejs %>
@@ -920,6 +944,20 @@ display: none;
         $('.logout').click(function () {
             window.location.href="/logout";
         })
+
     })
+//this is for adding vacancies to the table
+    // angular.module('form', [])
+    // .controller('mc', [ '$scope', function($scope) {
+    //   // $('.modal').modal();
+    //   $scope.rows = [];
+    //
+    //   $scope.counter = 1;
+    //
+    //   $scope.addVacancy = function() {
+    //     $scope.rows.push( $scope.counter +" "+ $scope.title);
+    //     $scope.counter++;
+    //   }
+    // }]);
 </script>
 <script>s=<%- JSON.stringify(site) %>;</script>
