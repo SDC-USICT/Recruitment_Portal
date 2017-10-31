@@ -16,7 +16,8 @@ router.get('/',verify.isAuthenticated, function(req, res, next) {
         title : title,
         desc : desc,
         ApplicantId: req.user.UserId,
-        emailId: req.user.email
+        emailId: req.user.email,
+        role: req.user.role
     }
     console.log("IAM CALEED")
     console.log(site)
@@ -227,5 +228,7 @@ router.post('/upload', verify.isAuthenticated, upload.any(), function (req, res)
     }
     res.send(response)
 });
+
+
 
 module.exports = router;
