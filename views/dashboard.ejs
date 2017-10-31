@@ -6,14 +6,13 @@
 <body id="dashboard">
 <main  ng-controller="mc"  ng-app="Form">
     <% include includes/header.ejs %>
-    <h1>Welcome </h1> {{email}}
     <nav  class="secondary-navbar">
         <div class="nav-wrapper">
             <ul class="tabs">
                 <li class="tab"><a id="dash" class="active" href="#test1">DASHBOARD</a></li>
                 <li class="tab"><a class="" id="info" href="#test2">INFORMATION</a></li>
                 <li  class="tab"><a id="apply" class="hide" href="#test3">APPLICATION</a></li>
-                <li class="tab"><a id="vacancies" class=""  href="#test4">VACANCIES</a></li>
+              <% if (site.role == 'ADMIN') { %>  <li class="tab"><a id="vacancies" class=""  href="#test4">VACANCIES</a></li> <% } %>
                 <ul class="right hide-on-med-and-down">
                     <li class="tab"><a href="#test5">FAQ</a></li>
                     <li>
@@ -34,7 +33,6 @@
         </div>
     </nav>
     <br><br>
-
     <!--  Notifications for wrong input in Login form-->
     <% if (site.message && site.message.length>0) { %>
       <div class="card-panel green lighten-1">
@@ -42,7 +40,6 @@
       </div>
         <% } %>
     <div id="test1" class="vacancy container">
-
         <div class="section">
             <div class="card table-title">YOUR APPLICATIONS</div>
             <table class="card responsive-table bordered centered">
@@ -797,7 +794,7 @@
                   </div>
           </div>
     </div>-->
-
+    <% if (site.role == 'ADMIN') { %>
     <div id="test4" class="vacancy container">
         <div class="section">
             <div class="card table-title"><p>VACANCIES</p>
@@ -821,6 +818,7 @@
             </table>
         </div>
     </div>
+      <% } %>
 </main>
 <br><br>
 <% include includes/footer.ejs %>
